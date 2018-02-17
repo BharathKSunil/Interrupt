@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    tools:background="@color/white"
+    tools:context="com.bharathksunil.interrupt.UnderConstructionFragment">
+
+    <ImageView
+        android:id="@+id/temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/tv_under_construction"
+        app:srcCompat="@drawable/ic_under_construction" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_under_construction"
+        android:layout_below="@+id/temp"
+        android:gravity="center"
+        android:textAppearance="@style/Dashboard.TextAppearance.Title" />
+
+</RelativeLayout>

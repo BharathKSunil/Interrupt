@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dashboard.ui.DashboardActivity">
+    <!--APP NAME-->
+    <TextView
+
+        android:id="@+id/appName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:fontFamily="@string/app_name"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:text="@string/app_name"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:textColor="@color/primary_dark"
+        android:textSize="25sp" />
+    <!--CUSTOM TABS-->
+    <include
+        android:id="@+id/dash_customTab"
+        layout="@layout/dash_custom_vertical_tab"
+        android:layout_width="@dimen/dash_custom_tab_width"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <!--FRAGMENT FRAMES-->
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appName"
+        android:layout_toEndOf="@+id/dash_customTab"
+        android:layout_toRightOf="@+id/dash_customTab"
+        android:background="@color/white" />
+</RelativeLayout>

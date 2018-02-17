@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Interrupt 7.0</string>
+    <string name="app_slogan">Everything under CTRL</string>
+    <string name="iv_divider">Divider image</string>
+
+    <string name="prompt_sign_out_title">SignOut ?</string>
+    <string name="prompt_sign_out_message">You will have to SignIn again to use the app.</string>
+
+    <string name="section_a">A</string>
+    <string name="section_b">B</string>
+    <string name="section_c">C</string>
+    <string name="section_na">NA</string>
+
+    <string name="hint_email">Email ID</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_pin">Pin</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_phone">Phone No</string>
+    <string name="hint_usn">USN</string>
+    <string name="hint_department">Department</string>
+    <string name="hint_section">Section</string>
+    <string name="hint_semester">Semester</string>
+    <string name="sem_2">2nd</string>
+    <string name="sem_4">4th</string>
+    <string name="sem_6">6th</string>
+    <string name="sem_8">8th</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="snack_back_press_twice">We\'ll Miss you, Press Back Again to exit.</string>
+    <string name="tv_under_construction">This Page is Under Construction...  We\'ll be ready soon.</string>
+
+</resources>

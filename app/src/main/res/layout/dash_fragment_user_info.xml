@@ -1,0 +1,287 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/white"
+    tools:context="com.bharathksunil.interrupt.dashboard.ui.fragments.UserInfoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <!--USER INFO LAYOUT-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--USER IMAGE + LOADING LAYOUT-->
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_user_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/cd_profile_image"
+                    app:srcCompat="@drawable/ic_profile" />
+
+                <include layout="@layout/layout_progress_bar" />
+            </RelativeLayout>
+            <!--USER NAME-->
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textAppearance="@style/Dashboard.TextAppearance.Title"
+                tools:text="Bharath Kumar S" />
+            <!--USER DESIGNATION-->
+            <TextView
+                android:id="@+id/tv_user_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                tools:text="ADMIN|ORGANISER|CR|COORDINATOR" />
+            <!--SIGN OUT + EDIT INFO BUTTON-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_logout"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_logout"
+                    android:drawableStart="@drawable/ic_logout"
+                    android:text="@string/btn_sign_out" />
+
+                <Button
+                    android:id="@+id/btn_edit"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_edit"
+                    android:drawableStart="@drawable/ic_edit"
+                    android:text="@string/btn_edit" />
+            </LinearLayout>
+            <!--OTHER INFO-->
+            <LinearLayout
+                android:id="@+id/layout_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--EMAIL-->
+                <include layout="@layout/divider_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+                <TextView
+                    android:id="@+id/tv_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                    tools:text="bharathk.sunil.k@gmail.com" />
+
+                <!--PHONE NUMBER-->
+                <include layout="@layout/divider_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_no"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+                <TextView
+                    android:id="@+id/tv_user_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                    tools:text="+91 8867036863" />
+
+                <!--USN-->
+                <include layout="@layout/divider_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usn"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+                <TextView
+                    android:id="@+id/tv_user_usn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                    tools:text="1DA14CS025" />
+                <!--COLLEGE INFO-->
+                <include layout="@layout/divider_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/college"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+                <TextView
+                    android:id="@+id/tv_user_college"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                    tools:text="Dr. Ambedkar Institute of Technology" />
+
+                <include layout="@layout/divider_horizontal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+                    <!--SEMESTER-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sem"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+                        <TextView
+                            android:id="@+id/tv_user_sem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                            tools:text="8th" />
+                    </LinearLayout>
+
+                    <include
+                        layout="@layout/divider_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center" />
+
+                    <!--SECTION-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/section"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+                        <TextView
+                            android:id="@+id/tv_user_section"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                            tools:text="A" />
+                    </LinearLayout>
+
+                    <include
+                        layout="@layout/divider_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center" />
+                    <!--DEPARTMENT-->
+                    <include
+                        layout="@layout/divider_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/department"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+                        <TextView
+                            android:id="@+id/tv_user_dept"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                            tools:text="CSE" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <include layout="@layout/divider_horizontal" />
+            </LinearLayout>
+        </LinearLayout>
+        <!--REGISTERED EVENTS HEADING-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_registered_events"
+            android:textAppearance="@style/Dashboard.TextAppearance.Medium"
+            android:textColor="@color/primary_dark" />
+
+        <include layout="@layout/divider_horizontal" />
+        <!--EMPTY REGISTERED EVENTS TEXT-->
+        <TextView
+            android:id="@+id/tv_empty_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/tv_empty_registered_events"
+            android:textAppearance="@style/Dashboard.TextAppearance.Small"
+            android:visibility="gone"
+            tools:visibility="visible" />
+        <!--REGISTERED EVENT INFO-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/events_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

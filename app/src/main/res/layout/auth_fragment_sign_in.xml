@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/transparent"
+    tools:background="@color/white"
+    tools:context=".auth.ui.fragments.SignInFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <!--APP ICON-->
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_launcher" />
+            <!--APP NAME-->
+            <TextView
+                android:id="@+id/tv_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/app_font"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/primary" />
+            <!--EMAIL -->
+            <include layout="@layout/layout_input_email" />
+            <!--PASSWORD-->
+            <include layout="@layout/layout_input_password" />
+            <!--SIGN IN BUTTON-->
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/btn_sign_in"
+                android:theme="@style/Auth.ButtonNormal" />
+            <!--REGISTER NOW PROMPT-->
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/tv_please_register"
+                android:textColor="@color/primary_text" />
+            <!--PROGRESS BAR-->
+            <include layout="@layout/layout_progress_bar" />
+        </LinearLayout>
+    </ScrollView>
+    <!--TERMS AND POLICY PROMPT-->
+    <TextView
+        android:id="@+id/tv_terms_policy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:autoLink="web"
+        android:visibility="gone"
+        android:text="@string/tv_terms_and_policy_signIn"
+        android:textAlignment="center" />
+</RelativeLayout>

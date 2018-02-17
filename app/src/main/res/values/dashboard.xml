@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="btn_edit">Edit Info</string>
+
+    <dimen name="dash_custom_tab_width">35dp</dimen>
+
+    <string name="email">Email ID</string>
+    <string name="phone_no">Phone Number</string>
+    <string name="usn">USN</string>
+    <string name="department">Dept.</string>
+    <string name="section">Section</string>
+    <string name="sem">Semester</string>
+
+    <string name="cd_profile_image">ProfileImage</string>
+    <string name="cd_events_image">EventsImage</string>
+    <string name="cd_events_schedule">EventsSchedule</string>
+    <string name="cd_manager_image">ManagerImage</string>
+    <string name="cd_designers_image">DesignersImage</string>
+    <string name="cb_organisers_image">OrganisersImage</string>
+    <string name="cd_admins_image">AdminsImage</string>
+    <string name="cd_about_app">AboutApp</string>
+    <string name="college">College</string>
+    <string name="tv_empty_registered_events">We have Awesome Events for Everyone.\nPlease Register ASAP.</string>
+    <string name="tv_registered_events">Your Registered Events</string>
+
+    <!--STYLING-->
+    <style name="Dashboard" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/primary_dark</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlHighlight">@color/primary_dark</item>
+        <item name="fontFamily">@font/app_font</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <!--Button Theme -->
+    <style name="Dashboard.ButtonNormal" parent="Dashboard">
+        <item name="colorControlHighlight">@color/primary_dark</item>
+        <item name="colorButtonNormal">@color/primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="Dashboard.ButtonInverse" parent="Dashboard">
+        <item name="colorControlHighlight">@color/primary_light</item>
+        <item name="colorButtonNormal">@color/white</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="Dashboard.ButtonBorderLess" parent="Dashboard">
+        <item name="colorControlHighlight">@color/accent</item>
+        <item name="colorButtonNormal">@color/transparent</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="Dashboard.TextAppearance.Small" parent="Base.TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="fontFamily">@font/app_font</item>
+    </style>
+
+    <style name="Dashboard.TextAppearance.Medium" parent="Base.TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="fontFamily">@font/app_font</item>
+    </style>
+
+    <style name="Dashboard.TextAppearance.Title" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="fontFamily">@font/app_font</item>
+    </style>
+
+</resources>

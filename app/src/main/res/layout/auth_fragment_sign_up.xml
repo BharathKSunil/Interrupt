@@ -1,0 +1,61 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    tools:background="@color/white"
+    tools:context=".auth.ui.fragments.SignUpFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <!--APP NAME-->
+        <TextView
+            android:id="@+id/tv_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/primary" />
+        <!--PROGRESS BAR-->
+        <include layout="@layout/layout_progress_bar" />
+        <!--PROFILE IMAGE-->
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/ic_profile" />
+        <!--USER INFO-->
+        <include layout="@layout/layout_input_user_data" />
+        <!--PASSWORD-->
+        <include layout="@layout/layout_input_password" />
+        <!--SIGN UP BUTTON-->
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/btn_sign_up"
+            android:theme="@style/Auth.ButtonNormal" />
+        <!--SIGN IN BUTTON-->
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/btn_sign_in"
+            android:theme="@style/Auth.ButtonInverse" />
+
+    </LinearLayout>
+</ScrollView>

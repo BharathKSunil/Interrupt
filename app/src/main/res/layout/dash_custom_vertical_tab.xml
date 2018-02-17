@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/dash_custom_tab_width"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_custom_tabs"
+    android:orientation="vertical"
+    android:paddingEnd="4dp"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp"
+    android:paddingStart="4dp">
+
+    <!--TAB PROFILE-->
+    <ImageView
+        android:id="@+id/tab_profile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/cd_profile_image"
+        app:srcCompat="@drawable/ic_profile" />
+    <include layout="@layout/divider_horizontal" />
+
+    <!--TAB EVENTS-->
+    <ImageView
+        android:id="@+id/tab_events"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/cd_events_image"
+        app:srcCompat="@drawable/ic_events" />
+    <include layout="@layout/divider_horizontal" />
+
+    <!--TAB SCHEDULES-->
+    <ImageView
+        android:id="@+id/tab_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/cd_events_schedule"
+        app:srcCompat="@drawable/ic_schedule" />
+    <include layout="@layout/divider_horizontal" />
+
+    <!--TAB CLASS REPRESENTATIVES-->
+    <ImageView
+        android:id="@+id/tab_class_reps"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/cd_manager_image"
+        app:srcCompat="@drawable/ic_organiser" />
+    <include layout="@layout/divider_horizontal" />
+
+    <!--TAB COORDINATORS-->
+    <ImageView
+        android:id="@+id/tab_coordinators"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/cd_designers_image"
+        app:srcCompat="@drawable/ic_designer" />
+    <include layout="@layout/divider_horizontal" />
+
+    <!--TAB ORGANISERS-->
+    <ImageView
+        android:id="@+id/tab_organisers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/cb_organisers_image"
+        app:srcCompat="@drawable/ic_event_manager" />
+    <include layout="@layout/divider_horizontal" />
+
+    <!--TAB ADMINISTRATOR-->
+    <ImageView
+        android:id="@+id/tab_admin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/cd_admins_image"
+        app:srcCompat="@drawable/ic_admin" />
+    <include layout="@layout/divider_horizontal" />
+
+    <!--TAB ABOUT-->
+    <ImageView
+        android:id="@+id/tab_about"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/cd_about_app"
+        app:srcCompat="@drawable/ic_about" />
+</LinearLayout>

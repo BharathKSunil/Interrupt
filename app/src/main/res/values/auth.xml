@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btn_sign_in">Sign In</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="btn_sign_up">Sign Up</string>
+
+    <string name="err_empty_field">Oops :( We really need this.</string>
+    <string name="err_invalid_field">Oops :( Did we type that correctly? </string>
+    <string name="err_password_mismatch">Mismatch, Please Retry</string>
+    <string name="err_password_security">We love to see you safer, Kindly strengthen your password.</string>
+    <string name="err_email_existing">Oops :( Looks like You are already Registered with us.</string>
+    <string name="err_incorrect_email">Oops :( Couldn\'t find this email in our vaults.</string>
+    <string name="err_incorrect_password">Incorrect Password.</string>
+    <string name="err_unexpected_error">Oops :( Something Went Horribly Wrong..</string>
+    <string name="err_invalid_section">Oops :( Invalid Section Selected..</string>
+    <string name="err_invalid_sem">Oops :( Invalid Semester Selected..</string>
+
+    <string name="snack_signed_in">Hello there, You were Successfully Signed In</string>
+    <string name="snack_signed_up">Hello there, You were Successfully Signed Up</string>
+
+    <string name="tv_please_register">Not on Interrupt? <b>Sign Up Now.!</b></string>
+    <string name="tv_terms_and_policy_signIn">By Signing In you agree to our <a href="bharathksunil.github.io">Terms</a> and <a href="bharathksunil.github.io">Privacy Policy</a></string>
+    <string name="tv_forgot_password">Psst… Forgotten Password?</string>
+
+    <!--STYLING-->
+    <style name="Auth" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorControlNormal">@android:color/black</item>
+        <item name="colorControlHighlight">@color/primary_dark</item>
+        <item name="fontFamily">@font/app_font</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <!--Button Theme -->
+    <style name="Auth.ButtonNormal" parent="Auth">
+        <item name="colorControlHighlight">@color/primary_dark</item>
+        <item name="colorButtonNormal">@color/primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="Auth.ButtonInverse" parent="Auth">
+        <item name="colorControlHighlight">@color/primary_light</item>
+        <item name="colorButtonNormal">@color/white</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="Auth.ButtonBorderLess" parent="Auth">
+        <item name="colorControlHighlight">@color/accent</item>
+        <item name="colorButtonNormal">@color/transparent</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    </style>
+</resources>
