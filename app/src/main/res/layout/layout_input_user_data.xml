@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapCharacters"
+            android:text="@string/et_usn_pre_fill"
             android:hint="@string/hint_usn" />
     </android.support.design.widget.TextInputLayout>
     <!--DEPARTMENT-->

@@ -15,23 +15,24 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 
+import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.auth.presenter.SignUpPresenter;
 import com.bharathksunil.interrupt.auth.presenter.SignUpPresenterImplementation;
 import com.bharathksunil.interrupt.auth.repository.FirebaseSignUpRepositoryImplementation;
 import com.bharathksunil.interrupt.util.CircleTransform;
 import com.bharathksunil.interrupt.util.Debug;
+import com.bharathksunil.interrupt.util.ImageCompression;
+import com.bharathksunil.interrupt.util.TextDrawable;
+import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import com.bharathksunil.interrupt.R;
-
-import com.bharathksunil.interrupt.util.ImageCompression;
-
 import java.io.File;
 import java.util.List;
 
+import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -99,6 +100,18 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
     String err_unexpected_error;
     @BindString(R.string.snack_signed_up)
     String snack_signed_up;
+    @BindString(R.string.tv_profile_Image)
+    String iv_profileImage;
+    @BindString(R.string.prompt_pick_image)
+    String prompt_pickImage;
+    @BindString(R.string.err_storage_permission)
+    String err_perm_storage;
+    @BindString(R.string.err_offline)
+    String err_offline;
+    @BindColor(R.color.background_dark_material)
+    int iv_background;
+    @BindColor(R.color.white)
+    int iv_text_color;
 
     @Override
     public void onAttach(Context context) {
@@ -113,13 +126,18 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.auth_fragment_sign_up, container, false);
+        unbinder = ButterKnife.bind(this, view);
         presenter = new SignUpPresenterImplementation(new FirebaseSignUpRepositoryImplementation());
         presenter.setView(this);
-        if (imagePath!=null){
+        if (imagePath != null) {
             Picasso.with(getActivity()).load(imagePath)
                     .transform(new CircleTransform()).into(iv_profile);
+        } else {
+            TextDrawable textDrawable = TextDrawable.builder().beginConfig()
+                    .withBorder(1).fontSize(35).textColor(iv_text_color)
+                    .endConfig().buildRound(iv_profileImage, iv_background);
+            iv_profile.setImageDrawable(textDrawable);
         }
-        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -134,7 +152,10 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
     @OnClick(R.id.btn_submit)
     public void signUp() {
         ViewUtils.resetTextInputError(textInputLayoutList);
-        presenter.onSignUpButtonClicked();
+        if (Utils.isConnected(getActivity()))
+            presenter.onSignUpButtonClicked();
+        else
+            ViewUtils.errorBar(err_offline, getActivity());
     }
 
     //SignIn Button Pressed
@@ -146,11 +167,13 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
     //Profile Image Clicked
     @OnClick(R.id.iv_profile)
     public void chooseProfileImage() {
-        //todo: Image Picker Doesn't work
-        Debug.toast("Coming Soon", getActivity());
-
-//        imagePath = Utils.showFileChooser("image/*", "Select Profile Picture", IMAGE_REQUEST_CODE, this);
+        if (Utils.isStoragePermissionGranted(getActivity()))
+            Utils.showFileChooser("image/*", prompt_pickImage,
+                    IMAGE_REQUEST_CODE, this);
+        else
+            ViewUtils.errorBar(err_perm_storage, getActivity());
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -163,17 +186,15 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
                 ) {
             //Compress the image and set the image
             String compressedFilePath;
-            //if the image is chosen from the storage
-            if (data!=null)
-                compressedFilePath = new ImageCompression().compressImage(data.getData().getPath());
-            else {//if the image is shot from the camera
-                compressedFilePath = new ImageCompression().compressImage(imagePath.getPath());
-                new File(imagePath.getPath()).delete();//delete the original file
-            }
+            File file = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
+            Uri mediaPath = Uri.fromFile(file);
+            Debug.i("Media Path : " + mediaPath + " Raw Path: " + data.getData());
+            compressedFilePath = new ImageCompression().compressImage(file.getAbsolutePath());
             imagePath = Uri.fromFile(new File(compressedFilePath));
             Picasso.with(getActivity()).load(imagePath).transform(new CircleTransform()).into(iv_profile);
         }
     }
+
 
     /**
      * Called when the presenter starts its work

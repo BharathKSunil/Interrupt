@@ -16,7 +16,7 @@ public interface UserInfoPresenter {
          * *
          * @param profileUrl the url to the profile image
          */
-        void setUserImage(String profileUrl);
+        void loadUserImage(String profileUrl);
 
         void setUserName(String userName);
 

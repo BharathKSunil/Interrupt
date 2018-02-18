@@ -21,6 +21,7 @@
     <string name="tv_please_register">Not on Interrupt? <b>Sign Up Now.!</b></string>
     <string name="tv_terms_and_policy_signIn">By Signing In you agree to our <a href="bharathksunil.github.io">Terms</a> and <a href="bharathksunil.github.io">Privacy Policy</a></string>
     <string name="tv_forgot_password">Psst… Forgotten Password?</string>
+    <string name="tv_profile_Image">Profile Image</string>
 
     <!--STYLING-->
     <style name="Auth" parent="Theme.AppCompat.Light.NoActionBar">

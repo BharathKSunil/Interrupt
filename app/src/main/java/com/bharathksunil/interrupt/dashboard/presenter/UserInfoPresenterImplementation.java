@@ -40,7 +40,7 @@ public class UserInfoPresenterImplementation implements UserInfoPresenter {
             viewInstance.setUserSemester(userManager.getUsersSemester());
             viewInstance.setUserSection(userManager.getUsersSection());
             viewInstance.setUserDepartment(userManager.getUsersDepartment());
-            viewInstance.setUserImage(userManager.getUsersProfileImageUrl());
+            viewInstance.loadUserImage(userManager.getUsersProfileImageUrl());
 
         }
     }

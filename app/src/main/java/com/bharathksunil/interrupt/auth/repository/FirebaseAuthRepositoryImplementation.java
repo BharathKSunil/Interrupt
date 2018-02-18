@@ -60,7 +60,7 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
                 }
             });
         } else {
-            Debug.e(FirebaseAuthRepositoryImplementation.this.getClass().getName()+" getUserData(): user isn't signed in");
+            Debug.e(FirebaseAuthRepositoryImplementation.this.getClass().getName() + " getUserData(): user isn't signed in");
             dataLoadedCallback.onDataLoadFailed();
         }
     }
@@ -71,16 +71,17 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
      * @param dataLoadedCallback callback to receive data asynchronously
      */
     @Override
-    public void getAccessData(final DataLoadedCallback dataLoadedCallback) {
+    public void getUserAccessData(final DataLoadedCallback dataLoadedCallback) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
             //get a reference to the users tree
-            DatabaseReference userReference = FirebaseDatabase.getInstance()
+            DatabaseReference userAccessReference = FirebaseDatabase.getInstance()
                     .getReference(FirebaseConstants.USERS_ACCESS_TREE)
                     .child(TextUtils.getEmailAsFirebaseKey(UserManager.getInstance().getUsersEmailID()));
             //read the value
-            userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            userAccessReference.keepSynced(true);
+            userAccessReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     dataLoadedCallback.onDataLoaded(dataSnapshot);
@@ -93,7 +94,7 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
                 }
             });
         } else {
-            Debug.e(FirebaseAuthRepositoryImplementation.this.getClass().getName()+" getAccessData(): user isn't signed in");
+            Debug.e(FirebaseAuthRepositoryImplementation.this.getClass().getName() + " getUserAccessData(): user isn't signed in");
             dataLoadedCallback.onDataLoadFailed();
         }
     }

@@ -8,7 +8,8 @@ public interface FirebaseConstants {
     /**
      * The Primary Branches of the NoSql database
      */
-    String USERS_TREE = "Users", USERS_ACCESS_TREE = "UserAccess";
+    String USERS_TREE = "Users", USERS_ACCESS_TREE = "UserAccess",
+            EVENT_REGISTRATIONS_TREE = "EventRegistrations";
 
     String PROFILE_STORE = "/Profiles/";
 }

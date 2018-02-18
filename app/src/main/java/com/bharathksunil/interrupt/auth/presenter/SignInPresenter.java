@@ -115,7 +115,7 @@ public interface SignInPresenter {
     /**
      * Call this method in the onResume to set the current view
      *
-     * @param view the SignInPresenter.View
+     * @param view the SignInPresenter.RowView
      */
     void setView(@Nullable View view);
 

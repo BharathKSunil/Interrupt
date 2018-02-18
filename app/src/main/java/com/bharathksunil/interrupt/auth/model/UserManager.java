@@ -138,7 +138,7 @@ public class UserManager {
         return instance.user.getDepartment();
     }
 
-    public String getUsersProfileImageUrl(){
+    public String getUsersProfileImageUrl() {
         return instance.user.getProfileUrl();
     }
 
@@ -160,7 +160,7 @@ public class UserManager {
     public boolean isUserAClassRepresentative() {
         checkIntegrity(instance.access.getAccessType()); //all users must have an access type
 
-        String[] types = instance.access.getAccessType().split("|");
+        String[] types = instance.access.getAccessType().split("\\|");
         for (String type : types) {
             if (type.equals(UserType.CR.name()))
                 return true;
@@ -176,7 +176,7 @@ public class UserManager {
     public boolean isUserAEventsCoordinator() {
         checkIntegrity(instance.access.getAccessType()); //all users must have an access type
 
-        String[] types = instance.access.getAccessType().split("|");
+        String[] types = instance.access.getAccessType().split("\\|");
         for (String type : types) {
             if (type.equals(UserType.COORDINATOR.name()))
                 return true;
@@ -192,7 +192,7 @@ public class UserManager {
     public boolean isUserAnOrganiser() {
         checkIntegrity(instance.access.getAccessType()); //all users must have an access type
 
-        String[] types = instance.access.getAccessType().split("|");
+        String[] types = instance.access.getAccessType().split("\\|");
         for (String type : types) {
             if (type.equals(UserType.ORGANISER.name()))
                 return true;
@@ -208,7 +208,7 @@ public class UserManager {
     public boolean isUserAnAdministrator() {
         checkIntegrity(instance.access.getAccessType()); //all users must have an access type
 
-        String[] types = instance.access.getAccessType().split("|");
+        String[] types = instance.access.getAccessType().split("\\|");
         for (String type : types) {
             if (type.equals(UserType.ADMINISTRATOR.name()))
                 return true;

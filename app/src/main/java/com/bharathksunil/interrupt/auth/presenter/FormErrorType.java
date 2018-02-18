@@ -8,7 +8,20 @@ package com.bharathksunil.interrupt.auth.presenter;
  */
 
 public enum FormErrorType {
+    /**
+     * This error type means that the user entered Field is empty and should have some value
+     * to accept it as an input.(Required field)
+     */
     EMPTY,
+    /**
+     * This error type means that the user entered filed is Syntactically incorrect(unstructured email)
+     * or does not match the input requirements(such as passwords strengths)
+     * or the system expected an integer but a string was passed
+     */
     INVALID,
+    /**
+     * This error type means that the user input field is not correct and doesn't match the input
+     * expected(such as incorrect email or password or pin)
+     */
     INCORRECT
 }

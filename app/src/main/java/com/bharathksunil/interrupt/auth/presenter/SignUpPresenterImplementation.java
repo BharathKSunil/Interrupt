@@ -55,33 +55,34 @@ public class SignUpPresenterImplementation implements SignUpPresenter {
         profilePath = viewInstance.getCompressedProfileImagePath();
         //check if any field is left empty or is invalid, if not then sign up the user
         if (checkIfAnyUserInfoFieldIsEmpty() && checkForAnyInvalidField()) {
-            repositoryInstance.signUpWithEmailAndPassword(email, password, new Repository.SignUpCallbacks() {
-                //once signed up, upload the profile image if the user has set one or upload the user information
-                @Override
-                public void onUserSignedUpSuccessfully() {
-                    if (profilePath != null)
-                        uploadProfileImage();
-                    else
-                        uploadUserInfo();
-                }
+            repositoryInstance.signUpWithEmailAndPassword(email, password,
+                    new Repository.SignUpCallbacks() {
+                        //once signed up, upload the profile image if the user has set one or upload the user information
+                        @Override
+                        public void onUserSignedUpSuccessfully() {
+                            if (profilePath != null)
+                                uploadProfileImage();
+                            else
+                                uploadUserInfo();
+                        }
 
-                @Override
-                public void onUserAlreadySignedUp() {
-                    //if the user is already signed up then show the error to the user
-                    if (viewInstance != null) {
-                        viewInstance.onProcessEnded();
-                        viewInstance.onEmailFieldError(INCORRECT);
-                    }
-                }
+                        @Override
+                        public void onUserAlreadySignedUp() {
+                            //if the user is already signed up then show the error to the user
+                            if (viewInstance != null) {
+                                viewInstance.onProcessEnded();
+                                viewInstance.onEmailFieldError(INCORRECT);
+                            }
+                        }
 
-                @Override
-                public void onUserSignUpFailed() {
-                    if (viewInstance != null) {
-                        viewInstance.onProcessEnded();
-                        viewInstance.onUnexpectedError();
-                    }
-                }
-            });
+                        @Override
+                        public void onUserSignUpFailed() {
+                            if (viewInstance != null) {
+                                viewInstance.onProcessEnded();
+                                viewInstance.onUnexpectedError();
+                            }
+                        }
+                    });
         } else
             viewInstance.onProcessEnded();
     }
@@ -138,19 +139,22 @@ public class SignUpPresenterImplementation implements SignUpPresenter {
     private void uploadProfileImage() {
         if (viewInstance == null)
             return;
-        repositoryInstance.uploadProfilePicture(profilePath, new Repository.ProfileUploadCallback() {
-            @Override
-            public void onProfileUploaded(String url) {
-                profileUrl = url;
-                uploadUserInfo();
-            }
+        repositoryInstance.uploadProfilePicture(profilePath,
+                new Repository.ProfileUploadCallback() {
+                    @Override
+                    public void onProfileUploaded(String url) {
+                        profileUrl = url;
+                        uploadUserInfo();
+                    }
 
-            @Override
-            public void onProfileUploadFailed() {
-                viewInstance.onProcessEnded();
-                viewInstance.onProfilePathError(INCORRECT);
-            }
-        });
+                    @Override
+                    public void onProfileUploadFailed() {
+                        if (viewInstance == null)
+                            return;
+                        viewInstance.onProcessEnded();
+                        viewInstance.onProfilePathError(INCORRECT);
+                    }
+                });
     }
 
     private void uploadUserInfo() {
@@ -160,12 +164,16 @@ public class SignUpPresenterImplementation implements SignUpPresenter {
         repositoryInstance.uploadUserInfo(user, new Repository.UserUploadCallback() {
             @Override
             public void onUserInfoUploadedSuccessfully() {
+                if (viewInstance == null)
+                    return;
                 viewInstance.onProcessEnded();
                 viewInstance.onUserSuccessfullySignedUp();
             }
 
             @Override
             public void onUserInfoUploadFailed() {
+                if (viewInstance == null)
+                    return;
                 viewInstance.onProcessEnded();
                 viewInstance.onUnexpectedError();
             }

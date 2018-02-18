@@ -5,6 +5,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 /**
  * This represents the structure of the database of UserAccess tree.
  * This is used for access management for the system
+ *
  * @author Bharath Kumar S
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -14,19 +15,19 @@ public class UserAccess {
      * The type of the user, can be:
      * ADMINISTRATOR, PARTICIPANT, CR, COORDINATOR, ORGANISER,
      */
-    protected String AccessType;
+    private String AccessType;
     /**
      * Is the user allowed to use the app
      */
-    protected boolean Enabled;
+    private boolean Enabled;
     /**
      * All configurations for the user to have access to the Collections
      */
-    protected boolean canViewCollection, canEditCollections, canViewCollectionsHistory;
+    private boolean canViewCollection, canEditCollections, canViewCollectionsHistory;
     /**
      * All configurations for event managements
      */
-    protected boolean canEditEventsInfo, canRegisterUser, canViewEventCollections,
+    private boolean canEditEventsInfo, canRegisterUser, canViewEventCollections,
             canRequestResourceForEvents, canViewRegistrations, canDownloadEventData;
     /**
      * All configurations for access Management

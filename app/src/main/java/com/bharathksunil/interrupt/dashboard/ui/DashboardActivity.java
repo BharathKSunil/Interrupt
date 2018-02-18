@@ -17,6 +17,7 @@ import com.bharathksunil.interrupt.auth.ui.LauncherActivity;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenterImplementation;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.UserInfoFragment;
+import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
 
 import java.util.List;
@@ -263,5 +264,11 @@ public class DashboardActivity extends AppCompatActivity implements
     public void userLoggedOutLoadLauncherActivity() {
         startActivity(new Intent(this, LauncherActivity.class));
         finish();
+    }
+
+    @Override
+    public void loadEventsViewerActivityForTheEvent(String eventId) {
+        //todo: Load the Events Viewer for the event id
+        Debug.i("Load the Events Activity Viewer for the Event:"+eventId);
     }
 }

@@ -18,7 +18,7 @@ public class ImageCompression {
 
     private static final float maxHeight = 1280.0f;
     private static final float maxWidth = 1280.0f;
-    private static final String AppName = "Interrupt7.0";
+    private static final String AppName = "Interrupt7";
 
     public String compressImage(String imagePath) {
         Bitmap scaledBitmap = null;

@@ -81,7 +81,7 @@ public class SignInPresenterImplementationTest {
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    //============================Presenter->View Interaction Tests================================/
+    //============================Presenter->RowView Interaction Tests================================/
 
     /**
      * This test checks if the view will be notified if the login is successful
@@ -205,7 +205,7 @@ public class SignInPresenterImplementationTest {
 
     }
 
-    //=====================Repository->Presenter->View Interaction Tests===========================/
+    //=====================Repository->Presenter->RowView Interaction Tests===========================/
 
     /**
      * This test will check if the presenter is notified if the email id was not in the repository

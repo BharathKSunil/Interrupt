@@ -17,22 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!--USER IMAGE + LOADING LAYOUT-->
-            <RelativeLayout
+            <!--USER IMAGE-->
+            <ImageView
+                android:id="@+id/iv_user_profile"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <ImageView
-                    android:id="@+id/iv_user_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/cd_profile_image"
-                    app:srcCompat="@drawable/ic_profile" />
-
-                <include layout="@layout/layout_progress_bar" />
-            </RelativeLayout>
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/cd_profile_image"
+                app:srcCompat="@drawable/ic_profile" />
             <!--USER NAME-->
             <TextView
                 android:id="@+id/tv_user_name"
@@ -256,15 +249,36 @@
             </LinearLayout>
         </LinearLayout>
         <!--REGISTERED EVENTS HEADING-->
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/tv_registered_events"
-            android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-            android:textColor="@color/primary_dark" />
+            android:layout_marginTop="16dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignBottom="@+id/iv_refresh"
+                android:layout_toLeftOf="@+id/iv_refresh"
+                android:layout_toStartOf="@+id/iv_refresh"
+                android:text="@string/tv_registered_events"
+                android:gravity="center"
+                android:textAppearance="@style/Dashboard.TextAppearance.Title"
+                android:textColor="@color/primary_dark" />
+
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/cd_refresh"
+                app:srcCompat="@drawable/ic_refresh" />
+        </RelativeLayout>
         <include layout="@layout/divider_horizontal" />
+        <!--LOADER-->
+        <include layout="@layout/layout_progress_bar" />
         <!--EMPTY REGISTERED EVENTS TEXT-->
         <TextView
             android:id="@+id/tv_empty_prompt"

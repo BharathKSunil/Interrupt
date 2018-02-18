@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--EVENTS IMAGE-->
+        <ImageView
+            android:id="@+id/iv_events_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:contentDescription="@string/cd_events_image"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@drawable/ic_placeholder" />
+        <!--EVENTS TITLE-->
+        <TextView
+            android:id="@+id/tv_row_event_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_events_image"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:textAppearance="@style/Dashboard.TextAppearance.Title"
+            android:textColor="@color/white"
+            tools:text="Rapid Fire Coding" />
+        <!--PARTICIPANTS INFO-->
+        <GridLayout
+            android:id="@+id/layout_row_participant_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_events_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp">
+            <!--NAME-->
+            <TextView
+                android:layout_column="0"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_row="0"
+                android:text="@string/name"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                android:textColor="@color/primary_dark" />
+            <TextView
+                android:id="@+id/tv_row_event_participant_name"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                tools:text="Bharath Kumar S" />
+            <!--EMAIL ID-->
+            <TextView
+                android:layout_column="0"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_row="1"
+                android:text="@string/email"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                android:textColor="@color/primary_dark" />
+            <TextView
+                android:id="@+id/tv_row_event_participant_email"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                tools:text="bharathk.sunil.k@gmail.com" />
+            <!--PHONE NO.-->
+            <TextView
+                android:layout_column="0"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_row="2"
+                android:text="@string/phone_no"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                android:textColor="@color/primary_dark" />
+            <TextView
+                android:id="@+id/tv_row_event_participant_phone"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                tools:text="8867036863" />
+            <!--USN-->
+            <TextView
+                android:layout_column="0"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_row="3"
+                android:text="@string/usn"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                android:textColor="@color/primary_dark" />
+            <TextView
+                android:id="@+id/tv_row_event_participant_usn"
+                android:layout_column="1"
+                android:layout_row="3"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                tools:text="1DA14CS025" />
+            <!--TEAM MEMBERS-->
+            <TextView
+                android:layout_column="0"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_row="4"
+                android:text="@string/team_members"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                android:textColor="@color/primary_dark" />
+            <TextView
+                android:id="@+id/tv_row_event_participant_members"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:textAppearance="@style/Events.TextAppearance.Small"
+                tools:text="Deepika Singh[1DA14CS033]\nDiwakar Nayak[1DA14CS036]" />
+
+        </GridLayout>
+        <!--REGISTERED BY-->
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_row_participant_info"
+            android:layout_marginTop="6dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/layout_row_participant_info"
+            android:layout_margin="12dp"
+            android:text="@string/registered_by"
+            android:textAppearance="@style/Events.TextAppearance.Small"
+            android:textColor="@color/primary_dark" />
+        <TextView
+            android:id="@+id/tv_row_event_participant_registrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/layout_row_participant_info"
+            android:layout_margin="12dp"
+            android:textAppearance="@style/Events.TextAppearance.Small"
+            tools:text="Jigyasha Porwal" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+
+

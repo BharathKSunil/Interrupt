@@ -21,7 +21,8 @@ import com.bharathksunil.interrupt.auth.presenter.SignUpPresenter;
 import com.bharathksunil.interrupt.util.Debug;
 
 /**
- * This Connects to the Firebase Repository and performs the User SignUp and implements SignUpPresenter.Repository
+ * This Connects to the Firebase Repository and performs the User SignUp and
+ * implements {@link SignUpPresenter.Repository} interface
  */
 
 public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.Repository {
@@ -43,11 +44,11 @@ public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.R
                                 signUpCallbacks.onUserAlreadySignedUp();
                             } else {
                                 //email is available
-                                signUpUser(email, password, signUpCallbacks);
+                                proceedWithUserSignUp(email, password, signUpCallbacks);
                             }
                         } else {
                             //email is available
-                            signUpUser(email, password, signUpCallbacks);
+                            proceedWithUserSignUp(email, password, signUpCallbacks);
                         }
                     }
                 })
@@ -62,8 +63,8 @@ public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.R
                 });
     }
 
-    private void signUpUser(@NonNull String email, @NonNull String password,
-                            final @NonNull SignUpCallbacks signUpCallbacks) {
+    private void proceedWithUserSignUp(@NonNull String email, @NonNull String password,
+                                       final @NonNull SignUpCallbacks signUpCallbacks) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
@@ -76,7 +77,7 @@ public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.R
                     public void onFailure(@NonNull Exception e) {
                         e.printStackTrace();
                         Debug.e(FirebaseSignInRepositoryImplementation.class.getName() +
-                                "signUpUser():" + e.getLocalizedMessage());
+                                "proceedWithUserSignUp():" + e.getLocalizedMessage());
                         if (e instanceof FirebaseAuthUserCollisionException) {
                             signUpCallbacks.onUserAlreadySignedUp();
                         } else
@@ -86,7 +87,8 @@ public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.R
     }
 
     @Override
-    public void uploadProfilePicture(@NonNull Uri profilePath, final @NonNull ProfileUploadCallback callback) {
+    public void uploadProfilePicture(@NonNull Uri profilePath,
+                                     final @NonNull ProfileUploadCallback callback) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             Debug.e(FirebaseSignInRepositoryImplementation.class.getName() +
@@ -102,7 +104,7 @@ public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.R
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 //noinspection ConstantConditions
-                callback.onProfileUploaded(taskSnapshot.getDownloadUrl().getPath());
+                callback.onProfileUploaded(taskSnapshot.getDownloadUrl().toString());
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

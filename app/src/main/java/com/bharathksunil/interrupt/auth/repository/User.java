@@ -10,7 +10,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @SuppressWarnings("unused")
 @IgnoreExtraProperties
 public class User {
-    protected String Name, PhoneNo, USN, Department, Semester, Section, Email, ProfileUrl;
+    private String Name, PhoneNo, USN, Department, Semester, Section, Email, ProfileUrl;
 
     @SuppressWarnings("WeakerAccess")
     public User() {

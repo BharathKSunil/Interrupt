@@ -11,7 +11,7 @@ import com.bharathksunil.interrupt.auth.repository.User;
 import com.bharathksunil.interrupt.auth.repository.UserAccess;
 
 /**
- * This is the implementation of the AuthPresenter
+ * This is the implementation of the {@link AuthPresenter} for the loading sequence.
  *
  * @author Bharath Kumar S
  */
@@ -30,7 +30,7 @@ public class AuthPresenterImplementation implements AuthPresenter {
      * To be called when the app starts.
      * Implement the startup sequence and authentication.
      *
-     * @param view the AuthPresenter.View instance
+     * @param view the AuthPresenter.RowView instance
      */
     @Override
     public void appStarted(@Nullable View view) {
@@ -91,7 +91,7 @@ public class AuthPresenterImplementation implements AuthPresenter {
      * allotted any special privileges.
      */
     private void loadTheUserAccessDataFromTheRepositoryToSingleton() {
-        repositoryInstance.getAccessData(new Repository.DataLoadedCallback() {
+        repositoryInstance.getUserAccessData(new Repository.DataLoadedCallback() {
             @Override
             public void onDataLoaded(DataSnapshot snapshot) {
                 UserAccess userAccess = snapshot.getValue(UserAccess.class);

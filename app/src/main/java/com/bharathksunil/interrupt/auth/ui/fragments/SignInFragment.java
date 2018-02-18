@@ -19,6 +19,7 @@ import com.bharathksunil.interrupt.auth.presenter.SignInPresenter;
 import com.bharathksunil.interrupt.auth.presenter.SignInPresenterImplementation;
 import com.bharathksunil.interrupt.auth.repository.FirebaseSignInRepositoryImplementation;
 import com.bharathksunil.interrupt.util.TextUtils;
+import com.bharathksunil.interrupt.util.Utils;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import com.bharathksunil.interrupt.R;
@@ -77,6 +78,8 @@ public class SignInFragment extends Fragment implements SignInPresenter.View {
     String err_unexpected_error;
     @BindString(R.string.snack_signed_in)
     String snack_signed_in;
+    @BindString(R.string.err_offline)
+    String err_offline;
 
     @Override
     public void onAttach(Context context) {
@@ -143,7 +146,11 @@ public class SignInFragment extends Fragment implements SignInPresenter.View {
     @OnClick(R.id.btn_submit)
     public void onSignInButtonClick() {
         ViewUtils.resetTextInputError(textInputLayoutList);
-        presenter.onSignInButtonClicked();
+        if (Utils.isConnected(getActivity()))
+            presenter.onSignInButtonClicked();
+        else
+            ViewUtils.errorBar(err_offline, getActivity());
+
     }
 
     @OnClick(R.id.tv_register)

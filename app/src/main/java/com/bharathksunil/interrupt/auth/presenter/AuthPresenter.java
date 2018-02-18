@@ -11,6 +11,9 @@ import com.google.firebase.database.DataSnapshot;
  */
 
 public interface AuthPresenter {
+    /**
+     * The View wanting to use this presenter must implement this methods
+     */
     interface View extends BaseView {
         /**
          * User isn't signed in, load the sign in fragment
@@ -38,10 +41,24 @@ public interface AuthPresenter {
         void loadDashboard();
     }
 
+    /**
+     * The repository you want to use must implement this interface
+     */
     interface Repository {
+        /**
+         * Interface callbacks when fetching of data is done asynchronously
+         */
         interface DataLoadedCallback {
+            /**
+             * Called when the data was fetched successfully from the Repository
+             *
+             * @param snapshot the data
+             */
             void onDataLoaded(DataSnapshot snapshot);
 
+            /**
+             * The data fetch failed as there was an exception
+             */
             void onDataLoadFailed();
         }
 
@@ -64,7 +81,7 @@ public interface AuthPresenter {
          *
          * @param dataLoadedCallback callback to receive data asynchronously
          */
-        void getAccessData(DataLoadedCallback dataLoadedCallback);
+        void getUserAccessData(DataLoadedCallback dataLoadedCallback);
 
         /**
          * This method is used to set the user access for a participant user
