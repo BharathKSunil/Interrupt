@@ -264,7 +264,7 @@
                 android:layout_toStartOf="@+id/iv_refresh"
                 android:text="@string/tv_registered_events"
                 android:gravity="center"
-                android:textAppearance="@style/Dashboard.TextAppearance.Title"
+                android:textAppearance="@style/Dashboard.TextAppearance.Medium"
                 android:textColor="@color/primary_dark" />
 
             <ImageView

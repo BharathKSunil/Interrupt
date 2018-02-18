@@ -16,6 +16,7 @@ import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.ui.LauncherActivity;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenterImplementation;
+import com.bharathksunil.interrupt.dashboard.ui.fragments.AboutFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.UserInfoFragment;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
@@ -37,7 +38,7 @@ public class DashboardActivity extends AppCompatActivity implements
 
     @BindString(R.string.snack_back_press_twice)
     String snack_backPress;
-    @BindColor(R.color.primary_light)
+    @BindColor(R.color.accent)
     int tab_selectedColor;
     @BindColor(R.color.transparent)
     int tab_disSelectedColor;
@@ -53,15 +54,17 @@ public class DashboardActivity extends AppCompatActivity implements
     private boolean backPressedTwice;
     private UnderConstructionFragment underConstructionFragment;
     private UserInfoFragment userInfoFragment;
+    private AboutFragment aboutFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dash_activity_dashboard);
+        unbinder = ButterKnife.bind(this);
 
         underConstructionFragment = new UnderConstructionFragment();
         userInfoFragment = new UserInfoFragment();
-        unbinder = ButterKnife.bind(this);
+        aboutFragment = new AboutFragment();
         presenter = new DashboardActivityPresenterImplementation(UserManager.getInstance());
         presenter.setView(this);
     }
@@ -140,7 +143,7 @@ public class DashboardActivity extends AppCompatActivity implements
     @Override
     public void loadAboutAppFragment() {
         setTabActive(TAB_ABOUT);
-        loadFragment(underConstructionFragment);
+        loadFragment(aboutFragment);
     }
 
     /**

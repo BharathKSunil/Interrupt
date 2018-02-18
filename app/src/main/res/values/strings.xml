@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Interrupt 7.0</string>
     <string name="app_slogan">Everything under CTRL</string>
+    <string name="app_description">Interrupt 7.0 is a Techno-Cultural fest Organised &amp; Hosted by
+        the students of <b>Dept. of Computer Science &amp; Engineering, Dr. Ambedkar Institute of Technology
+            Bengaluru, Karnataka.</b>\nIt is a 2 Days Extravaganza of Cultural and Technical events.
+        Come, lets be a part of it..!\n<b>-Organising Team</b></string>
     <string name="iv_divider">Divider image</string>
 
     <string name="prompt_sign_out_title">SignOut ?</string>
@@ -44,6 +48,35 @@
     <string name="team_members">Team Members</string>
     <string name="registered_by">Registered By</string>
     <string name="cd_refresh">Refresh Button</string>
+
+    <string name="tv_dev_name">Bharath Kumar S</string>
+    <string name="tv_dev_position">Android Developer</string>
+    <string name="tv_dev_email">bharathk.sunil.k@gmail.com</string>
+    <string name="tv_dev_phone">+91 8867036863</string>
+    <string name="tv_dev_heading">Built With Passion</string>
+    <string name="tv_dev_sub_heading">Follow Me</string>
+
+    <!--FOR COUNTDOWN-->
+    <plurals name="days">
+        <item quantity="zero">%d Days</item>
+        <item quantity="one">%d Day</item>
+        <item quantity="other">%d Days</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="zero">%d Hrs</item>
+        <item quantity="one">%d Hour</item>
+        <item quantity="other">%d Hrs</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="zero">%d Mins</item>
+        <item quantity="one">%d Min</item>
+        <item quantity="other">%d Mins</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="zero">%d Secs</item>
+        <item quantity="one">%d Sec</item>
+        <item quantity="other">%d Secs</item>
+    </plurals>
 
 
 </resources>
