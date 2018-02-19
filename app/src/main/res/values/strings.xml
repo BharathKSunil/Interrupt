@@ -55,6 +55,9 @@
     <string name="tv_dev_phone">+91 8867036863</string>
     <string name="tv_dev_heading">Built With Passion</string>
     <string name="tv_dev_sub_heading">Follow Me</string>
+    <string name="tv_interrupt_administrators">Interrupt Administrators</string>
+    <string name="tv_organisers_info_heading">Interrupt 7.0 Organisers</string>
+    <string name="tv_categories_heading">Choose an Event Category</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">

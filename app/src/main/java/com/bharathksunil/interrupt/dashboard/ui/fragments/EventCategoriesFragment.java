@@ -12,10 +12,10 @@ import com.bharathksunil.interrupt.R;
 /**
  * A simple {@link Fragment} subclass for showing the event categories
  */
-public class EventsFragment extends Fragment {
+public class EventCategoriesFragment extends Fragment {
 
 
-    public EventsFragment() {
+    public EventCategoriesFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.dash_fragment_events, container, false);
+        return inflater.inflate(R.layout.dash_fragment_event_categoies, container, false);
     }
 
 }

@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="blue">#348af7</color>
 
+    <color name="temperature_background">@color/blue</color>
+    <color name="temperature_text">@android:color/white</color>
+
+    <color name="green_dot_big">@color/blue</color>
+    <color name="green_dot_small">@color/blue</color>
+    <dimen name="recycler_view_left_offset">9dp</dimen>
+    <dimen name="left_offset">61dp</dimen>
+    <dimen name="card_width">148dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
+    <integer name="labels_animation_duration">350</integer>
+    <style name="TemperatureTextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/temperature_text</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="PlaceTextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ClockTextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DescriptionTextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
     <!--STYLING-->
     <style name="Events" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>

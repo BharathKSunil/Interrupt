@@ -25,7 +25,8 @@ import butterknife.ButterKnife;
  * @author Bharath on 18-02-2018.
  */
 
-public class RegisteredEventsRecyclerAdapter extends RecyclerView.Adapter<RegisteredEventsRecyclerAdapter.EventsRowViewHolder> {
+public class RegisteredEventsRecyclerAdapter extends
+        RecyclerView.Adapter<RegisteredEventsRecyclerAdapter.EventsRowViewHolder> {
     private RegisteredEventsRecyclerPresenter presenter;
     private Context context;
 
