@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient_top_down"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center"
+    android:padding="16dp"
     tools:context="com.bharathksunil.interrupt.dashboard.ui.fragments.EventCategoriesFragment">
 
     <ImageView
@@ -16,17 +18,45 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/tv_categories_heading"
         android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-        android:textColor="@color/primary_dark"
-        android:text="@string/tv_categories_heading"/>
+        android:textColor="@color/primary_dark" />
+
+    <include layout="@layout/layout_progress_bar"/>
+
+    <TextView
+        android:id="@+id/tv_empty_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Dashboard.TextAppearance.Small"
+        android:text="@string/tv_empty_categories"
+        android:gravity="center"
+        android:visibility="gone"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_categories"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="280dp"
         android:layout_marginTop="18dp"
         android:clipChildren="false"
-        android:overScrollMode="never"
-        app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"
-        app:viewUpdater="com.ramotion.cardslider.examples.simple.cards.CardsUpdater" />
+        android:overScrollMode="never" />
+
+    <TextView
+        android:id="@+id/tv_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textAppearance="@style/Dashboard.TextAppearance.Title"
+        android:textColor="@color/primary_dark" />
+
+    <TextView
+        android:id="@+id/tv_category_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textAppearance="@style/Dashboard.TextAppearance.Small"
+        android:textColor="@color/primary_text" />
+
 </LinearLayout>

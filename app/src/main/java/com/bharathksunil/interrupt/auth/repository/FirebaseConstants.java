@@ -10,6 +10,6 @@ public interface FirebaseConstants {
      */
     String USERS_TREE = "Users", USERS_ACCESS_TREE = "UserAccess", ADMINISTRATORS_TREE = "Administrators",
             ORGANISERS_TREE = "Organisers", EVENT_REGISTRATIONS_TREE = "EventRegistrations";
-
+    String COLLECTIONS_CATEGORIES = "Categories", COLLECTIONS_EVENTS="Events", COLLECTION_REGISTRATIONS="Registrations";
     String PROFILE_STORE = "/Profiles/";
 }

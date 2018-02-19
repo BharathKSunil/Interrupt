@@ -58,6 +58,7 @@
     <string name="tv_interrupt_administrators">Interrupt Administrators</string>
     <string name="tv_organisers_info_heading">Interrupt 7.0 Organisers</string>
     <string name="tv_categories_heading">Choose an Event Category</string>
+    <string name="tv_empty_categories">No Event Categories have been Added yet. Come Back Soon Later</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">

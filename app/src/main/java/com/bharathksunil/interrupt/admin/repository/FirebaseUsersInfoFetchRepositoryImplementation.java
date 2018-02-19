@@ -31,7 +31,7 @@ public class FirebaseUsersInfoFetchRepositoryImplementation implements UsersInfo
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         if (snapshot.exists()) {
                             Users user = snapshot.getValue(Users.class);
-                            user.setRoles("--");
+                            user.setRoles(new String[]{"--"});
                             data.add(user);
                         }
                     }
