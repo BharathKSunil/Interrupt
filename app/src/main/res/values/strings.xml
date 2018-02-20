@@ -5,7 +5,9 @@
         the students of <b>Dept. of Computer Science &amp; Engineering, Dr. Ambedkar Institute of Technology
             Bengaluru, Karnataka.</b>\nIt is a 2 Days Extravaganza of Cultural and Technical events.
         Come, lets be a part of it..!\n<b>-Organising Team</b></string>
+    <string name="currency">\u20B9</string>
     <string name="iv_divider">Divider image</string>
+
 
     <string name="prompt_sign_out_title">SignOut ?</string>
     <string name="prompt_sign_out_message">You will have to SignIn again to use the app.</string>

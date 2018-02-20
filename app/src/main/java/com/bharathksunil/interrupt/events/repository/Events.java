@@ -2,6 +2,8 @@ package com.bharathksunil.interrupt.events.repository;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
+import java.util.List;
+
 /**
  * This is the structure of the all the Events in Firebase
  *
@@ -9,9 +11,48 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
  */
 @IgnoreExtraProperties
 public class Events {
-    private String id, category, name, description, dateTime, bannerUrl;
+    private String id, category, name, description, dateTime, bannerUrl, venue;
+    private int price;
+    private List<String> coordinators;
 
     public Events() {
+    }
+
+    public Events(String id, String category, String name, String description, String dateTime,
+                  String bannerUrl, String venue, int price, List<String> coordinators) {
+        this.id = id;
+        this.category = category;
+        this.name = name;
+        this.description = description;
+        this.dateTime = dateTime;
+        this.bannerUrl = bannerUrl;
+        this.venue = venue;
+        this.price = price;
+        this.coordinators = coordinators;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public List<String> getCoordinators() {
+        return coordinators;
+    }
+
+    public void setCoordinators(List<String> coordinators) {
+        this.coordinators = coordinators;
     }
 
     public String getId() {

@@ -1,6 +1,7 @@
 package com.bharathksunil.interrupt.dashboard.ui.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenterImpl
 import com.bharathksunil.interrupt.events.repository.Categories;
 import com.bharathksunil.interrupt.events.repository.MockEventCategoriesRepositoryImplementation;
 import com.bharathksunil.interrupt.events.ui.EventsRecyclerSliderAdapter;
+import com.bharathksunil.interrupt.events.ui.EventsViewerActivity;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
@@ -146,7 +148,8 @@ public class EventCategoriesFragment extends Fragment implements EventCategories
 
     @Override
     public void loadEventsViewerActivity() {
-        //todo: load events viewer for the category pressed
+        Intent intent = new Intent(getActivity(), EventsViewerActivity.class);
+        startActivity(intent);
     }
 
     private class OnCardClickListener implements View.OnClickListener {

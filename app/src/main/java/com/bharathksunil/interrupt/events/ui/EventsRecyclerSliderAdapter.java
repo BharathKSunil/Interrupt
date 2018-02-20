@@ -73,7 +73,7 @@ public class EventsRecyclerSliderAdapter extends RecyclerView.Adapter<EventsRecy
 
         SliderCard(View itemView, Context context) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image);
+            imageView = itemView.findViewById(R.id.iv_slider_card);
             this.context = context;
         }
 
