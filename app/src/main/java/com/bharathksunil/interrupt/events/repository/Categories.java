@@ -17,6 +17,13 @@ public class Categories {
     public Categories() {
     }
 
+    public Categories(String id, String name, String description, String imgUrl) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imgUrl = imgUrl;
+    }
+
     public String getName() {
         return name;
     }
