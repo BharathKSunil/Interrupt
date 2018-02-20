@@ -2,6 +2,8 @@ package com.bharathksunil.interrupt.events.repository;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.List;
+
 /**
  * This is the object structure which will be saved to the Firebase Database
  * for the event registrations
@@ -22,8 +24,9 @@ public class EventRegistrations {
     /*
      * Events Registration Data, as stored in the EventRegistration Tree in the Firebase RealTime Database
      */
-    private String eventPath, eName, eRegistrar, eBannerUrl, pTeamMembers;
-    private String pName, pEmail, pPhoneNo, pUSN;
+    private String eventPath, eName, eRegistrar, eBannerUrl;
+    private List<String> pTeamMembers;
+    private String id, pName, pEmail, pPhoneNo, pUSN, pSem, pSection;
 
     /**
      * Participants Data
@@ -95,11 +98,35 @@ public class EventRegistrations {
         this.pUSN = pUSN;
     }
 
-    public String getpTeamMembers() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getpSem() {
+        return pSem;
+    }
+
+    public void setpSem(String pSem) {
+        this.pSem = pSem;
+    }
+
+    public String getpSection() {
+        return pSection;
+    }
+
+    public void setpSection(String pSection) {
+        this.pSection = pSection;
+    }
+
+    public List<String> getpTeamMembers() {
         return pTeamMembers;
     }
 
-    public void setpTeamMembers(String pTeamMembers) {
+    public void setpTeamMembers(List<String> pTeamMembers) {
         this.pTeamMembers = pTeamMembers;
     }
 }

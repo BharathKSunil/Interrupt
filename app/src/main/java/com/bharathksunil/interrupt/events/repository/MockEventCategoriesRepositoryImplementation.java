@@ -20,7 +20,7 @@ public class MockEventCategoriesRepositoryImplementation implements EventCategor
                 "1",
                 "Technical Events",
                 "This is the perfect choice to showcase your technical skills",
-                "https://cdn.business2community.com/wp-content/uploads/2016/10/flat28-150x150.jpg.jpg"));
+                "https://image.freepik.com/free-vector/technology-template-in-flat-design_1028-51.jpg"));
         categoriesList.add(new Categories(
                 "2",
                 "Cultural Events",

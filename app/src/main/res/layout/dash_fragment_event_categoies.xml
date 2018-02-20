@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient_top_down"
+    android:background="@color/transparent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp"
@@ -31,7 +31,8 @@
         android:textAppearance="@style/Dashboard.TextAppearance.Small"
         android:text="@string/tv_empty_categories"
         android:gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_categories"

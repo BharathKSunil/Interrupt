@@ -3,6 +3,7 @@ package com.bharathksunil.interrupt.events.presenter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.bharathksunil.interrupt.events.model.EventsManager;
 import com.bharathksunil.interrupt.events.repository.Categories;
 import com.bharathksunil.interrupt.util.Debug;
 
@@ -16,7 +17,8 @@ import java.util.List;
  * @author Bharath on 19-02-2018.
  */
 
-public class EventCategoriesPresenterImplementation implements EventCategoriesPresenter {
+public class EventCategoriesPresenterImplementation implements EventCategoriesPresenter,
+        EventCategoriesPresenter.Repository.DataLoadedCallback {
     @Nullable
     private View viewInstance;
     @NonNull
@@ -34,45 +36,43 @@ public class EventCategoriesPresenterImplementation implements EventCategoriesPr
         viewInstance = view;
         if (viewInstance != null) {
             viewInstance.onProcessStarted();
-            repositoryInstance.downloadEventCategories(new Repository.DataLoadedCallback() {
-                @Override
-                public void onDataSuccessfullyLoaded(@NonNull List<Categories> categoriesList) {
-                    if (viewInstance != null) {
-                        viewInstance.onProcessEnded();
-                        if (categoriesList.size() == 0)
-                            viewInstance.showNoEventCategoriesAvailable();
-                        else
-                            viewInstance.hideNoEventCategoriesAvailable();
-                        List<String> urls = new ArrayList<>();
-                        for (Categories categories : categoriesList) {
-                            urls.add(categories.getImgUrl());
-                        }
-                        viewInstance.loadEventCategoriesRecyclerView(urls);
-                        viewInstance.initialiseView(categoriesList.get(0));
-                        data = categoriesList;
-                    }
-                }
+            repositoryInstance.downloadEventCategories(this);
+        }
+    }
+    @Override
+    public void onDataSuccessfullyLoaded(@NonNull List<Categories> categoriesList) {
+        if (viewInstance != null) {
+            viewInstance.onProcessEnded();
+            if (categoriesList.size() == 0)
+                viewInstance.showNoEventCategoriesAvailable();
+            else
+                viewInstance.hideNoEventCategoriesAvailable();
+            List<String> urls = new ArrayList<>();
+            for (Categories categories : categoriesList) {
+                urls.add(categories.getImgUrl());
+            }
+            viewInstance.loadEventCategoriesRecyclerView(urls);
+            viewInstance.initialiseView(categoriesList.get(0));
+            data = categoriesList;
+        }
+    }
 
-                @Override
-                public void onDataLoadFailed() {
-                    if (viewInstance != null) {
-                        viewInstance.onUnexpectedError();
-                        viewInstance.onProcessEnded();
-                    }
-                }
-            });
+    @Override
+    public void onDataLoadFailed() {
+        if (viewInstance != null) {
+            viewInstance.onUnexpectedError();
+            viewInstance.onProcessEnded();
         }
     }
 
     @Override
     public void onCategoriesItemPressed(int clickedPosition, int activeCardPosition) {
         if (clickedPosition == activeCardPosition) {
-            //todo: Launch Events Viewer
-//                final Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-//                intent.putExtra(DetailsActivity.BUNDLE_IMAGE_ID, pics[activeCardPosition % pics.length]);
-//
-//                startActivity(intent);
-            Debug.i("item Clicked:" + data.get(activeCardPosition).getId());
+            EventsManager.getInstance().loadCategories(data.get(activeCardPosition));
+            if (viewInstance!=null){
+                viewInstance.loadEventsViewerActivity();
+                Debug.i("item Clicked:" + data.get(activeCardPosition).getId());
+            }
         } else if (clickedPosition > activeCardPosition) {
             if (viewInstance != null)
                 viewInstance.onActiveCardChange(clickedPosition, data.get(clickedPosition));

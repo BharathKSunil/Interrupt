@@ -97,7 +97,7 @@ public class EventsRecyclerSliderAdapter extends RecyclerView.Adapter<EventsRecy
         private void loadImage(String imgUrl) {
             Picasso.with(context).load(imgUrl)
                     .placeholder(R.drawable.background_gradient_top_down)
-                    .error(R.drawable.app_icon)
+                    .error(R.drawable.ic_placeholder)
                     .fit()
                     .into(imageView);
         }

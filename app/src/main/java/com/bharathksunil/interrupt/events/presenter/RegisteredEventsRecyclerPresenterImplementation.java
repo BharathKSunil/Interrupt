@@ -65,9 +65,8 @@ public class RegisteredEventsRecyclerPresenterImplementation implements Register
         rowView.setEventName(registrations.geteName());
         rowView.setParticipantsRegistrar(registrations.geteRegistrar());
         rowView.setOnItemClickListener(this);
-        //team Members are split by a '|'
         StringBuilder teamMembers = new StringBuilder();
-        for (String member : registrations.getpTeamMembers().split("\\|"))
+        for (String member : registrations.getpTeamMembers())
             teamMembers.append(member).append("\n");
         rowView.setParticipantsTeamMembers(teamMembers.toString().trim());
         rowView.setEventImage(registrations.geteBannerUrl());

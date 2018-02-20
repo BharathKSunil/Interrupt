@@ -15,7 +15,6 @@ import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenterImpl
 import com.bharathksunil.interrupt.events.repository.Categories;
 import com.bharathksunil.interrupt.events.repository.MockEventCategoriesRepositoryImplementation;
 import com.bharathksunil.interrupt.events.ui.EventsRecyclerSliderAdapter;
-import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
@@ -113,7 +112,6 @@ public class EventCategoriesFragment extends Fragment implements EventCategories
 
     @Override
     public void showNoEventCategoriesAvailable() {
-        Debug.i("No Event Categories");
         ViewUtils.setVisible(tv_emptyPrompt);
     }
 
@@ -144,6 +142,11 @@ public class EventCategoriesFragment extends Fragment implements EventCategories
         categoryDescriptionSwitcher.setText(categories.getDescription());
 
         currentPosition = pos;
+    }
+
+    @Override
+    public void loadEventsViewerActivity() {
+        //todo: load events viewer for the category pressed
     }
 
     private class OnCardClickListener implements View.OnClickListener {

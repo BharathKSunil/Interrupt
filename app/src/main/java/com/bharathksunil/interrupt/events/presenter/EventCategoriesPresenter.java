@@ -20,6 +20,7 @@ public interface EventCategoriesPresenter {
         void showNoEventCategoriesAvailable();
         void hideNoEventCategoriesAvailable();
         void onActiveCardChange(int pos, Categories categories);
+        void loadEventsViewerActivity();
     }
 
     interface Repository{
