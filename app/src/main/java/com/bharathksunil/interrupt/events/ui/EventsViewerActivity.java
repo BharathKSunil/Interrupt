@@ -21,8 +21,10 @@ import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenterImpleme
 import com.bharathksunil.interrupt.events.repository.Events;
 import com.bharathksunil.interrupt.events.repository.MockEventsRepository;
 import com.bharathksunil.interrupt.util.Debug;
+import com.bharathksunil.interrupt.util.ViewUtils;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
 
@@ -54,6 +56,11 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
     TextView eventName1TextView;
     @BindView(R.id.tv_event_name_2)
     TextView eventName2TextView;
+    @BindView(R.id.progress_bar)
+    AVLoadingIndicatorView loadingIndicatorView;
+    @BindView(R.id.tv_empty_prompt)
+    TextView tv_empty_prompt;
+
     @BindDimen(R.dimen.left_offset)
     int eventNameOffset1;
     @BindDimen(R.dimen.card_width)
@@ -64,6 +71,8 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
     RecyclerView recyclerView;
     @BindString(R.string.currency)
     String currencySymbol;
+    @BindString(R.string.err_unexpected_error)
+    String err_unexpected_error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,27 +134,27 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
 
     @Override
     public void onProcessStarted() {
-
+        loadingIndicatorView.smoothToShow();
     }
 
     @Override
     public void onProcessEnded() {
-
+        loadingIndicatorView.smoothToHide();
     }
 
     @Override
     public void onUnexpectedError() {
-
+        ViewUtils.errorBar(err_unexpected_error, this);
     }
 
     @Override
     public void showNoEventsInCategoryText() {
-
+        ViewUtils.setVisible(tv_empty_prompt);
     }
 
     @Override
     public void hideNoEventsInCategoryText() {
-
+        ViewUtils.setGone(tv_empty_prompt);
     }
 
     @Override
@@ -155,7 +164,7 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
                 new EventsRecyclerSliderAdapter(imageUrls.toArray(urls),
                         this,
                         new OnCardClickListener());
-        Debug.i("LoadRecyclerCalled:"+urls.length);
+        Debug.i("LoadRecyclerCalled:" + urls.length);
 
         layoutManger = new CardSliderLayoutManager(this);
         recyclerView.setAdapter(sliderAdapter);
