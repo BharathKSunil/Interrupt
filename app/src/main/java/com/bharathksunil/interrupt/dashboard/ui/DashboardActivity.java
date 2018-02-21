@@ -6,12 +6,10 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
-
-import com.bharathksunil.interrupt.UnderConstructionFragment;
+import android.view.View;
 
 import com.bharathksunil.interrupt.R;
-
+import com.bharathksunil.interrupt.UnderConstructionFragment;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.ui.LauncherActivity;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenter;
@@ -39,7 +37,7 @@ public class DashboardActivity extends AppCompatActivity implements
 
     @BindString(R.string.snack_back_press_twice)
     String snack_backPress;
-    @BindColor(R.color.accent)
+    @BindColor(R.color.tab_selected_color)
     int tab_selectedColor;
     @BindColor(R.color.transparent)
     int tab_disSelectedColor;
@@ -50,7 +48,7 @@ public class DashboardActivity extends AppCompatActivity implements
             TAB_COORDINATORS = 4, TAB_ORGANISERS = 5, TAB_ADMIN = 6, TAB_ABOUT = 7;
     @BindViews({R.id.tab_profile, R.id.tab_events, R.id.tab_schedule, R.id.tab_class_reps,
             R.id.tab_coordinators, R.id.tab_organisers, R.id.tab_admin, R.id.tab_about})
-    List<ImageView> tabsViewList;
+    List<View> tabsViewList;
 
     private boolean backPressedTwice;
     private UnderConstructionFragment underConstructionFragment;
@@ -66,6 +64,7 @@ public class DashboardActivity extends AppCompatActivity implements
         underConstructionFragment = new UnderConstructionFragment();
         userInfoFragment = new UserInfoFragment();
         aboutFragment = new AboutFragment();
+
         presenter = new DashboardActivityPresenterImplementation(UserManager.getInstance());
         presenter.setView(this);
     }
@@ -100,37 +99,37 @@ public class DashboardActivity extends AppCompatActivity implements
 
     @OnClick(R.id.tab_profile)
     public void onProfileTabClicked() {
-        presenter.onUserProfileImagePressed();
+        presenter.onUserProfileTabPressed();
     }
 
     @OnClick(R.id.tab_events)
     public void onEventsTabClicked() {
-        presenter.onEventsButtonPressed();
+        presenter.onEventsTabPressed();
     }
 
     @OnClick(R.id.tab_schedule)
     public void onSchedulesTabClicked() {
-        presenter.onSchedulesButtonPressed();
+        presenter.onSchedulesTabPressed();
     }
 
     @OnClick(R.id.tab_class_reps)
     public void onClassRepsTabClicked() {
-        presenter.onClassRepsButtonPressed();
+        presenter.onClassRepsTabPressed();
     }
 
     @OnClick(R.id.tab_coordinators)
     public void onEventsCoordinatorTabClicked() {
-        presenter.onEventCoordinatorsButtonPressed();
+        presenter.onEventCoordinatorsTabPressed();
     }
 
     @OnClick(R.id.tab_organisers)
     public void onEventsOrganisersTabClicked() {
-        presenter.onEventOrganisersButtonPressed();
+        presenter.onEventOrganisersTabPressed();
     }
 
     @OnClick(R.id.tab_admin)
     public void onAdministratorTabClicked() {
-        presenter.onAdministratorButtonPressed();
+        presenter.onAdministratorTabPressed();
     }
 
     @OnClick(R.id.tab_about)
@@ -145,6 +144,16 @@ public class DashboardActivity extends AppCompatActivity implements
     public void loadAboutAppFragment() {
         setTabActive(TAB_ABOUT);
         loadFragment(aboutFragment);
+    }
+
+    @Override
+    public void setCRTabVisibility(int visibility) {
+        findViewById(R.id.tab_class_reps).setVisibility(visibility);
+    }
+
+    @Override
+    public void setCoordinatorTabVisibility(int visibility) {
+        findViewById(R.id.tab_coordinators).setVisibility(visibility);
     }
 
     /**
@@ -165,14 +174,6 @@ public class DashboardActivity extends AppCompatActivity implements
         loadFragment(underConstructionFragment);
     }
 
-    /**
-     * Load the Administrator Information fragment
-     */
-    @Override
-    public void loadAdministratorInfoFragment() {
-        setTabActive(TAB_ADMIN);
-        loadFragment(underConstructionFragment);
-    }
 
     /**
      * The user is a Class Representative, load the Organiser's Dashboard
@@ -184,28 +185,10 @@ public class DashboardActivity extends AppCompatActivity implements
     }
 
     /**
-     * Load the fragment which shows all the event's coordinators contact information
-     */
-    @Override
-    public void loadEventCoordinatorContactsInfo() {
-        setTabActive(TAB_COORDINATORS);
-        loadFragment(underConstructionFragment);
-    }
-
-    /**
      * The user is a organiser, load the Organiser's Dashboard
      */
     @Override
     public void loadOrganisersDashboard() {
-        setTabActive(TAB_ORGANISERS);
-        loadFragment(underConstructionFragment);
-    }
-
-    /**
-     * Load the fragment which shows all the core organisers of interrupt
-     */
-    @Override
-    public void loadOrganisersContactInfo() {
         setTabActive(TAB_ORGANISERS);
         loadFragment(underConstructionFragment);
     }
@@ -250,7 +233,7 @@ public class DashboardActivity extends AppCompatActivity implements
      * @param activeTabID position of the tab in the tabsViewList
      */
     private void setTabActive(int activeTabID) {
-        for (ImageView view : tabsViewList) {
+        for (View view : tabsViewList) {
             view.setBackgroundColor(tab_disSelectedColor);
         }
         tabsViewList.get(activeTabID).setBackgroundColor(tab_selectedColor);
@@ -273,6 +256,6 @@ public class DashboardActivity extends AppCompatActivity implements
     @Override
     public void loadEventsViewerActivityForTheEvent(String eventId) {
         //todo: Load the Events Viewer for the event id
-        Debug.i("Load the Events Activity Viewer for the Event:"+eventId);
+        Debug.i("Load the Events Activity Viewer for the Event:" + eventId);
     }
 }

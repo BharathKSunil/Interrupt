@@ -1,8 +1,10 @@
 package com.bharathksunil.interrupt.auth.model;
 
+import com.bharathksunil.interrupt.auth.repository.User;
 import com.bharathksunil.interrupt.auth.repository.UserAccess;
 import com.bharathksunil.interrupt.util.TextUtils;
-import com.bharathksunil.interrupt.auth.repository.User;
+
+import java.util.Map;
 
 /**
  * This is a singleton which will help store the user information to be available throughout the app.
@@ -13,7 +15,6 @@ import com.bharathksunil.interrupt.auth.repository.User;
 
 public class UserManager {
 
-    private UserType userType;
     private boolean signedIn;
     private UserAccess access;
     private User user;
@@ -51,15 +52,6 @@ public class UserManager {
     }
 
     /**
-     * Get the type of the user
-     *
-     * @return the type of user
-     */
-    public UserType getUserType() {
-        return instance.userType;
-    }
-
-    /**
      * This method loads the user instance to the singleton from the User object.
      *
      * @param user passed by the repository
@@ -76,22 +68,6 @@ public class UserManager {
      */
     public void loadUserAccessFromRepositoryInstance(UserAccess userAccess) {
         checkIntegrity(userAccess);
-
-        if (TextUtils.areEqual(userAccess.getAccessType(),
-                UserType.CR.name()))
-            instance.userType = UserType.CR;
-        else if (TextUtils.areEqual(userAccess.getAccessType(),
-                UserType.ADMINISTRATOR.name()))
-            instance.userType = UserType.ADMINISTRATOR;
-        else if (TextUtils.areEqual(userAccess.getAccessType(),
-                UserType.COORDINATOR.name()))
-            instance.userType = UserType.COORDINATOR;
-        else if (TextUtils.areEqual(userAccess.getAccessType(),
-                UserType.ORGANISER.name()))
-            instance.userType = UserType.ORGANISER;
-        else
-            instance.userType = UserType.PARTICIPANT;
-
         instance.access = userAccess;
 
     }
@@ -102,7 +78,17 @@ public class UserManager {
     }
 
     public String getUsersDesignation() {
-        return instance.access.getAccessType();
+        StringBuilder designation = new StringBuilder("| ");
+        Map<String, String> access = instance.access.getAccessTypes();
+        //as The user may be coordinating more than one event
+        boolean flagCoordinatorDesignationAlreadyAdded = false;
+        for (String string : access.values()) {
+            if (!flagCoordinatorDesignationAlreadyAdded)
+                designation.append(string).append(" | ");
+            if (TextUtils.areEqual(string, UserType.COORDINATOR.name()))
+                flagCoordinatorDesignationAlreadyAdded = true;
+        }
+        return designation.toString();
     }
 
     public String getUsersEmailID() {
@@ -158,11 +144,9 @@ public class UserManager {
      * @return true, if the user is a class representative
      */
     public boolean isUserAClassRepresentative() {
-        checkIntegrity(instance.access.getAccessType()); //all users must have an access type
-
-        String[] types = instance.access.getAccessType().split("\\|");
-        for (String type : types) {
-            if (type.equals(UserType.CR.name()))
+        checkIntegrity(instance.access.getAccessTypes()); //all users must have an access type
+        for (String type : instance.access.getAccessTypes().values()) {
+            if (TextUtils.areEqual(type, UserType.CR.name()))
                 return true;
         }
         return false;
@@ -174,11 +158,10 @@ public class UserManager {
      * @return true, if user is a event coordinator
      */
     public boolean isUserAEventsCoordinator() {
-        checkIntegrity(instance.access.getAccessType()); //all users must have an access type
+        checkIntegrity(instance.access.getAccessTypes()); //all users must have an access type
 
-        String[] types = instance.access.getAccessType().split("\\|");
-        for (String type : types) {
-            if (type.equals(UserType.COORDINATOR.name()))
+        for (String type : instance.access.getAccessTypes().values()) {
+            if (TextUtils.areEqual(type, UserType.COORDINATOR.name()))
                 return true;
         }
         return false;
@@ -190,11 +173,17 @@ public class UserManager {
      * @return true, if the user is an organiser
      */
     public boolean isUserAnOrganiser() {
-        checkIntegrity(instance.access.getAccessType()); //all users must have an access type
+        checkIntegrity(instance.access.getAccessTypes()); //all users must have an access type
 
-        String[] types = instance.access.getAccessType().split("\\|");
-        for (String type : types) {
-            if (type.equals(UserType.ORGANISER.name()))
+        for (String type : instance.access.getAccessTypes().values()) {
+            if (TextUtils.areEqual(type, UserType.CORE_TEAM.name())
+                    || TextUtils.areEqual(type, UserType.CULTURAL_TEAM.name())
+                    || TextUtils.areEqual(type, UserType.OFF_STAGE_TEAM.name())
+                    || TextUtils.areEqual(type, UserType.EVENT_TEAM.name())
+                    || TextUtils.areEqual(type, UserType.DIGITAL_MARKETING.name())
+                    || TextUtils.areEqual(type, UserType.DESIGN_TEAM.name())
+                    || TextUtils.areEqual(type, UserType.TECH_TEAM.name())
+                    )
                 return true;
         }
         return false;
@@ -206,11 +195,10 @@ public class UserManager {
      * @return true, if the user is an Administrator
      */
     public boolean isUserAnAdministrator() {
-        checkIntegrity(instance.access.getAccessType()); //all users must have an access type
+        checkIntegrity(instance.access.getAccessTypes()); //all users must have an access type
 
-        String[] types = instance.access.getAccessType().split("\\|");
-        for (String type : types) {
-            if (type.equals(UserType.ADMINISTRATOR.name()))
+        for (String type : instance.access.getAccessTypes().values()) {
+            if (TextUtils.areEqual(type, UserType.ADMINISTRATOR.name()))
                 return true;
         }
         return false;

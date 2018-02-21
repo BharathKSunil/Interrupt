@@ -18,6 +18,7 @@
     <string name="tv_empty_registered_events">We have Awesome Events for Everyone.\nPlease Register ASAP.</string>
     <string name="tv_registered_events">Your Registered Events</string>
 
+    <color name="tab_selected_color">#F3E5F5</color>
     <!--STYLING-->
     <style name="Dashboard" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>

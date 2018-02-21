@@ -43,7 +43,7 @@ public class UserInfoRecyclerPresenterImplementation implements UsersInfoRecycle
                 case ADMINISTRATOR:
                     repositoryInstance.loadAllAdministratorsInfo(this);
                     break;
-                case ORGANISER:
+                case CORE_TEAM:
                     repositoryInstance.loadAllOrganisersInfo(this);
                     break;
                 default:

@@ -2,14 +2,12 @@ package com.bharathksunil.interrupt.events.ui;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
@@ -182,7 +180,7 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
         eventName1TextView.setText(events.getName());
         eventName2TextView.setAlpha(0f);
 
-        priceSwitcher.setFactory(new TextViewFactory(R.style.TemperatureTextView, true));
+        priceSwitcher.setFactory(new TextViewFactory(R.style.PriceTextView, true));
         priceSwitcher.setCurrentText(currencySymbol + events.getPrice());
 
         descriptionsSwitcher.setInAnimation(this, android.R.anim.fade_in);
@@ -193,10 +191,10 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
         timeSwitcher.setFactory(new TextViewFactory(R.style.ClockTextView, false));
         timeSwitcher.setCurrentText(events.getDateTime());
 
-        venueSwitcher.setFactory(new TextViewFactory(R.style.ClockTextView, false));
+        venueSwitcher.setFactory(new TextViewFactory(R.style.VenueTextView, false));
         venueSwitcher.setCurrentText(events.getVenue());
 
-        coordinatorSwitcher.setFactory(new TextViewFactory(R.style.ClockTextView, false));
+        coordinatorSwitcher.setFactory(new TextViewFactory(R.style.CoordinatorsTextView, false));
         coordinatorSwitcher.setCurrentText(events.getCoordinators().get(0));
     }
 
@@ -284,19 +282,7 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
 
             final int clickedPosition = recyclerView.getChildAdapterPosition(view);
             if (clickedPosition == activeCardPosition) {
-                final Intent intent = new Intent(EventsViewerActivity.this, EventsBannerViewer.class);
-                intent.putExtra(EventsBannerViewer.BUNDLE_IMAGE_ID, 0);
-
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    startActivity(intent);
-                } else {
-                    final CardView cardView = (CardView) view;
-                    final View sharedView = cardView.getChildAt(cardView.getChildCount() - 1);
-                    final ActivityOptions options = ActivityOptions
-                            .makeSceneTransitionAnimation(EventsViewerActivity.this,
-                                    sharedView, "shared");
-                    startActivity(intent, options.toBundle());
-                }
+                startActivity(new Intent(EventsViewerActivity.this, EventsBannerViewer.class));
             } else if (clickedPosition > activeCardPosition) {
                 recyclerView.smoothScrollToPosition(clickedPosition);
                 presenter.onActiveCardChange(clickedPosition);

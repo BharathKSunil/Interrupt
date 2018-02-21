@@ -50,6 +50,8 @@ public class EventsViewerPresenterImplementation implements EventsViewerPresente
                                     urls.add(event.getBannerUrl());
                                 }
                                 viewInstance.loadRecyclerView(urls);
+                                //load the first event
+                                EventsManager.getInstance().loadEvents(data.get(0));
                                 viewInstance.initialiseEventDataForFirstCard(data.get(0));
                             }
                         }

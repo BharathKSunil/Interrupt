@@ -3,6 +3,7 @@ package com.bharathksunil.interrupt.auth.presenter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.TextUtils;
 import com.google.firebase.database.DataSnapshot;
 
@@ -94,19 +95,20 @@ public class AuthPresenterImplementation implements AuthPresenter {
         repositoryInstance.getUserAccessData(new Repository.DataLoadedCallback() {
             @Override
             public void onDataLoaded(DataSnapshot snapshot) {
-                UserAccess userAccess = snapshot.getValue(UserAccess.class);
-                //if the user access is null or not present then load the user as a participant
-                if (userAccess == null || TextUtils.isEmpty(userAccess.getAccessType())) {
+                if (snapshot.exists()) {
+                    UserAccess userAccess = snapshot.getValue(UserAccess.class);
+                    Debug.i(snapshot.getValue().toString());
+                    //Check if the user is allowed to use the app, if not load the fragment
+                    if (viewInstance != null) {
+                        userManager.loadUserAccessFromRepositoryInstance(userAccess);
+                        viewInstance.onProcessEnded();
+                        if (userManager.isUserAuthorisedToUseApp())
+                            viewInstance.loadDashboard();
+                        else
+                            viewInstance.loadUserNotAllowedToUserAppFragment();
+                    }
+                } else {
                     setTheUserAsAParticipant();
-                }
-                //Check if the user is allowed to use the app, if not load the fragment
-                else if (viewInstance != null) {
-                    userManager.loadUserAccessFromRepositoryInstance(userAccess);
-                    viewInstance.onProcessEnded();
-                    if (userManager.isUserAuthorisedToUseApp())
-                        viewInstance.loadDashboard();
-                    else
-                        viewInstance.loadUserNotAllowedToUserAppFragment();
                 }
             }
 

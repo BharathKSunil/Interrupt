@@ -11,82 +11,181 @@
     android:paddingStart="4dp">
 
     <!--TAB PROFILE-->
-    <ImageView
+    <RelativeLayout
         android:id="@+id/tab_profile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:contentDescription="@string/cd_profile_image"
-        app:srcCompat="@drawable/ic_profile" />
-    <include layout="@layout/divider_horizontal" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/cd_profile_image"
+            app:srcCompat="@drawable/ic_profile" />
+
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
 
     <!--TAB EVENTS-->
-    <ImageView
+    <RelativeLayout
         android:id="@+id/tab_events"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="@string/cd_events_image"
-        app:srcCompat="@drawable/ic_events" />
-    <include layout="@layout/divider_horizontal" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/cd_events_image"
+            app:srcCompat="@drawable/ic_events" />
+
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
 
     <!--TAB SCHEDULES-->
-    <ImageView
+    <RelativeLayout
         android:id="@+id/tab_schedule"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="@string/cd_events_schedule"
-        app:srcCompat="@drawable/ic_schedule" />
-    <include layout="@layout/divider_horizontal" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/cd_events_schedule"
+            app:srcCompat="@drawable/ic_schedule" />
+
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
 
     <!--TAB CLASS REPRESENTATIVES-->
-    <ImageView
+    <RelativeLayout
         android:id="@+id/tab_class_reps"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="@string/cd_manager_image"
-        app:srcCompat="@drawable/ic_organiser" />
-    <include layout="@layout/divider_horizontal" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/cd_manager_image"
+            app:srcCompat="@drawable/ic_organiser" />
+
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
 
     <!--TAB COORDINATORS-->
-    <ImageView
+    <RelativeLayout
         android:id="@+id/tab_coordinators"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="@string/cd_designers_image"
-        app:srcCompat="@drawable/ic_designer" />
-    <include layout="@layout/divider_horizontal" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/cd_designers_image"
+            app:srcCompat="@drawable/ic_designer" />
+
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
 
     <!--TAB ORGANISERS-->
-    <ImageView
+    <RelativeLayout
         android:id="@+id/tab_organisers"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="@string/cb_organisers_image"
-        app:srcCompat="@drawable/ic_event_manager" />
-    <include layout="@layout/divider_horizontal" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/cb_organisers_image"
+            app:srcCompat="@drawable/ic_event_manager" />
+
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
 
     <!--TAB ADMINISTRATOR-->
-    <ImageView
+    <RelativeLayout
         android:id="@+id/tab_admin"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="@string/cd_admins_image"
-        app:srcCompat="@drawable/ic_admin" />
-    <include layout="@layout/divider_horizontal" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/cd_admins_image"
+            app:srcCompat="@drawable/ic_admin" />
+
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
 
     <!--TAB ABOUT-->
-    <ImageView
+    <RelativeLayout
         android:id="@+id/tab_about"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="@string/cd_about_app"
-        app:srcCompat="@drawable/ic_about" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/cd_about_app"
+            app:srcCompat="@drawable/ic_about" />
+    </RelativeLayout>
+
 </LinearLayout>

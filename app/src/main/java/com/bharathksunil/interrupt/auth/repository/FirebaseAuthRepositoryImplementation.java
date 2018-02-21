@@ -18,6 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.presenter.AuthPresenter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * This connects to the firebase repository to implement the AuthPresenter.Repository
  */
@@ -108,7 +111,9 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
     public void setUserAsParticipant(final DataLoadedCallback dataLoadedCallback) {
         UserAccess userAccess = new UserAccess();
         userAccess.setEnabled(true);
-        userAccess.setAccessType(UserType.PARTICIPANT.name());
+        Map<String, String> accessMap = new HashMap<>();
+        accessMap.put("0", UserType.PARTICIPANT.name());
+        userAccess.setAccessTypes(accessMap);
 
         //noinspection ConstantConditions
         DatabaseReference userAccessReference = FirebaseDatabase.getInstance()

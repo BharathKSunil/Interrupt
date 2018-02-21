@@ -4,9 +4,8 @@ package com.bharathksunil.interrupt.auth.model;
  * This app has 5 types of users, these types are mentioned here
  * Some users can have a combination of more than one type. e.g,
  * A User can be a PARTICIPANT & a COORDINATOR.
- * In such circumstances the they are stored as "PARTICIPANT | COORDINATOR".
- * These must be split to these basic types as and when required( see {@link UserManager}.isUserAEventsCoordinator()
  * for how this condition is be handled).
+ *
  * @author Bharath Kumar S
  */
 
@@ -18,6 +17,7 @@ public enum UserType {
      * 3. Ability to view the Schedules and location of events
      */
     PARTICIPANT,
+
     /**
      * The Class Representative who :
      * 1. Has all abilities of a PARTICIPANT
@@ -25,6 +25,7 @@ public enum UserType {
      * 3. Can view the total amount to be paid
      */
     CR,
+
     /**
      * The respective Event coordinators who has:
      * 1. All abilities of the PARTICIPANT
@@ -33,15 +34,48 @@ public enum UserType {
      * 4. Update Event Images and rounds
      */
     COORDINATOR,
+
     /**
-     * Interrupt organisers who have the ability:
+     * Interrupt organisers Core Team who have the ability:
      * 1. of the COORDINATORS
-     * 2. Add and Modify events.
-     * 3. Add and Modify coordinators and CR
+     * 2. download Event Info
+     */
+    CORE_TEAM,
+
+    /**
+     * Interrupt organisers Events Team
+     * 3. Add and Modify Event Coordinators
      * 4. Update Event Timings
      * 5. Declare money Received
      */
-    ORGANISER,
+    EVENT_TEAM,
+
+    /**
+     * Interrupt organisers Cultural team
+     * Ability to add events
+     */
+    CULTURAL_TEAM,
+
+    /**
+     * Interrupt organisers Off-Stage team
+     */
+    OFF_STAGE_TEAM,
+
+    /**
+     * Interrupt organisers Digital Marketing team
+     */
+    DIGITAL_MARKETING,
+
+    /**
+     * Interrupt organisers Design team
+     */
+    DESIGN_TEAM,
+
+    /**
+     * Interrupt organisers Technical team
+     */
+    TECH_TEAM,
+
     /**
      * The Administrator of the App,
      * 1. Has all abilities of the Organisers

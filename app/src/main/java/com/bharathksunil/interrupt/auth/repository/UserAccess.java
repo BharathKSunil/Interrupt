@@ -2,6 +2,8 @@ package com.bharathksunil.interrupt.auth.repository;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.Map;
+
 /**
  * This represents the structure of the database of UserAccess tree.
  * This is used for access management for the system
@@ -13,9 +15,9 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class UserAccess {
     /**
      * The type of the user, can be:
-     * ADMINISTRATOR, PARTICIPANT, CR, COORDINATOR, ORGANISER,
+     * ADMINISTRATOR, PARTICIPANT, CR, COORDINATOR, CORE_TEAM,
      */
-    private String AccessType;
+    private Map<String, String> AccessTypes;
     /**
      * Is the user allowed to use the app
      */
@@ -23,27 +25,50 @@ public class UserAccess {
     /**
      * All configurations for the user to have access to the Collections
      */
-    private boolean canViewCollection, canEditCollections, canViewCollectionsHistory;
+    private Boolean canViewCollection, canEditCollections, canViewCollectionsHistory;
+    private Boolean canRegisterParticipant, canEditEventBanner;
     /**
      * All configurations for event managements
      */
-    private boolean canEditEventsInfo, canRegisterUser, canViewEventCollections,
-            canRequestResourceForEvents, canViewRegistrations, canDownloadEventData;
+    private Boolean canEditEventsInfo, canRegisterUser, canViewEventCollections,
+            canViewRegistrations, canDownloadEventData, canAddCategories, canAddEvents,
+            canChangeSchedule, canChangeVenue;
     /**
      * All configurations for access Management
      */
-    protected boolean canAddCoordinator, canAddOrganiser, canAddClassRepresentatives, canAddVolunteer;
+    protected Boolean canAddCoordinator, canAddOrganiser, canAddClassRepresentatives, canAddVolunteer;
 
-    @SuppressWarnings("WeakerAccess")
+    private Boolean canDownloadPaymentsInfo;
+
+
     public UserAccess() {
+        this.canViewCollection = null;
+        this.canEditCollections = null;
+        this.canViewCollectionsHistory = null;
+        this.canRegisterParticipant = null;
+        this.canEditEventBanner = null;
+        this.canEditEventsInfo = null;
+        this.canRegisterUser = null;
+        this.canViewEventCollections = null;
+        this.canViewRegistrations = null;
+        this.canDownloadEventData = null;
+        this.canAddCategories = null;
+        this.canAddEvents = null;
+        this.canChangeSchedule = null;
+        this.canChangeVenue = null;
+        this.canAddCoordinator = null;
+        this.canAddOrganiser = null;
+        this.canAddClassRepresentatives = null;
+        this.canAddVolunteer = null;
+        this.canDownloadPaymentsInfo = null;
     }
 
-    public String getAccessType() {
-        return AccessType;
+    public Map<String, String> getAccessTypes() {
+        return AccessTypes;
     }
 
-    public void setAccessType(String accessType) {
-        AccessType = accessType;
+    public void setAccessTypes(Map<String, String> accessTypes) {
+        AccessTypes = accessTypes;
     }
 
     public boolean isEnabled() {
@@ -54,107 +79,155 @@ public class UserAccess {
         Enabled = enabled;
     }
 
-    public boolean isCanViewCollection() {
+    public Boolean getCanViewCollection() {
         return canViewCollection;
     }
 
-    public void setCanViewCollection(boolean canViewCollection) {
+    public void setCanViewCollection(Boolean canViewCollection) {
         this.canViewCollection = canViewCollection;
     }
 
-    public boolean isCanEditCollections() {
+    public Boolean getCanEditCollections() {
         return canEditCollections;
     }
 
-    public void setCanEditCollections(boolean canEditCollections) {
+    public void setCanEditCollections(Boolean canEditCollections) {
         this.canEditCollections = canEditCollections;
     }
 
-    public boolean isCanViewCollectionsHistory() {
+    public Boolean getCanViewCollectionsHistory() {
         return canViewCollectionsHistory;
     }
 
-    public void setCanViewCollectionsHistory(boolean canViewCollectionsHistory) {
+    public void setCanViewCollectionsHistory(Boolean canViewCollectionsHistory) {
         this.canViewCollectionsHistory = canViewCollectionsHistory;
     }
 
-    public boolean isCanEditEventsInfo() {
+    public Boolean getCanRegisterParticipant() {
+        return canRegisterParticipant;
+    }
+
+    public void setCanRegisterParticipant(Boolean canRegisterParticipant) {
+        this.canRegisterParticipant = canRegisterParticipant;
+    }
+
+    public Boolean getCanEditEventBanner() {
+        return canEditEventBanner;
+    }
+
+    public void setCanEditEventBanner(Boolean canEditEventBanner) {
+        this.canEditEventBanner = canEditEventBanner;
+    }
+
+    public Boolean getCanEditEventsInfo() {
         return canEditEventsInfo;
     }
 
-    public void setCanEditEventsInfo(boolean canEditEventsInfo) {
+    public void setCanEditEventsInfo(Boolean canEditEventsInfo) {
         this.canEditEventsInfo = canEditEventsInfo;
     }
 
-    public boolean isCanRegisterUser() {
+    public Boolean getCanRegisterUser() {
         return canRegisterUser;
     }
 
-    public void setCanRegisterUser(boolean canRegisterUser) {
+    public void setCanRegisterUser(Boolean canRegisterUser) {
         this.canRegisterUser = canRegisterUser;
     }
 
-    public boolean isCanViewEventCollections() {
+    public Boolean getCanViewEventCollections() {
         return canViewEventCollections;
     }
 
-    public void setCanViewEventCollections(boolean canViewEventCollections) {
+    public void setCanViewEventCollections(Boolean canViewEventCollections) {
         this.canViewEventCollections = canViewEventCollections;
     }
 
-    public boolean isCanRequestResourceForEvents() {
-        return canRequestResourceForEvents;
-    }
-
-    public void setCanRequestResourceForEvents(boolean canRequestResourceForEvents) {
-        this.canRequestResourceForEvents = canRequestResourceForEvents;
-    }
-
-    public boolean isCanViewRegistrations() {
+    public Boolean getCanViewRegistrations() {
         return canViewRegistrations;
     }
 
-    public void setCanViewRegistrations(boolean canViewRegistrations) {
+    public void setCanViewRegistrations(Boolean canViewRegistrations) {
         this.canViewRegistrations = canViewRegistrations;
     }
 
-    public boolean isCanDownloadEventData() {
+    public Boolean getCanDownloadEventData() {
         return canDownloadEventData;
     }
 
-    public void setCanDownloadEventData(boolean canDownloadEventData) {
+    public void setCanDownloadEventData(Boolean canDownloadEventData) {
         this.canDownloadEventData = canDownloadEventData;
     }
 
-    public boolean isCanAddCoordinator() {
+    public Boolean getCanAddCategories() {
+        return canAddCategories;
+    }
+
+    public void setCanAddCategories(Boolean canAddCategories) {
+        this.canAddCategories = canAddCategories;
+    }
+
+    public Boolean getCanAddEvents() {
+        return canAddEvents;
+    }
+
+    public void setCanAddEvents(Boolean canAddEvents) {
+        this.canAddEvents = canAddEvents;
+    }
+
+    public Boolean getCanChangeSchedule() {
+        return canChangeSchedule;
+    }
+
+    public void setCanChangeSchedule(Boolean canChangeSchedule) {
+        this.canChangeSchedule = canChangeSchedule;
+    }
+
+    public Boolean getCanChangeVenue() {
+        return canChangeVenue;
+    }
+
+    public void setCanChangeVenue(Boolean canChangeVenue) {
+        this.canChangeVenue = canChangeVenue;
+    }
+
+    public Boolean getCanAddCoordinator() {
         return canAddCoordinator;
     }
 
-    public void setCanAddCoordinator(boolean canAddCoordinator) {
+    public void setCanAddCoordinator(Boolean canAddCoordinator) {
         this.canAddCoordinator = canAddCoordinator;
     }
 
-    public boolean isCanAddOrganiser() {
+    public Boolean getCanAddOrganiser() {
         return canAddOrganiser;
     }
 
-    public void setCanAddOrganiser(boolean canAddOrganiser) {
+    public void setCanAddOrganiser(Boolean canAddOrganiser) {
         this.canAddOrganiser = canAddOrganiser;
     }
 
-    public boolean isCanAddClassRepresentatives() {
+    public Boolean getCanAddClassRepresentatives() {
         return canAddClassRepresentatives;
     }
 
-    public void setCanAddClassRepresentatives(boolean canAddClassRepresentatives) {
+    public void setCanAddClassRepresentatives(Boolean canAddClassRepresentatives) {
         this.canAddClassRepresentatives = canAddClassRepresentatives;
     }
 
-    public boolean isCanAddVolunteer() {
+    public Boolean getCanAddVolunteer() {
         return canAddVolunteer;
     }
 
-    public void setCanAddVolunteer(boolean canAddVolunteer) {
+    public void setCanAddVolunteer(Boolean canAddVolunteer) {
         this.canAddVolunteer = canAddVolunteer;
+    }
+
+    public Boolean getCanDownloadPaymentsInfo() {
+        return canDownloadPaymentsInfo;
+    }
+
+    public void setCanDownloadPaymentsInfo(Boolean canDownloadPaymentsInfo) {
+        this.canDownloadPaymentsInfo = canDownloadPaymentsInfo;
     }
 }

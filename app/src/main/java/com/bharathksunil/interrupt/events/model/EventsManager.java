@@ -36,16 +36,20 @@ public class EventsManager {
         instance.registrations = registrations;
     }
 
-    public String getCurrentCategoryID(){
+    public String getCurrentCategoryID() {
         return instance.categories.getId();
     }
 
-    public String getCurrentEventsID(){
+    public String getCurrentEventsID() {
         return instance.events.getId();
     }
 
-    public String getCurrentRegistrationsID(){
+    public String getCurrentRegistrationsID() {
         return instance.registrations.getId();
+    }
+
+    public String getCurrentEventBannerURL() {
+        return instance.events.getBannerUrl();
     }
 
 }

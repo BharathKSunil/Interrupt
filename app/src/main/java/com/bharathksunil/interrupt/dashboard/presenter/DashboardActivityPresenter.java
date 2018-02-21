@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 
 public interface DashboardActivityPresenter {
     //We are not extending BaseView as there are no long running process here
-    interface View{
+    interface View {
 
         /**
          * The user is a Class Representative, load the Dashboard
@@ -23,29 +23,14 @@ public interface DashboardActivityPresenter {
         void loadAdministratorDashboard();
 
         /**
-         * Load the Administrator Information fragment
-         */
-        void loadAdministratorInfoFragment();
-
-        /**
          * The user is a Class Representative, load the Organiser's Dashboard
          */
         void loadEventsCoordinatorDashboard();
 
         /**
-         * Load the fragment which shows all the event's coordinators contact information
-         */
-        void loadEventCoordinatorContactsInfo();
-
-        /**
          * The user is a organiser, load the Organiser's Dashboard
          */
         void loadOrganisersDashboard();
-
-        /**
-         * Load the fragment which shows all the core organisers of interrupt
-         */
-        void loadOrganisersContactInfo();
 
         /**
          * Load the user information fragment
@@ -66,6 +51,10 @@ public interface DashboardActivityPresenter {
          * To load the fragment explaining about the app
          */
         void loadAboutAppFragment();
+
+        void setCRTabVisibility(int visibility);
+
+        void setCoordinatorTabVisibility(int visibility);
     }
 
     /**
@@ -78,35 +67,35 @@ public interface DashboardActivityPresenter {
     /**
      * To be Called by the view when the profile button is pressed
      */
-    void onUserProfileImagePressed();
+    void onUserProfileTabPressed();
 
     /**
      * To be Called by the view when the profile button is pressed
      */
-    void onEventsButtonPressed();
+    void onEventsTabPressed();
 
     /**
      * To be Called by the view when the profile button is pressed
      */
-    void onSchedulesButtonPressed();
+    void onSchedulesTabPressed();
 
     /**
      * To be Called by the view when the profile button is pressed
      */
-    void onClassRepsButtonPressed();
+    void onClassRepsTabPressed();
 
     /**
      * To be Called by the view when the profile button is pressed
      */
-    void onEventCoordinatorsButtonPressed();
+    void onEventCoordinatorsTabPressed();
 
     /**
      * To be Called by the view when the profile button is pressed
      */
-    void onEventOrganisersButtonPressed();
+    void onEventOrganisersTabPressed();
 
     /**
      * To be Called by the view when the profile button is pressed
      */
-    void onAdministratorButtonPressed();
+    void onAdministratorTabPressed();
 }
