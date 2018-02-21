@@ -16,6 +16,7 @@
     <string name="err_invalid_sem">Oops :( Invalid Semester Selected..</string>
 
     <string name="snack_signed_in">Hello there, You were Successfully Signed In</string>
+    <string name="snack_password_reset_mail_sent">Your Password Reset Link is sent to your EmailID</string>
     <string name="snack_signed_up">Hello there, You were Successfully Signed Up</string>
 
     <string name="tv_please_register">Not on Interrupt? <b>Sign Up Now.!</b></string>

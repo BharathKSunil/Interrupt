@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.bharathksunil.interrupt.auth.presenter.SignInPresenter;
 import com.bharathksunil.interrupt.auth.presenter.SignInPresenterImplementation;
@@ -64,6 +65,9 @@ public class SignInFragment extends Fragment implements SignInPresenter.View {
     AVLoadingIndicatorView loadingIndicatorView;
     @BindView(R.id.btn_submit)
     Button signInButton;
+    @BindView(R.id.tv_forgot_password)
+    TextView tv_forgotPasswordText;
+
     @BindString(R.string.err_incorrect_email)
     String err_incorrect_email;
     @BindString(R.string.err_incorrect_password)
@@ -76,10 +80,13 @@ public class SignInFragment extends Fragment implements SignInPresenter.View {
     String err_empty_field;
     @BindString(R.string.err_unexpected_error)
     String err_unexpected_error;
-    @BindString(R.string.snack_signed_in)
-    String snack_signed_in;
     @BindString(R.string.err_offline)
     String err_offline;
+
+    @BindString(R.string.snack_signed_in)
+    String snack_signed_in;
+    @BindString(R.string.snack_password_reset_mail_sent)
+    String snack_reset_mail_sent;
 
     @Override
     public void onAttach(Context context) {
@@ -156,6 +163,11 @@ public class SignInFragment extends Fragment implements SignInPresenter.View {
     @OnClick(R.id.tv_register)
     public void onRegisterNowPressed() {
         interactor.loadSignUpFragment();
+    }
+
+    @OnClick(R.id.tv_forgot_password)
+    public void onForgotPasswordPressed() {
+        presenter.onForgotPasswordTextClicked();
     }
 
     /**
@@ -262,5 +274,22 @@ public class SignInFragment extends Fragment implements SignInPresenter.View {
     @Override
     public void onUserAlreadySignedIn() {
         interactor.userSignedIn();
+    }
+
+    /**
+     * This method is called when the user has tried to login many times but has failed
+     */
+    @Override
+    public void showForgotPasswordText() {
+        ViewUtils.setVisible(tv_forgotPasswordText);
+    }
+
+    /**
+     * This method is called when the password reset email has been sent
+     */
+    @Override
+    public void showPasswordResetMailSentMessage() {
+        ViewUtils.snackBar(snack_reset_mail_sent, getActivity());
+        ViewUtils.setGone(tv_forgotPasswordText);
     }
 }

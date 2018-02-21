@@ -56,6 +56,16 @@ public interface SignInPresenter {
          * This method is called when the user is already signed in and is trying to sign in again
          */
         void onUserAlreadySignedIn();
+
+        /**
+         * This method is called when the user has tried to login many times but has failed
+         */
+        void showForgotPasswordText();
+
+        /**
+         * This method is called when the password reset email has been sent
+         */
+        void showPasswordResetMailSentMessage();
     }
 
     /**
@@ -97,6 +107,12 @@ public interface SignInPresenter {
             void isAlreadySignedIn();
         }
 
+        interface PasswordResetTaskCallback{
+            void onPasswordResetMailSent();
+            void emailDoesNotExists();
+            void onProcessEnded();
+        }
+
         /**
          * This method sign in the user with the email and password
          *
@@ -110,6 +126,12 @@ public interface SignInPresenter {
          * This method performs the sign out of the user
          */
         void signOut();
+
+        /**
+         * Sends the password reset link
+         * @param email the email of the user whom the email must be sent to
+         */
+        void sendPasswordResetEmail(@NonNull String email, @NonNull PasswordResetTaskCallback callback);
     }
 
     /**
@@ -123,4 +145,9 @@ public interface SignInPresenter {
      * Call this method to perform SignIn
      */
     void onSignInButtonClicked();
+
+    /**
+     * Call this method when the user presses the
+     */
+    void onForgotPasswordTextClicked();
 }

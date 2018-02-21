@@ -20,6 +20,9 @@ public class SignInPresenterImplementation implements SignInPresenter {
     private SignInPresenter.Repository repository;
     private Repository.SignInCallbacks signInCallbacks;
 
+    private int invalidPasswordAttemptsCount;
+    private final int MAX_PASSWORD_ATTEMPTS = 2;
+
     public SignInPresenterImplementation(@NonNull Repository repository) {
         this.repository = repository;
         this.signInCallbacks = new Repository.SignInCallbacks() {
@@ -42,6 +45,9 @@ public class SignInPresenterImplementation implements SignInPresenter {
             @Override
             public void onPasswordIncorrect() {
                 if (view != null) {
+                    invalidPasswordAttemptsCount++;
+                    if (invalidPasswordAttemptsCount == MAX_PASSWORD_ATTEMPTS)
+                        view.showForgotPasswordText();
                     view.onProcessEnded();
                     view.onPasswordError(FormErrorType.INCORRECT);
                 }
@@ -76,6 +82,8 @@ public class SignInPresenterImplementation implements SignInPresenter {
     @Override
     public void setView(@Nullable View view) {
         this.view = view;
+        if (view != null)
+            invalidPasswordAttemptsCount = 0;
     }
 
     /**
@@ -106,6 +114,39 @@ public class SignInPresenterImplementation implements SignInPresenter {
             else {
                 repository.signInWithEmailAndPassword(email, password, signInCallbacks);
             }
+        }
+    }
+
+    @Override
+    public void onForgotPasswordTextClicked() {
+        if (view != null) {
+            view.onProcessStarted();
+            if (TextUtils.isEmailValid(view.getEmailField()))
+                repository.sendPasswordResetEmail(view.getEmailField(), new Repository.PasswordResetTaskCallback() {
+                    @Override
+                    public void onPasswordResetMailSent() {
+                        if (view != null) {
+                            view.onProcessEnded();
+                            view.showPasswordResetMailSentMessage();
+                        }
+                    }
+
+                    @Override
+                    public void emailDoesNotExists() {
+                        if (view != null) {
+                            view.onProcessEnded();
+                            view.onEmailError(FormErrorType.INCORRECT);
+                        }
+                    }
+
+                    @Override
+                    public void onProcessEnded() {
+                        if (view != null) {
+                            view.onProcessEnded();
+                            view.onUnexpectedError();
+                        }
+                    }
+                });
         }
     }
 }

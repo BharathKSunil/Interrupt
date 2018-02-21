@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
@@ -62,4 +63,35 @@ public class FirebaseSignInRepositoryImplementation implements SignInPresenter.R
     public void signOut() {
         FirebaseAuth.getInstance().signOut();
     }
+
+    /**
+     * Sends the password reset link
+     *
+     * @param email the email of the user whom the email must be sent to
+     */
+    @Override
+    public void sendPasswordResetEmail(@NonNull String email, @NonNull final PasswordResetTaskCallback callback) {
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        callback.onPasswordResetMailSent();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Debug.e(FirebaseSignInRepositoryImplementation.class.getName()
+                                + " sendPasswordResetEmail:" + e.getMessage());
+                        e.printStackTrace();
+
+                        if (e instanceof FirebaseAuthEmailException)
+                            callback.emailDoesNotExists();
+                        else
+                            callback.onProcessEnded();
+                    }
+                });
+    }
+
+
 }
