@@ -41,7 +41,7 @@ public abstract class BaseFlipAdapter extends RecyclerView.Adapter<BaseFlipAdapt
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = inflater
-                .inflate(R.layout.flipper, viewGroup, false);
+                .inflate(R.layout.row_orgnisers_flipper, viewGroup, false);
         BaseViewHolder baseViewHolder = new BaseViewHolder(v);
         baseViewHolder.mFlipViewPager = v.findViewById(R.id.flip_view);
         return baseViewHolder;

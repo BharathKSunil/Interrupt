@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:src="@drawable/background_gradient_top_down" />
+        app:srcCompat="@drawable/background_gradient_top_down"
+        android:contentDescription="@string/cd_banner"/>
 
     <View
         android:layout_width="match_parent"

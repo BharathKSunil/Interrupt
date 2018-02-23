@@ -47,6 +47,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="snack_back_press_twice">We\'ll Miss you, Press Back Again to exit.</string>
     <string name="tv_under_construction">This Page is Under Construction…  We\'ll be ready soon.</string>
+    <string name="cd_banner">Banner Image</string>
+    <string name="cd_event_desc">Event Description</string>
+    <string name="cd_event_time">Event Time</string>
+    <string name="cd_event_venue">Event Venue</string>
+    <string name="cd_event_coordinator">Event Coordinator</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">

@@ -56,7 +56,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
         android:text="@string/hint_section"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
@@ -100,7 +99,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
         android:text="@string/hint_semester"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textAppearance="@style/Events.TextAppearance.Title"
+                android:textAppearance="@style/Events.TextAppearance.Medium"
                 android:textColor="@color/primary_dark"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textAppearance="@style/Events.TextAppearance.Title"
+                android:textAppearance="@style/Events.TextAppearance.Medium"
                 android:textColor="@color/primary_dark"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -66,8 +67,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/tv_empty_events"
-        android:visibility="gone"/>
-    <include layout="@layout/layout_progress_bar"/>
+        android:textAppearance="@style/Dashboard.TextAppearance.Small"
+        android:visibility="gone" />
+
+    <include layout="@layout/layout_progress_bar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_events"
@@ -88,8 +91,9 @@
             android:layout_height="@dimen/events_iv_icon_size"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30dp"
+            android:contentDescription="@string/cd_event_desc"
             android:scaleType="fitCenter"
-            android:src="@drawable/star" />
+            app:srcCompat="@drawable/star" />
 
         <TextSwitcher
             android:id="@+id/ts_description"
@@ -110,8 +114,9 @@
             android:layout_height="@dimen/events_iv_icon_size"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30dp"
+            android:contentDescription="@string/cd_event_time"
             android:scaleType="fitCenter"
-            android:src="@drawable/clock" />
+            app:srcCompat="@drawable/clock" />
 
         <TextSwitcher
             android:id="@+id/ts_time"
@@ -132,8 +137,9 @@
             android:layout_height="@dimen/events_iv_icon_size"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30dp"
+            android:contentDescription="@string/cd_event_venue"
             android:scaleType="fitCenter"
-            android:src="@drawable/venue" />
+            app:srcCompat="@drawable/venue" />
 
         <TextSwitcher
             android:id="@+id/ts_venue"
@@ -154,8 +160,9 @@
             android:layout_height="@dimen/events_iv_icon_size"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30dp"
+            android:contentDescription="@string/cd_event_coordinator"
             android:scaleType="fitCenter"
-            android:src="@drawable/coordinator" />
+            app:srcCompat="@drawable/coordinator" />
 
         <TextSwitcher
             android:id="@+id/ts_coordinator"

@@ -27,7 +27,6 @@
         layout="@layout/dash_custom_vertical_tab"
         android:layout_width="@dimen/dash_custom_tab_width"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <!--FRAGMENT FRAMES-->
     <FrameLayout
@@ -36,6 +35,5 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/appName"
         android:layout_toEndOf="@+id/dash_customTab"
-        android:layout_toRightOf="@+id/dash_customTab"
         android:background="@color/white" />
 </RelativeLayout>

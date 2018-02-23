@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:contentDescription="@string/cb_organisers_image"
-            app:srcCompat="@drawable/ic_event_manager" />
+            app:srcCompat="@drawable/ic_class_reps" />
 
         <include
             layout="@layout/divider_horizontal"

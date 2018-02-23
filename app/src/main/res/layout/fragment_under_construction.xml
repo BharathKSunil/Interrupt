@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/temp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/tv_under_construction"
         app:srcCompat="@drawable/ic_under_construction" />
@@ -18,9 +18,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_under_construction"
         android:layout_below="@+id/temp"
         android:gravity="center"
+        android:text="@string/tv_under_construction"
         android:textAppearance="@style/Dashboard.TextAppearance.Title" />
 
 </RelativeLayout>

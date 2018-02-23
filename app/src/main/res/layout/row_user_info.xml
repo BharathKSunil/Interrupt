@@ -25,10 +25,8 @@
             android:id="@+id/row_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/row_user_image"
-            android:layout_toRightOf="@+id/row_user_image"
             android:textAppearance="@style/Dashboard.TextAppearance.Medium"
             android:textColor="@color/accent"
             tools:text="Bharath Kumar S" />
@@ -38,10 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/row_user_name"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/row_user_image"
-            android:layout_toRightOf="@+id/row_user_image"
             android:textAppearance="@style/Dashboard.TextAppearance.Small"
             tools:text="Administrator" />
 
@@ -50,10 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/row_user_designation"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/row_user_image"
-            android:layout_toRightOf="@+id/row_user_image"
             android:autoLink="email"
             android:textAppearance="@style/Dashboard.TextAppearance.Small"
             tools:text="bharathk.sunil.k@gmail.com" />
@@ -63,10 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/row_user_email"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/row_user_image"
-            android:layout_toRightOf="@+id/row_user_image"
             android:autoLink="phone"
             android:textAppearance="@style/Dashboard.TextAppearance.Small"
             tools:text="+91 8867036863" />
