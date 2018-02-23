@@ -47,19 +47,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="snack_back_press_twice">We\'ll Miss you, Press Back Again to exit.</string>
     <string name="tv_under_construction">This Page is Under Construction…  We\'ll be ready soon.</string>
-    <string name="team_members">Team Members</string>
-    <string name="registered_by">Registered By</string>
-    <string name="cd_refresh">Refresh Button</string>
-
-    <string name="tv_dev_name">Bharath Kumar S</string>
-    <string name="tv_dev_position">Android Developer</string>
-    <string name="tv_dev_email">bharathk.sunil.k@gmail.com</string>
-    <string name="tv_dev_phone">+91 8867036863</string>
-    <string name="tv_dev_heading">Built With Passion</string>
-    <string name="tv_dev_sub_heading">Follow Me</string>
-    <string name="tv_interrupt_administrators">Interrupt Administrators</string>
-    <string name="tv_organisers_info_heading">Interrupt 7.0 Organisers</string>
-    <string name="tv_categories_heading">Choose an Event Category</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">

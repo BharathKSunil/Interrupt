@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenterImplementation;
-import com.bharathksunil.interrupt.events.repository.Categories;
+import com.bharathksunil.interrupt.events.model.Categories;
 import com.bharathksunil.interrupt.events.repository.MockEventCategoriesRepositoryImplementation;
 import com.bharathksunil.interrupt.events.ui.EventsRecyclerSliderAdapter;
 import com.bharathksunil.interrupt.events.ui.EventsViewerActivity;

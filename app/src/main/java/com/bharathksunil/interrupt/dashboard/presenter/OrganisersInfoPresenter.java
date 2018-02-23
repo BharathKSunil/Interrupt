@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.dashboard.presenter;
 
 import com.bharathksunil.interrupt.BaseView;
-import com.bharathksunil.interrupt.admin.repository.Users;
+import com.bharathksunil.interrupt.admin.model.Users;
 
 import java.util.List;
 

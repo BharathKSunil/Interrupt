@@ -1,7 +1,5 @@
 package com.bharathksunil.interrupt.auth.model;
 
-import com.bharathksunil.interrupt.auth.repository.User;
-import com.bharathksunil.interrupt.auth.repository.UserAccess;
 import com.bharathksunil.interrupt.util.TextUtils;
 
 import java.util.Map;

@@ -1,9 +1,5 @@
 package com.bharathksunil.interrupt.events.model;
 
-import com.bharathksunil.interrupt.events.repository.Categories;
-import com.bharathksunil.interrupt.events.repository.EventRegistrations;
-import com.bharathksunil.interrupt.events.repository.Events;
-
 /**
  * This Manager manages all the event related data and stored in the singleton instance
  *

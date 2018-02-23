@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import com.bharathksunil.interrupt.BaseView;
-import com.bharathksunil.interrupt.auth.repository.User;
+import com.bharathksunil.interrupt.auth.model.User;
 
 /**
  * This interface is to be used for signing Up a new user into the app

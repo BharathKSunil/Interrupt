@@ -8,8 +8,8 @@ import com.bharathksunil.interrupt.util.TextUtils;
 import com.google.firebase.database.DataSnapshot;
 
 import com.bharathksunil.interrupt.auth.model.UserManager;
-import com.bharathksunil.interrupt.auth.repository.User;
-import com.bharathksunil.interrupt.auth.repository.UserAccess;
+import com.bharathksunil.interrupt.auth.model.User;
+import com.bharathksunil.interrupt.auth.model.UserAccess;
 
 /**
  * This is the implementation of the {@link AuthPresenter} for the loading sequence.

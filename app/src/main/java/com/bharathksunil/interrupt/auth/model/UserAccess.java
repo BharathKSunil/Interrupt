@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.auth.repository;
+package com.bharathksunil.interrupt.auth.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

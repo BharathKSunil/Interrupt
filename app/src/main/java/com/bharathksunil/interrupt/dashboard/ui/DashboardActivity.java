@@ -16,6 +16,7 @@ import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresente
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenterImplementation;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.AboutFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.EventCategoriesFragment;
+import com.bharathksunil.interrupt.dashboard.ui.fragments.OrganisersInfoFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.UserInfoFragment;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
@@ -190,7 +191,7 @@ public class DashboardActivity extends AppCompatActivity implements
     @Override
     public void loadOrganisersDashboard() {
         setTabActive(TAB_ORGANISERS);
-        loadFragment(underConstructionFragment);
+        loadFragment(new OrganisersInfoFragment());
     }
 
     /**

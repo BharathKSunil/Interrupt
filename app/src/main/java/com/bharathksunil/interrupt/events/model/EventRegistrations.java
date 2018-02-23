@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.events.repository;
+package com.bharathksunil.interrupt.events.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

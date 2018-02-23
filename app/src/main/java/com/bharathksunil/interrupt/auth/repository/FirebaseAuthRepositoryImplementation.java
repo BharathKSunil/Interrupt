@@ -2,6 +2,7 @@ package com.bharathksunil.interrupt.auth.repository;
 
 import android.support.annotation.NonNull;
 
+import com.bharathksunil.interrupt.auth.model.UserAccess;
 import com.bharathksunil.interrupt.auth.model.UserType;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.TextUtils;

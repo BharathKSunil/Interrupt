@@ -14,11 +14,60 @@
     <string name="cb_organisers_image">OrganisersImage</string>
     <string name="cd_admins_image">AdminsImage</string>
     <string name="cd_about_app">AboutApp</string>
+    <string name="cd_refresh">Refresh Button</string>
+    <string name="cd_left_flip_image">left image</string>
+    <string name="cd_right_flip_image">right image</string>
 
     <string name="tv_empty_registered_events">We have Awesome Events for Everyone.\nPlease Register ASAP.</string>
+    <string name="tv_empty_organisers">No Organisers Data Found\nCome Back later for more</string>
+
     <string name="tv_registered_events">Your Registered Events</string>
+    <string name="team_members">Team Members</string>
+    <string name="registered_by">Registered By</string>
+    <string name="tv_dev_name">Bharath Kumar S</string>
+    <string name="tv_dev_position">Android Developer</string>
+    <string name="tv_dev_email">bharathk.sunil.k@gmail.com</string>
+    <string name="tv_dev_phone">+91 8867036863</string>
+    <string name="tv_dev_heading">Built With Passion</string>
+    <string name="tv_dev_sub_heading">Follow Me</string>
+
+    <string name="tv_interrupt_administrators">Interrupt Administrators</string>
+    <string name="tv_organisers_info_heading">Interrupt 7.0 Organisers</string>
+    <string name="tv_categories_heading">Choose an Event Category</string>
 
     <color name="tab_selected_color">#F3E5F5</color>
+
+    <array name="flip_pager_bg_colors">
+        <item>@color/saffron</item>
+        <item>@color/sienna</item>
+        <item>@color/green</item>
+        <item>@color/purple</item>
+        <item>@color/primary_dark</item>
+        <item>@color/pink</item>
+        <item>@color/orange</item>
+        <item>@color/accent</item>
+        <item>@color/emerald</item>
+        <item>@color/turquoise</item>
+        <item>@color/belizehole</item>
+        <item>@color/wisteria</item>
+        <item>@color/alizarin</item>
+        <item>@color/greensea</item>
+        <item>@color/silver</item>
+
+    </array>
+    <color name="turquoise">#1abc9c</color>
+    <color name="belizehole">#2980b9</color>
+    <color name="wisteria">#8e44ad</color>
+    <color name="alizarin">#e74c3c</color>
+    <color name="greensea">#16a085</color>
+    <color name="silver">#bdc3c7</color>
+    <color name="saffron">#F4B63E</color>
+    <color name="sienna">#EB6460</color>
+    <color name="green">#10b4a5</color>
+    <color name="purple">#7c57e4</color>
+    <color name="pink">#ff4284</color>
+    <color name="orange">#ff8c6a</color>
+
     <!--STYLING-->
     <style name="Dashboard" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
@@ -70,40 +119,20 @@
     </style>
 
 
-    <color name="saffron">#F4B63E</color>
-    <color name="sienna">#EB6460</color>
-    <color name="green">#10b4a5</color>
-    <color name="purple">#7c57e4</color>
-    <color name="pink">#ff4284</color>
-    <color name="orange">#ff8c6a</color>
-
-    <style name="TextView">
+    <style name="TextViewInterest" parent="Dashboard.TextAppearance.Small">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/round_text_view_bg_black</item>
+        <item name="android:layout_margin">3dp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="TextView.Interest" parent="TextView">
-        <item name="android:background">@drawable/round_text_view</item>
-        <item name="android:layout_margin">3dp</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TextView.Nickname" parent="TextView">
-        <item name="android:textSize">30sp</item>
+    <style name="TextViewNickname" parent="Dashboard.TextAppearance.Medium">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_marginTop">30dp</item>
         <item name="android:layout_marginLeft">20dp</item>
-    </style>
-
-    <style name="LinearLayout" />
-
-    <style name="LinearLayout.Interests">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_marginTop">14dp</item>
-        <item name="android:layout_marginLeft">14dp</item>
-        <item name="android:orientation">horizontal</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>

@@ -18,7 +18,7 @@ import android.widget.ViewSwitcher;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenterImplementation;
-import com.bharathksunil.interrupt.events.repository.Events;
+import com.bharathksunil.interrupt.events.model.Events;
 import com.bharathksunil.interrupt.events.repository.MockEventsRepository;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;

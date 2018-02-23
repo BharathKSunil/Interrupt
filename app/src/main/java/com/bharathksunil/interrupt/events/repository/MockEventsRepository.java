@@ -1,5 +1,6 @@
 package com.bharathksunil.interrupt.events.repository;
 
+import com.bharathksunil.interrupt.events.model.Events;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenter;
 import com.bharathksunil.interrupt.util.TextUtils;
 

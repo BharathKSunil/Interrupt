@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bharathksunil.interrupt.admin.presenter.UsersInfoRecyclerPresenter;
-import com.bharathksunil.interrupt.admin.repository.Users;
+import com.bharathksunil.interrupt.admin.model.Users;
 
 import java.util.List;
 
@@ -30,7 +30,10 @@ public class OrganisersInfoPresenterImplementation implements OrganisersInfoPres
                 @Override
                 public void onDataLoadedSuccessfully(@NonNull List<Users> users) {
                     if (viewInstance != null) {
-                        viewInstance.loadOrganisersListView(users);
+                        if (users.size() == 0)
+                            viewInstance.showNoOrganisersDataFound();
+                        else
+                            viewInstance.loadOrganisersListView(users);
                         viewInstance.onProcessEnded();
                     }
                 }
@@ -38,6 +41,7 @@ public class OrganisersInfoPresenterImplementation implements OrganisersInfoPres
                 @Override
                 public void onDataLoadFailed() {
                     if (viewInstance != null) {
+                        viewInstance.showNoOrganisersDataFound();
                         viewInstance.onProcessEnded();
                         viewInstance.onUnexpectedError();
                     }

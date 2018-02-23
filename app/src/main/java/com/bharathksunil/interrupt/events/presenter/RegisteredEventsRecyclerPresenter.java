@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.bharathksunil.interrupt.BaseView;
 import com.bharathksunil.interrupt.OnItemClickListener;
-import com.bharathksunil.interrupt.events.repository.EventRegistrations;
+import com.bharathksunil.interrupt.events.model.EventRegistrations;
 
 import java.util.List;
 

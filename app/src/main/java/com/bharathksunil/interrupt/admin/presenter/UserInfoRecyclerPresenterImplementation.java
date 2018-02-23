@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bharathksunil.interrupt.OnItemClickListener;
-import com.bharathksunil.interrupt.admin.repository.Users;
+import com.bharathksunil.interrupt.admin.model.Users;
 import com.bharathksunil.interrupt.auth.model.UserType;
 
 import java.util.ArrayList;

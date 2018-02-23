@@ -1,5 +1,6 @@
 package com.bharathksunil.interrupt.admin.repository;
 
+import com.bharathksunil.interrupt.admin.model.Users;
 import com.bharathksunil.interrupt.admin.presenter.UsersInfoRecyclerPresenter;
 import com.bharathksunil.interrupt.auth.repository.FirebaseConstants;
 import com.bharathksunil.interrupt.util.Debug;
@@ -31,7 +32,6 @@ public class FirebaseUsersInfoFetchRepositoryImplementation implements UsersInfo
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         if (snapshot.exists()) {
                             Users user = snapshot.getValue(Users.class);
-                            user.setRoles(new String[]{"--"});
                             data.add(user);
                         }
                     }

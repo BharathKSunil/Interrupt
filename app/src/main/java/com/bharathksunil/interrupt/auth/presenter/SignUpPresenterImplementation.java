@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bharathksunil.interrupt.util.TextUtils;
-import com.bharathksunil.interrupt.auth.repository.User;
+import com.bharathksunil.interrupt.auth.model.User;
 
 import java.io.File;
 

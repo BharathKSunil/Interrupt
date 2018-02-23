@@ -2,59 +2,82 @@ package com.bharathksunil.interrupt.dashboard.ui.fragments;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.R;
-import com.bharathksunil.interrupt.admin.repository.FirebaseUsersInfoFetchRepositoryImplementation;
-import com.bharathksunil.interrupt.admin.repository.Users;
+import com.bharathksunil.interrupt.admin.repository.MockUsersInfoRepositoryImplementation;
+import com.bharathksunil.interrupt.admin.model.Users;
 import com.bharathksunil.interrupt.dashboard.presenter.OrganisersInfoPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.OrganisersInfoPresenterImplementation;
-import com.bharathksunil.interrupt.util.Debug;
+import com.bharathksunil.interrupt.flipviewpager.adapter.BaseFlipAdapter;
+import com.bharathksunil.interrupt.flipviewpager.utils.FlipSettings;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.squareup.picasso.Picasso;
-import com.yalantis.flipviewpager.adapter.BaseFlipAdapter;
-import com.yalantis.flipviewpager.utils.FlipSettings;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import butterknife.BindArray;
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass to view all the organisers.
- * todo: Incomplete
  */
 public class OrganisersInfoFragment extends Fragment implements OrganisersInfoPresenter.View {
 
     private Unbinder unbinder;
     private OrganisersInfoPresenter presenter;
+    private boolean listItemClickedOnce;
 
     public OrganisersInfoFragment() {
         // Required empty public constructor
     }
 
-    @BindView(R.id.lv_organisers)
-    ListView organisersListView;
+    @BindView(R.id.rv_organisers)
+    RecyclerView organisersListView;
+    @BindView(R.id.progress_bar)
+    AVLoadingIndicatorView loadingIndicatorView;
+    @BindView(R.id.tv_empty_prompt)
+    TextView tv_empty_prompt;
+
+    @BindArray(R.array.flip_pager_bg_colors)
+    int[] bg_colors;
+    @BindString(R.string.err_unexpected_error)
+    String err_unexpected_error;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listItemClickedOnce = false;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dash_fragment_organisers_info, container, false);
         unbinder = ButterKnife.bind(this, view);
-        presenter = new OrganisersInfoPresenterImplementation(new FirebaseUsersInfoFetchRepositoryImplementation());
+        //todo: Remove Mock and pass the FirebaseUsersInfoFetchRepositoryImplementation()
+        presenter = new OrganisersInfoPresenterImplementation(new MockUsersInfoRepositoryImplementation());
         presenter.setView(this);
         return view;
     }
@@ -66,61 +89,98 @@ public class OrganisersInfoFragment extends Fragment implements OrganisersInfoPr
         presenter.setView(null);
     }
 
-    private int getRandomBackground() {
-        int[] colors = {
-                R.color.sienna,
-                R.color.saffron,
-                R.color.green,
-                R.color.pink,
-                R.color.orange,
-                R.color.purple
-        };
-        return colors[new Random().nextInt(5)];
-    }
-
     @Override
     public void onProcessStarted() {
-
+        loadingIndicatorView.smoothToShow();
     }
 
     @Override
     public void onProcessEnded() {
-
+        loadingIndicatorView.smoothToHide();
     }
 
     @Override
     public void onUnexpectedError() {
-        ViewUtils.errorBar("oops Something went wrong", getActivity());
-    }
-
-    @Override
-    public void loadOrganisersListView(List<Users> data) {
-        FlipSettings settings = new FlipSettings.Builder().defaultPage(1).build();
-        organisersListView.setAdapter(new OrganisersAdapter(getContext(), data, settings));
-        organisersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Users f = (Users) organisersListView.getAdapter().getItem(position);
-
-                Debug.i("Clicked" + f.getName());
-            }
-        });
+        ViewUtils.errorBar(err_unexpected_error, getActivity());
     }
 
     @Override
     public void showNoOrganisersDataFound() {
-
+        ViewUtils.setVisible(tv_empty_prompt);
     }
 
     @Override
     public void hideNoOrganisersDataFound() {
+        ViewUtils.setGone(tv_empty_prompt);
+    }
 
+    @Override
+    public void loadOrganisersListView(final List<Users> data) {
+        FlipSettings settings = new FlipSettings.Builder().defaultPage(1).build();
+        final OrganisersAdapter organisersAdapter = new OrganisersAdapter(getContext(), data, settings);
+        organisersAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int itemPosition) {
+                if (!listItemClickedOnce) {
+                    Toast.makeText(getContext(), "Swipe Card to View More, click again to contact", Toast.LENGTH_LONG).show();
+                    listItemClickedOnce = true;
+                } else
+                    handleListItemClick(data.get(itemPosition));
+            }
+        });
+        organisersListView.setAdapter(organisersAdapter);
+        organisersListView.setHasFixedSize(true);
+        organisersListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+    }
+
+    private void handleListItemClick(final Users organiser) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Contact Organiser")
+                .setMessage("Call or Email " + organiser.getName() + ".?")
+                .setPositiveButton("Call", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + organiser.getPhoneNo()));
+                        startActivity(intent);
+                    }
+                })
+                .setNeutralButton("Email", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        composeEmail(new String[]{organiser.getEmail()});
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create()
+                .show();
+
+    }
+
+    private void composeEmail(String[] addresses) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Interrupt7.0: <Subject Here>");
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    private int getRandomBackground() {
+        return bg_colors[new Random().nextInt(bg_colors.length)];
     }
 
     class OrganisersAdapter extends BaseFlipAdapter {
 
         private final int PAGES = 3;
-        private int[] IDS_INTEREST = {R.id.interest_1, R.id.interest_2, R.id.interest_3, R.id.interest_4, R.id.interest_5};
+        private int[] IDS_INTEREST = {R.id.interest_1, R.id.interest_2, R.id.interest_3};
+        private OnItemClickListener listener;
 
         OrganisersAdapter(Context context, List<Users> items, FlipSettings settings) {
             //noinspection unchecked
@@ -129,39 +189,47 @@ public class OrganisersInfoFragment extends Fragment implements OrganisersInfoPr
 
         @Override
         public View getPage(int position, View convertView, ViewGroup parent, Object organiser1,
-                            Object organiser2) {
-            final OrganisersHolder holder;
-
+                            Object organiser2, BaseFlipAdapter.CloseListener closeListener) {
+            final OrganisersHolderView holder;
             if (convertView == null) {
-                holder = new OrganisersHolder();
+                holder = new OrganisersHolderView();
                 convertView = getLayoutInflater().inflate(R.layout.dash_organisers_merged_page, parent, false);
                 holder.leftAvatar = convertView.findViewById(R.id.first);
                 holder.rightAvatar = convertView.findViewById(R.id.second);
                 holder.infoPage = getLayoutInflater().inflate(R.layout.layout_organisers_info, parent, false);
-                holder.name = holder.infoPage.findViewById(R.id.nickname);
+                holder.name = holder.infoPage.findViewById(R.id.tv_name);
 
                 for (int id : IDS_INTEREST)
                     holder.interests.add((TextView) holder.infoPage.findViewById(id));
-
+                holder.email = holder.infoPage.findViewById(R.id.tv_email);
+                holder.phoneNo = holder.infoPage.findViewById(R.id.tv_phoneNo);
                 convertView.setTag(holder);
             } else {
-                holder = (OrganisersHolder) convertView.getTag();
+                holder = (OrganisersHolderView) convertView.getTag();
             }
 
             switch (position) {
-                // Merged page with 2 friends
+                // Merged page with 2 organisers
                 case 1:
-                    Picasso.with(getContext()).load(((Users) organiser1).getProfileUrl())
-                            .placeholder(R.drawable.ic_profile).into(holder.leftAvatar);
-                    if (organiser2 != null)
-                        Picasso.with(getContext()).load(((Users) organiser2).getProfileUrl())
-                                .placeholder(R.drawable.ic_profile).into(holder.leftAvatar);
+                    String profileUrl = ((Users) organiser1).getProfileUrl();
+                    Picasso.with(getContext()).load(profileUrl)
+                            .placeholder(R.drawable.background_gradient_top_down)
+                            .error(R.drawable.app_icon)
+                            .into(holder.leftAvatar);
+                    if (organiser2 != null) {
+                        profileUrl = ((Users) organiser2).getProfileUrl();
+                        Picasso.with(getContext()).load(profileUrl)
+                                .placeholder(R.drawable.background_gradient_top_down)
+                                .error(R.drawable.app_icon)
+                                .into(holder.rightAvatar);
+                    }
                     break;
                 default:
                     fillHolder(holder, position == 0 ? (Users) organiser1 : (Users) organiser2);
                     holder.infoPage.setTag(holder);
                     return holder.infoPage;
             }
+
             return convertView;
         }
 
@@ -170,24 +238,39 @@ public class OrganisersInfoFragment extends Fragment implements OrganisersInfoPr
             return PAGES;
         }
 
-        private void fillHolder(OrganisersHolder holder, Users organisers) {
+        private void fillHolder(OrganisersHolderView holder, Users organisers) {
             if (organisers == null)
                 return;
+
             Iterator<TextView> iViews = holder.interests.iterator();
-            Iterator<String> iInterests = Arrays.asList(organisers.getRoles()).iterator();
+            Iterator<String> iInterests = organisers.getRoles().iterator();
             while (iViews.hasNext() && iInterests.hasNext())
                 iViews.next().setText(iInterests.next());
-            holder.infoPage.setBackgroundColor(getResources().getColor(getRandomBackground()));
+
+            holder.infoPage.setBackgroundColor(getRandomBackground());
             holder.name.setText(organisers.getName());
+            holder.email.setText(organisers.getEmail());
+            holder.phoneNo.setText(organisers.getPhoneNo());
         }
 
-        class OrganisersHolder {
+        void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+            this.listener = onItemClickListener;
+        }
+
+        @Override
+        public void onItemClick(int itemPosition) {
+            if (listener != null) {
+                listener.onItemClick(itemPosition);
+            }
+        }
+
+        class OrganisersHolderView {
             ImageView leftAvatar;
             ImageView rightAvatar;
             View infoPage;
+            TextView email, name, phoneNo;
 
             List<TextView> interests = new ArrayList<>();
-            TextView name;
         }
     }
 }

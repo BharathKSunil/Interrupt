@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bharathksunil.interrupt.BaseView;
-import com.bharathksunil.interrupt.events.repository.Events;
+import com.bharathksunil.interrupt.events.model.Events;
 
 import java.util.List;
 

@@ -3,6 +3,7 @@ package com.bharathksunil.interrupt.events.repository;
 import android.support.annotation.NonNull;
 
 import com.bharathksunil.interrupt.auth.repository.FirebaseConstants;
+import com.bharathksunil.interrupt.events.model.Events;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenter;
 import com.bharathksunil.interrupt.util.Debug;
 import com.google.android.gms.tasks.OnFailureListener;

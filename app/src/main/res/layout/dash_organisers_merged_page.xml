@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/black"
+    android:background="@color/white"
     android:weightSum="2">
 
     <ImageView
@@ -10,21 +10,21 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:contentDescription="left image"
-        android:scaleType="fitXY" />
+        android:contentDescription="@string/cd_left_flip_image"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="1dp"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_weight="0"
-        android:background="#000000" />
+        android:background="@color/white" />
 
     <ImageView
         android:id="@+id/second"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:contentDescription="right image"
-        android:scaleType="fitXY" />
+        android:contentDescription="@string/cd_right_flip_image"
+        android:scaleType="centerCrop" />
 
 </LinearLayout>

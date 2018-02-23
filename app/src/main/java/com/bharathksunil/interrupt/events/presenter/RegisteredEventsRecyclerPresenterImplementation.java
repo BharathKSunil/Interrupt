@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.auth.model.UserManager;
-import com.bharathksunil.interrupt.events.repository.EventRegistrations;
+import com.bharathksunil.interrupt.events.model.EventRegistrations;
 
 import java.util.ArrayList;
 import java.util.List;

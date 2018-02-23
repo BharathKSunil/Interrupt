@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.bharathksunil.interrupt.BaseView;
 import com.bharathksunil.interrupt.OnItemClickListener;
-import com.bharathksunil.interrupt.admin.repository.Users;
+import com.bharathksunil.interrupt.admin.model.Users;
 
 import java.util.List;
 
