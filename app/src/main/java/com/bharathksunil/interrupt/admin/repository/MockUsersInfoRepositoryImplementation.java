@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * This mocks the firebase UserInfo Tree and the OrganiserInfo Trees
+ *
  * @author Bharath on 22-02-2018.
  */
 
@@ -18,7 +19,7 @@ public class MockUsersInfoRepositoryImplementation implements UsersInfoRecyclerP
     }
 
     @Override
-    public void loadAllOrganisersInfo(DataLoadedCallback callback) {
+    public void loadCoreTeamsInfo(DataLoadedCallback callback) {
         List<Users> data = new ArrayList<>();
         List<String> roles = new ArrayList<>();
         roles.add("Android Developer");
@@ -73,6 +74,21 @@ public class MockUsersInfoRepositoryImplementation implements UsersInfoRecyclerP
         ));
 
         callback.onDataLoadedSuccessfully(data);
+    }
+
+    @Override
+    public void loadEventsTeamsInfo(DataLoadedCallback callback) {
+        loadCoreTeamsInfo(callback);
+    }
+
+    @Override
+    public void loadOffStageTeamsInfo(DataLoadedCallback callback) {
+        loadCoreTeamsInfo(callback);
+    }
+
+    @Override
+    public void loadDesignTeamsInfo(DataLoadedCallback callback) {
+        loadCoreTeamsInfo(callback);
     }
 
     @Override

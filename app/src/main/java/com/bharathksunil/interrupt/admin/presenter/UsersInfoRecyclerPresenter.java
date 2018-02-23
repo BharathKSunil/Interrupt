@@ -48,7 +48,13 @@ public interface UsersInfoRecyclerPresenter {
 
         void loadAllUsersInfo(DataLoadedCallback callback);
 
-        void loadAllOrganisersInfo(DataLoadedCallback callback);
+        void loadCoreTeamsInfo(DataLoadedCallback callback);
+
+        void loadEventsTeamsInfo(DataLoadedCallback callback);
+
+        void loadOffStageTeamsInfo(DataLoadedCallback callback);
+
+        void loadDesignTeamsInfo(DataLoadedCallback callback);
 
         void loadAllAdministratorsInfo(DataLoadedCallback callback);
     }

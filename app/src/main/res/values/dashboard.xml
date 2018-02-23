@@ -19,7 +19,10 @@
     <string name="cd_right_flip_image">right image</string>
 
     <string name="tv_empty_registered_events">We have Awesome Events for Everyone.\nPlease Register ASAP.</string>
-    <string name="tv_empty_organisers">No Organisers Data Found\nCome Back later for more</string>
+    <string name="tv_empty_organisers">No Core Team Members Found\nCome Back later for more</string>
+    <string name="tv_empty_off_stage">No Off Stage Team Members Found</string>
+    <string name="tv_empty_events_team">No Events Team Members Found</string>
+    <string name="tv_empty_design_team">No Design Team Members Found</string>
 
     <string name="tv_registered_events">Your Registered Events</string>
     <string name="team_members">Team Members</string>
@@ -31,9 +34,12 @@
     <string name="tv_dev_heading">Built With Passion</string>
     <string name="tv_dev_sub_heading">Follow Me</string>
 
-    <string name="tv_interrupt_administrators">Interrupt Administrators</string>
-    <string name="tv_organisers_info_heading">Interrupt 7.0 Organisers</string>
     <string name="tv_categories_heading">Choose an Event Category</string>
+    <string name="tv_interrupt_administrators">Interrupt Administrators</string>
+    <string name="tv_core_team_info_heading">Interrupt Core Team</string>
+    <string name="tv_offstage_info_heading">Off Stage Team</string>
+    <string name="tv_events_info_heading">Event Management Team</string>
+    <string name="tv_design_info_heading">Design Team</string>
 
     <color name="tab_selected_color">#F3E5F5</color>
 

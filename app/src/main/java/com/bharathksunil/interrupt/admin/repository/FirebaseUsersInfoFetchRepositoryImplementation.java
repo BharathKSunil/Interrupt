@@ -50,8 +50,92 @@ public class FirebaseUsersInfoFetchRepositoryImplementation implements UsersInfo
     }
 
     @Override
-    public void loadAllOrganisersInfo(final DataLoadedCallback callback) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(FirebaseConstants.ORGANISERS_TREE);
+    public void loadCoreTeamsInfo(final DataLoadedCallback callback) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(FirebaseConstants.TEAM_CORE_TREE);
+        final List<Users> data = new ArrayList<>();
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.exists()) {
+                            Users user = snapshot.getValue(Users.class);
+                            data.add(user);
+                        }
+                    }
+                }
+                callback.onDataLoadedSuccessfully(data);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Debug.i(FirebaseUsersInfoFetchRepositoryImplementation.class.getName() +
+                        ": loadAllUsersInfo():" + databaseError.getMessage());
+                databaseError.toException().printStackTrace();
+                callback.onDataLoadFailed();
+            }
+        });
+    }
+
+    @Override
+    public void loadEventsTeamsInfo(final DataLoadedCallback callback) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(FirebaseConstants.TEAM_EVENTS_TREE);
+        final List<Users> data = new ArrayList<>();
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.exists()) {
+                            Users user = snapshot.getValue(Users.class);
+                            data.add(user);
+                        }
+                    }
+                }
+                callback.onDataLoadedSuccessfully(data);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Debug.i(FirebaseUsersInfoFetchRepositoryImplementation.class.getName() +
+                        ": loadAllUsersInfo():" + databaseError.getMessage());
+                databaseError.toException().printStackTrace();
+                callback.onDataLoadFailed();
+            }
+        });
+    }
+
+    @Override
+    public void loadOffStageTeamsInfo(final DataLoadedCallback callback) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(FirebaseConstants.TEAM_OFF_STAGE);
+        final List<Users> data = new ArrayList<>();
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.exists()) {
+                            Users user = snapshot.getValue(Users.class);
+                            data.add(user);
+                        }
+                    }
+                }
+                callback.onDataLoadedSuccessfully(data);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Debug.i(FirebaseUsersInfoFetchRepositoryImplementation.class.getName() +
+                        ": loadAllUsersInfo():" + databaseError.getMessage());
+                databaseError.toException().printStackTrace();
+                callback.onDataLoadFailed();
+            }
+        });
+    }
+
+    @Override
+    public void loadDesignTeamsInfo(final DataLoadedCallback callback) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(FirebaseConstants.TEAM_DESIGN_TREE);
         final List<Users> data = new ArrayList<>();
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

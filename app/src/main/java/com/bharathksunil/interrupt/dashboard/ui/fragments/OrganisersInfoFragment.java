@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.bharathksunil.interrupt.dashboard.presenter.OrganisersInfoPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.OrganisersInfoPresenterImplementation;
 import com.bharathksunil.interrupt.flipviewpager.adapter.BaseFlipAdapter;
 import com.bharathksunil.interrupt.flipviewpager.utils.FlipSettings;
+import com.bharathksunil.interrupt.organiser.ui.OrganiserInfoRecyclerAdapter;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -53,12 +55,26 @@ public class OrganisersInfoFragment extends Fragment implements OrganisersInfoPr
         // Required empty public constructor
     }
 
-    @BindView(R.id.rv_organisers)
-    RecyclerView organisersListView;
+    @BindView(R.id.rv_core_team)
+    RecyclerView coreTeamRecyclerView;
+    @BindView(R.id.rv_events_team)
+    RecyclerView eventsTeamRecyclerView;
+    @BindView(R.id.rv_offstage_team)
+    RecyclerView offStageTeamRecyclerView;
+    @BindView(R.id.rv_design_team)
+    RecyclerView designTeamRecyclerView;
+
     @BindView(R.id.progress_bar)
     AVLoadingIndicatorView loadingIndicatorView;
-    @BindView(R.id.tv_empty_prompt)
-    TextView tv_empty_prompt;
+
+    @BindView(R.id.tv_empty_prompt_team_core)
+    TextView tv_empty_prompt_team_core;
+    @BindView(R.id.tv_empty_prompt_team_event)
+    TextView tv_empty_prompt_team_events;
+    @BindView(R.id.tv_empty_prompt_team_offstage)
+    TextView tv_empty_prompt_team_offstage;
+    @BindView(R.id.tv_empty_prompt_team_design)
+    TextView tv_empty_prompt_team_design;
 
     @BindArray(R.array.flip_pager_bg_colors)
     int[] bg_colors;
@@ -105,32 +121,89 @@ public class OrganisersInfoFragment extends Fragment implements OrganisersInfoPr
     }
 
     @Override
-    public void showNoOrganisersDataFound() {
-        ViewUtils.setVisible(tv_empty_prompt);
+    public void showNoCoreTeamDataFound() {
+        ViewUtils.setVisible(tv_empty_prompt_team_core);
     }
 
     @Override
-    public void hideNoOrganisersDataFound() {
-        ViewUtils.setGone(tv_empty_prompt);
+    public void showNoEventsTeamDataFound() {
+        ViewUtils.setVisible(tv_empty_prompt_team_events);
     }
 
     @Override
-    public void loadOrganisersListView(final List<Users> data) {
+    public void showNoOffStageTeamDataFound() {
+        ViewUtils.setVisible(tv_empty_prompt_team_offstage);
+    }
+
+    @Override
+    public void showNoDesignTeamDataFound() {
+        ViewUtils.setVisible(tv_empty_prompt_team_design);
+    }
+
+    @Override
+    public void hideNoCoreTeamsDataFound() {
+        ViewUtils.setGone(tv_empty_prompt_team_core);
+    }
+
+    @Override
+    public void hideNoEventsTeamsDataFound() {
+        ViewUtils.setGone(tv_empty_prompt_team_events);
+    }
+
+    @Override
+    public void hideNoOffStageTeamsDataFound() {
+        ViewUtils.setGone(tv_empty_prompt_team_offstage);
+    }
+
+    @Override
+    public void hideNoDesignTeamsDataFound() {
+        ViewUtils.setGone(tv_empty_prompt_team_design);
+    }
+
+    @Override
+    public void loadEventsTeamsRecyclerView(List<Users> data) {
+        eventsTeamRecyclerView.setAdapter(new OrganiserInfoRecyclerAdapter(getActivity(), data));
+        eventsTeamRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        eventsTeamRecyclerView.setNestedScrollingEnabled(false);
+        eventsTeamRecyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    @Override
+    public void loadOffStageTeamsRecyclerView(List<Users> data) {
+        offStageTeamRecyclerView.setAdapter(new OrganiserInfoRecyclerAdapter(getActivity(), data));
+        offStageTeamRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        offStageTeamRecyclerView.setNestedScrollingEnabled(false);
+        offStageTeamRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+    }
+
+    @Override
+    public void loadDesignTeamsRecyclerView(List<Users> data) {
+        designTeamRecyclerView.setAdapter(new OrganiserInfoRecyclerAdapter(getActivity(), data));
+        designTeamRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        designTeamRecyclerView.setNestedScrollingEnabled(false);
+        designTeamRecyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    @Override
+    public void loadCoreTeamsRecyclerView(final List<Users> data) {
         FlipSettings settings = new FlipSettings.Builder().defaultPage(1).build();
         final OrganisersAdapter organisersAdapter = new OrganisersAdapter(getContext(), data, settings);
         organisersAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int itemPosition) {
                 if (!listItemClickedOnce) {
-                    Toast.makeText(getContext(), "Swipe Card to View More, click again to contact", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Swipe Card to View More, Click Again to Contact", Toast.LENGTH_LONG).show();
                     listItemClickedOnce = true;
                 } else
                     handleListItemClick(data.get(itemPosition));
             }
         });
-        organisersListView.setAdapter(organisersAdapter);
-        organisersListView.setHasFixedSize(true);
-        organisersListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        coreTeamRecyclerView.setAdapter(organisersAdapter);
+        coreTeamRecyclerView.setHasFixedSize(true);
+        coreTeamRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        coreTeamRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        coreTeamRecyclerView.setNestedScrollingEnabled(false);
 
     }
 

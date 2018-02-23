@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/tv_design_info_heading"
+        android:textAppearance="@style/Dashboard.TextAppearance.Medium"
+        android:textColor="@color/primary_dark" />
+
+    <TextView
+        android:id="@+id/tv_empty_prompt_team_design"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_empty_design_team"
+        android:textAppearance="@style/Dashboard.TextAppearance.Small" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_design_team"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

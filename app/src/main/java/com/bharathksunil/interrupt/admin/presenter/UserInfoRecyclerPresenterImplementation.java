@@ -44,7 +44,16 @@ public class UserInfoRecyclerPresenterImplementation implements UsersInfoRecycle
                     repositoryInstance.loadAllAdministratorsInfo(this);
                     break;
                 case CORE_TEAM:
-                    repositoryInstance.loadAllOrganisersInfo(this);
+                    repositoryInstance.loadCoreTeamsInfo(this);
+                    break;
+                case EVENT_TEAM:
+                    repositoryInstance.loadEventsTeamsInfo(this);
+                    break;
+                case OFF_STAGE_TEAM:
+                    repositoryInstance.loadOffStageTeamsInfo(this);
+                    break;
+                case DESIGN_TEAM:
+                    repositoryInstance.loadDesignTeamsInfo(this);
                     break;
                 default:
                     repositoryInstance.loadAllUsersInfo(this);

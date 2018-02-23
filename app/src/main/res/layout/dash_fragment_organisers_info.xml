@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/tv_organisers_info_heading"
-        android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-        android:textColor="@color/primary_dark" />
-
-    <include layout="@layout/layout_progress_bar" />
-
-    <TextView
-        android:id="@+id/tv_empty_prompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_empty_organisers"
-        android:textAppearance="@style/Dashboard.TextAppearance.Small"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_organisers"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <include layout="@layout/layout_progress_bar" />
+
+        <include layout="@layout/layout_team_core" />
+
+        <include layout="@layout/layout_team_event" />
+
+        <include layout="@layout/layout_team_offstage" />
+
+        <include layout="@layout/layout_team_design" />
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
