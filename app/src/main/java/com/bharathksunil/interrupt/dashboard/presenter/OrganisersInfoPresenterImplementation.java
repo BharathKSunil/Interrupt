@@ -32,8 +32,10 @@ public class OrganisersInfoPresenterImplementation implements OrganisersInfoPres
                     if (viewInstance != null) {
                         if (users.size() == 0)
                             viewInstance.showNoOrganisersDataFound();
-                        else
+                        else {
+                            viewInstance.hideNoOrganisersDataFound();
                             viewInstance.loadOrganisersListView(users);
+                        }
                         viewInstance.onProcessEnded();
                     }
                 }
