@@ -140,8 +140,7 @@ public class Utils {
         } else {
             Calendar cal = Calendar.getInstance();
             Calendar finalDate = Calendar.getInstance();
-            //todo: Make time dynamic
-            finalDate.set(2018, 2, 7, 14, 0, 0);
+            finalDate.set(2018, 2, 10, 16, 0, 0);
             if (cal.compareTo(finalDate) > 0)
                 countdownText.append("See you Next Year.!");
             else

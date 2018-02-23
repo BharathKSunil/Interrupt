@@ -69,7 +69,7 @@ public class RegisteredEventsRecyclerPresenterImplementation implements Register
         for (String member : registrations.getpTeamMembers())
             teamMembers.append(member).append("\n");
         rowView.setParticipantsTeamMembers(teamMembers.toString().trim());
-        rowView.setEventImage(registrations.geteBannerUrl());
+        rowView.loadEventImage(registrations.geteBannerUrl(), registrations.geteName());
     }
 
 

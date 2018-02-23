@@ -20,13 +20,14 @@ import android.widget.Toast;
 
 import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.R;
-import com.bharathksunil.interrupt.admin.repository.MockUsersInfoRepositoryImplementation;
 import com.bharathksunil.interrupt.admin.model.Users;
+import com.bharathksunil.interrupt.admin.repository.MockUsersInfoRepositoryImplementation;
 import com.bharathksunil.interrupt.dashboard.presenter.OrganisersInfoPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.OrganisersInfoPresenterImplementation;
 import com.bharathksunil.interrupt.flipviewpager.adapter.BaseFlipAdapter;
 import com.bharathksunil.interrupt.flipviewpager.utils.FlipSettings;
 import com.bharathksunil.interrupt.organiser.ui.OrganiserInfoRecyclerAdapter;
+import com.bharathksunil.interrupt.util.TextDrawable;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -285,15 +286,25 @@ public class OrganisersInfoFragment extends Fragment implements OrganisersInfoPr
                 // Merged page with 2 organisers
                 case 1:
                     String profileUrl = ((Users) organiser1).getProfileUrl();
+                    String name = ((Users) organiser1).getName().substring(1);
+                    TextDrawable drawable = TextDrawable.builder()
+                            .beginConfig().textColor(getContext().getResources().getColor(R.color.white)).bold()
+                            .fontSize(100).endConfig()
+                            .buildRect(name, getContext().getResources().getColor(R.color.silver));
                     Picasso.with(getContext()).load(profileUrl)
-                            .placeholder(R.drawable.background_gradient_top_down)
-                            .error(R.drawable.app_icon)
+                            .placeholder(drawable)
+                            .error(drawable)
                             .into(holder.leftAvatar);
                     if (organiser2 != null) {
                         profileUrl = ((Users) organiser2).getProfileUrl();
+                        name = ((Users) organiser2).getName().substring(1);
+                        drawable = TextDrawable.builder()
+                                .beginConfig().textColor(getContext().getResources().getColor(R.color.white)).bold()
+                                .fontSize(100).endConfig()
+                                .buildRect(name, getContext().getResources().getColor(R.color.silver));
                         Picasso.with(getContext()).load(profileUrl)
-                                .placeholder(R.drawable.background_gradient_top_down)
-                                .error(R.drawable.app_icon)
+                                .placeholder(drawable)
+                                .error(drawable)
                                 .into(holder.rightAvatar);
                     }
                     break;

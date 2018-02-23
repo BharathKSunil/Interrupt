@@ -9,6 +9,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.bharathksunil.interrupt.R;
+import com.bharathksunil.interrupt.util.TextDrawable;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -95,9 +96,13 @@ public class EventsRecyclerSliderAdapter extends RecyclerView.Adapter<EventsRecy
         }
 
         private void loadImage(String imgUrl) {
+            TextDrawable drawable = TextDrawable.builder()
+                    .beginConfig().textColor(context.getResources().getColor(R.color.white)).bold()
+                    .fontSize(95).endConfig()
+                    .buildRect("I7.0", context.getResources().getColor(R.color.alizarin));
             Picasso.with(context).load(imgUrl)
-                    .placeholder(R.drawable.background_gradient_top_down)
-                    .error(R.drawable.ic_placeholder)
+                    .placeholder(drawable)
+                    .error(drawable)
                     .fit()
                     .into(imageView);
         }

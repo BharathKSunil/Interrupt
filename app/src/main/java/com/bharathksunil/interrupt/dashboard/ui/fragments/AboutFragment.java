@@ -84,8 +84,7 @@ public class AboutFragment extends Fragment {
             try {
                 Date futureDate;
                 Calendar cal= GregorianCalendar.getInstance();
-                //todo: Make time dynamic
-                cal.set(2018,2,6,10,0,0);
+                cal.set(2018,2,9,10,0,0);
                 futureDate=cal.getTime();
                 String countdownText= Utils.getCountdownText(getContext(),futureDate);
                 if (isThreadActive)

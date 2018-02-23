@@ -11,10 +11,12 @@ import android.widget.TextView;
 import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.events.presenter.RegisteredEventsRecyclerPresenter;
+import com.bharathksunil.interrupt.util.TextDrawable;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -65,6 +67,11 @@ public class RegisteredEventsRecyclerAdapter extends
         List<TextView> eventsRegistrationTextViewList;
         @BindView(R.id.iv_events_image)
         ImageView eventsBanner;
+        @BindColor(R.color.white)
+        int fontColor;
+        @BindColor(R.color.accent)
+        int backGroundColor;
+
         private View viewItem;
 
         EventsRowViewHolder(View itemView) {
@@ -74,9 +81,14 @@ public class RegisteredEventsRecyclerAdapter extends
         }
 
         @Override
-        public void setEventImage(String imageBannerUrl) {
-            Picasso.with(context).load(imageBannerUrl).error(R.drawable.ic_placeholder)
-                    .placeholder(R.drawable.ic_placeholder).into(eventsBanner);
+        public void loadEventImage(String imageBannerUrl, String eventName) {
+            TextDrawable drawable = TextDrawable.builder()
+                    .beginConfig().textColor(fontColor).bold()
+                    .fontSize(55).endConfig()
+                    .buildRect(eventName, backGroundColor);
+
+            Picasso.with(context).load(imageBannerUrl).error(drawable)
+                    .placeholder(drawable).into(eventsBanner);
         }
 
         @Override

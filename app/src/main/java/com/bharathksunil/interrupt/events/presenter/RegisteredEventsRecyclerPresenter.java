@@ -31,7 +31,7 @@ public interface RegisteredEventsRecyclerPresenter {
      * The Interface to interact with the row view
      */
     interface RowView {
-        void setEventImage(String imageBannerUrl);
+        void loadEventImage(String imageBannerUrl, String eventName);
 
         void setEventName(String eventName);
 
