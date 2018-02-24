@@ -1,18 +1,68 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.bharathksunil.interrupt.dashboard.ui.fragments.AdminInfoFragment">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-        android:textColor="@color/primary_dark"
-        android:text="@string/tv_interrupt_administrators"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/admin_recyclerView"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_interrupt_administrators"
+            android:textAppearance="@style/Dashboard.TextAppearance.Medium"
+            android:textColor="@color/primary_dark" />
+
+        <include layout="@layout/layout_progress_bar" />
+
+        <TextView
+            android:id="@+id/tv_empty_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_empty_admin"
+            android:textAppearance="@style/Dashboard.TextAppearance.Small" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="6dp"
+            android:text="@string/tv_feedback_or_bug_report"
+            android:textAppearance="@style/Dashboard.TextAppearance.Medium"
+            android:textColor="@color/accent" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_feedback"
+                android:inputType="textMultiLine"
+                android:lines="8" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_submit"
+            style="@style/Dashboard.ButtonNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_send"
+            android:theme="@style/Dashboard.ButtonNormal" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -9,7 +9,7 @@ public interface FirebaseConstants {
      * The Primary Branches of the NoSql database
      */
     String USERS_TREE = "Users", USERS_ACCESS_TREE = "UserAccess", ADMINISTRATORS_TREE = "Administrators",
-            EVENT_REGISTRATIONS_TREE = "EventRegistrations";
+            EVENT_REGISTRATIONS_TREE = "EventRegistrations", FEEDBACK_TREE="Feedback";
     /**
      * The Users Info Trees
      */

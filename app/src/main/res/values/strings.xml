@@ -14,6 +14,8 @@
     <string name="prompt_pick_image">Select a Picture</string>
     <string name="err_storage_permission">Storage Permission Declined. Kindly Give Storage Permissions</string>
     <string name="err_offline">Oops :( We live on the Internet. Connect to Proceed.!</string>
+    <string name="err_feedback_post_failed">Oops :( Feedback Post Failed…</string>
+    <string name="snack_feedback_post_successful">Thank You, Your Feedback was Posted Successfully</string>
 
     <string name="section_a">A</string>
     <string name="section_b">B</string>
@@ -52,6 +54,7 @@
     <string name="cd_event_time">Event Time</string>
     <string name="cd_event_venue">Event Venue</string>
     <string name="cd_event_coordinator">Event Coordinator</string>
+    <string name="btn_send">Send</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">

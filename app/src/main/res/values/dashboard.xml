@@ -40,6 +40,9 @@
     <string name="tv_offstage_info_heading">Off Stage Team</string>
     <string name="tv_events_info_heading">Event Management Team</string>
     <string name="tv_design_info_heading">Design Team</string>
+    <string name="tv_feedback_or_bug_report">Feedback or Bug Report</string>
+    <string name="tv_empty_admin">No Administrators Found</string>
+    <string name="hint_feedback">Write Your Feedback here</string>
 
     <color name="tab_selected_color">#F3E5F5</color>
 

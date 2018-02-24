@@ -15,6 +15,7 @@ import com.bharathksunil.interrupt.auth.ui.LauncherActivity;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenterImplementation;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.AboutFragment;
+import com.bharathksunil.interrupt.dashboard.ui.fragments.AdminInfoFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.EventCategoriesFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.OrganisersInfoFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.UserInfoFragment;
@@ -172,7 +173,7 @@ public class DashboardActivity extends AppCompatActivity implements
     @Override
     public void loadAdministratorDashboard() {
         setTabActive(TAB_ADMIN);
-        loadFragment(underConstructionFragment);
+        loadFragment(new AdminInfoFragment());
     }
 
 

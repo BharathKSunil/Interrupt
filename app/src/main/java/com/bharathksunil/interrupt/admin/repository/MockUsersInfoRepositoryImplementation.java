@@ -93,6 +93,22 @@ public class MockUsersInfoRepositoryImplementation implements UsersInfoRecyclerP
 
     @Override
     public void loadAllAdministratorsInfo(DataLoadedCallback callback) {
+        List<Users> admins = new ArrayList<>();
+        List<String> roles = new ArrayList<>();
+        roles.add("Android Developer");
+        roles.add("Technical Team");
+        roles.add("Administrator");
+
+        admins.add(new Users(
+                "Bharath Kumar S",
+                "Core Team",
+                "8867036863",
+                "bharathk.sunil.k@gmail.com",
+                "https://firebasestorage.googleapis.com/v0/b/interrupt-62251.appspot.com/o/Profiles%2FG9blzC2ahjYkvPKGIixN85ASpCk2.jpg?alt=media&token=290671cf-e258-4154-87f1-b63411e26e3a",
+                roles
+        ));
+
+        callback.onDataLoadedSuccessfully(admins);
 
     }
 }
