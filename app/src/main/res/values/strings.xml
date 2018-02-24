@@ -55,6 +55,8 @@
     <string name="cd_event_venue">Event Venue</string>
     <string name="cd_event_coordinator">Event Coordinator</string>
     <string name="btn_send">Send</string>
+    <string name="tv_interrupt_schedules">Interrupt Schedules</string>
+    <string name="tv_empty_schedules">No Event Schedules Yet.\nWe\'ll be updating it Soon.!</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">

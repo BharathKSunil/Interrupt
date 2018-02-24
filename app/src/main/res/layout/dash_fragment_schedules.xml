@@ -1,9 +1,39 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bharathksunil.interrupt.dashboard.ui.fragments.SchedulesFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_interrupt_schedules"
+            android:textAppearance="@style/Dashboard.TextAppearance.Medium"
+            android:textColor="@color/primary_dark" />
+
+        <include layout="@layout/layout_progress_bar" />
+
+        <TextView
+            android:id="@+id/tv_empty_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_empty_schedules"
+            android:textAppearance="@style/Dashboard.TextAppearance.Small" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_schedules"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 
-</FrameLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -7,6 +7,7 @@ import com.bharathksunil.interrupt.admin.model.Feedback;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.util.TextUtils;
+import com.github.thunder413.datetimeutils.DateTimeUtils;
 
 import java.util.Calendar;
 import java.util.List;
@@ -44,7 +45,7 @@ public class FeedbackPresenterImplementation implements FeedbackPresenter {
             Feedback userFeedback = new Feedback();
             userFeedback.setName(UserManager.getInstance().getUsersName());
             userFeedback.setEmailId(UserManager.getInstance().getUsersEmailID());
-            userFeedback.setTime(Calendar.getInstance().getTime().toString());
+            userFeedback.setTime(DateTimeUtils.formatTime(Calendar.getInstance().getTime()));
             userFeedback.setFeedback(feedback);
 
             repositoryInstance.postFeedback(userFeedback, new Repository.OnFeedbackPostedCallback() {

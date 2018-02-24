@@ -18,6 +18,7 @@ import com.bharathksunil.interrupt.dashboard.ui.fragments.AboutFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.AdminInfoFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.EventCategoriesFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.OrganisersInfoFragment;
+import com.bharathksunil.interrupt.dashboard.ui.fragments.SchedulesFragment;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.UserInfoFragment;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
@@ -219,7 +220,7 @@ public class DashboardActivity extends AppCompatActivity implements
     @Override
     public void loadSchedulesInfoFragment() {
         setTabActive(TAB_SCHEDULES);
-        loadFragment(underConstructionFragment);
+        loadFragment(new SchedulesFragment());
     }
 
     private void loadFragment(Fragment fragment) {
