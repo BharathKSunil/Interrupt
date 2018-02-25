@@ -208,7 +208,7 @@ public class UserManager {
      * @return true, if the user can view the data
      */
     public boolean canUserViewAllUserData() {
-        return isUserAnAdministrator() && instance.access.getCanViewUserData()!=null
+        return isUserAnAdministrator() && instance.access.getCanViewUserData() != null
                 && instance.access.getCanViewUserData();
     }
 
@@ -218,7 +218,7 @@ public class UserManager {
      * @return true, if the user can view the data
      */
     public boolean canUserModifyAllOrganisersData() {
-        return isUserAnAdministrator() && instance.access.getCanModifyOrganiserData()!=null
+        return isUserAnAdministrator() && instance.access.getCanModifyOrganiserData() != null
                 && instance.access.getCanModifyOrganiserData();
     }
 
@@ -228,10 +228,9 @@ public class UserManager {
      * @return true, if the user can view the data
      */
     public boolean canUserViewAllFeedback() {
-        return isUserAnAdministrator() || instance.access.getCanViewFeedbackData()!=null
+        return isUserAnAdministrator() && instance.access.getCanViewFeedbackData() != null
                 && instance.access.getCanViewFeedbackData();
     }
-
 
     /**
      * This method checks if any parameter, viz essential for the functioning of the app is not null
