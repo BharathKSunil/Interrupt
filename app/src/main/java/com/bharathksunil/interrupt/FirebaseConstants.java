@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.auth.repository;
+package com.bharathksunil.interrupt;
 
 /**
  * This stores all the firebase related constants

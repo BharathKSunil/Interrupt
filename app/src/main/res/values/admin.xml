@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_heading_admin_dash">Administrators Dashboard</string>
+
+
+    <color name="admin_bg">#2c3e50</color>
+    <dimen name="admin_card_image">60dp</dimen>
+
+    <!--STYLING-->
+    <style name="Admin" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/green</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="fontFamily">@font/app_font</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Admin.TextAppearance.Small" parent="Base.TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="fontFamily">@font/app_font</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="Admin.TextAppearance.Medium" parent="Base.TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="fontFamily">@font/app_font</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="Admin.TextAppearance.Title" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="fontFamily">@font/app_font</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+</resources>

@@ -42,8 +42,14 @@
             android:name=".events.ui.activities.EventsBannerViewer"
             android:screenOrientation="portrait"
             android:theme="@style/Events" />
-        <activity android:name=".events.ui.activities.OrganisersDashboardActivity" />
-        <activity android:name=".admin.ui.AdminDashboardActivity"></activity>
+        <activity
+            android:name=".events.ui.activities.OrganisersDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Events" />
+        <activity
+            android:name=".admin.ui.AdminDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Admin" />
     </application>
 
 </manifest>

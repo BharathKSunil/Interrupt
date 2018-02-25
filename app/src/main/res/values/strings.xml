@@ -61,6 +61,11 @@
     <string name="cd_event_time">Event Time</string>
     <string name="cd_event_venue">Event Venue</string>
     <string name="cd_event_coordinator">Event Coordinator</string>
+    <string name="tv_admin_feature_user_management">User Management</string>
+    <string name="tv_admin_feature_organiser_management">Organisers Management</string>
+    <string name="tv_admin_feature_feedback_management">User Feedbacks</string>
+    <string name="tv_heading_user_feedback">User Feedback</string>
+    <string name="tv_empty_feedback">No Feedbacks Yet</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">

@@ -203,6 +203,37 @@ public class UserManager {
     }
 
     /**
+     * This checks if the user[here an Administrator] can view all the user registered Information
+     *
+     * @return true, if the user can view the data
+     */
+    public boolean canUserViewAllUserData() {
+        return isUserAnAdministrator() && instance.access.getCanViewUserData()!=null
+                && instance.access.getCanViewUserData();
+    }
+
+    /**
+     * This checks if the user[here an Administrator] can view all the Organisers registered Information
+     *
+     * @return true, if the user can view the data
+     */
+    public boolean canUserModifyAllOrganisersData() {
+        return isUserAnAdministrator() && instance.access.getCanModifyOrganiserData()!=null
+                && instance.access.getCanModifyOrganiserData();
+    }
+
+    /**
+     * This checks if the user[here an Administrator] can view all Feedback
+     *
+     * @return true, if the user can view the data
+     */
+    public boolean canUserViewAllFeedback() {
+        return isUserAnAdministrator() || instance.access.getCanViewFeedbackData()!=null
+                && instance.access.getCanViewFeedbackData();
+    }
+
+
+    /**
      * This method checks if any parameter, viz essential for the functioning of the app is not null
      * call this method before performing any action on such objects
      *

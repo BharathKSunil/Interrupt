@@ -2,7 +2,7 @@ package com.bharathksunil.interrupt.events.repository;
 
 import android.support.annotation.NonNull;
 
-import com.bharathksunil.interrupt.auth.repository.FirebaseConstants;
+import com.bharathksunil.interrupt.FirebaseConstants;
 import com.bharathksunil.interrupt.events.model.Categories;
 import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenter;
 import com.bharathksunil.interrupt.util.Debug;

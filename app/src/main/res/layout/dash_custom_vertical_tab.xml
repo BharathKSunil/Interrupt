@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:contentDescription="@string/cd_manager_image"
-            app:srcCompat="@drawable/ic_organiser" />
+            app:srcCompat="@drawable/ic_class_reprs" />
 
         <include
             layout="@layout/divider_horizontal"
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:contentDescription="@string/cb_organisers_image"
-            app:srcCompat="@drawable/ic_class_reps" />
+            app:srcCompat="@drawable/ic_organisers" />
 
         <include
             layout="@layout/divider_horizontal"

@@ -30,37 +30,27 @@ public class UserAccess {
     /**
      * All configurations for event managements
      */
-    private Boolean canEditEventsInfo, canRegisterUser, canViewEventCollections,
+    private Boolean canEditEventsInfo, canViewEventCollections,
             canViewRegistrations, canDownloadEventData, canAddCategories, canAddEvents,
             canChangeSchedule, canChangeVenue;
     /**
      * All configurations for access Management
      */
-    protected Boolean canAddCoordinator, canAddOrganiser, canAddClassRepresentatives, canAddVolunteer;
+    protected Boolean canModifyCoordinatorData, canModifyOrganiserData, canAddClassRepresentatives,
+            canViewUserData, canViewFeedbackData;
 
     private Boolean canDownloadPaymentsInfo;
 
 
     public UserAccess() {
-        this.canViewCollection = null;
-        this.canEditCollections = null;
-        this.canViewCollectionsHistory = null;
-        this.canRegisterParticipant = null;
-        this.canEditEventBanner = null;
-        this.canEditEventsInfo = null;
-        this.canRegisterUser = null;
-        this.canViewEventCollections = null;
-        this.canViewRegistrations = null;
-        this.canDownloadEventData = null;
-        this.canAddCategories = null;
-        this.canAddEvents = null;
-        this.canChangeSchedule = null;
-        this.canChangeVenue = null;
-        this.canAddCoordinator = null;
-        this.canAddOrganiser = null;
-        this.canAddClassRepresentatives = null;
-        this.canAddVolunteer = null;
-        this.canDownloadPaymentsInfo = null;
+    }
+
+    public Boolean getCanViewFeedbackData() {
+        return canViewFeedbackData;
+    }
+
+    public void setCanViewFeedbackData(Boolean canViewFeedbackData) {
+        this.canViewFeedbackData = canViewFeedbackData;
     }
 
     public Map<String, String> getAccessTypes() {
@@ -127,14 +117,6 @@ public class UserAccess {
         this.canEditEventsInfo = canEditEventsInfo;
     }
 
-    public Boolean getCanRegisterUser() {
-        return canRegisterUser;
-    }
-
-    public void setCanRegisterUser(Boolean canRegisterUser) {
-        this.canRegisterUser = canRegisterUser;
-    }
-
     public Boolean getCanViewEventCollections() {
         return canViewEventCollections;
     }
@@ -191,20 +173,20 @@ public class UserAccess {
         this.canChangeVenue = canChangeVenue;
     }
 
-    public Boolean getCanAddCoordinator() {
-        return canAddCoordinator;
+    public Boolean getCanModifyCoordinatorData() {
+        return canModifyCoordinatorData;
     }
 
-    public void setCanAddCoordinator(Boolean canAddCoordinator) {
-        this.canAddCoordinator = canAddCoordinator;
+    public void setCanModifyCoordinatorData(Boolean canModifyCoordinatorData) {
+        this.canModifyCoordinatorData = canModifyCoordinatorData;
     }
 
-    public Boolean getCanAddOrganiser() {
-        return canAddOrganiser;
+    public Boolean getCanModifyOrganiserData() {
+        return canModifyOrganiserData;
     }
 
-    public void setCanAddOrganiser(Boolean canAddOrganiser) {
-        this.canAddOrganiser = canAddOrganiser;
+    public void setCanModifyOrganiserData(Boolean canModifyOrganiserData) {
+        this.canModifyOrganiserData = canModifyOrganiserData;
     }
 
     public Boolean getCanAddClassRepresentatives() {
@@ -215,12 +197,12 @@ public class UserAccess {
         this.canAddClassRepresentatives = canAddClassRepresentatives;
     }
 
-    public Boolean getCanAddVolunteer() {
-        return canAddVolunteer;
+    public Boolean getCanViewUserData() {
+        return canViewUserData;
     }
 
-    public void setCanAddVolunteer(Boolean canAddVolunteer) {
-        this.canAddVolunteer = canAddVolunteer;
+    public void setCanViewUserData(Boolean canViewUserData) {
+        this.canViewUserData = canViewUserData;
     }
 
     public Boolean getCanDownloadPaymentsInfo() {

@@ -3,6 +3,7 @@ package com.bharathksunil.interrupt.auth.repository;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
+import com.bharathksunil.interrupt.FirebaseConstants;
 import com.bharathksunil.interrupt.auth.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical"
+    tools:context="com.bharathksunil.interrupt.admin.ui.fragments.AdminFunctionsFragment">
+    <!--USER MANAGEMENT-->
+    <android.support.v7.widget.CardView
+        android:id="@+id/admin_card_user_management"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/green"
+        app:cardElevation="8dp"
+        app:contentPadding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="@dimen/admin_card_image"
+                android:layout_height="@dimen/admin_card_image"
+                android:contentDescription="@string/cd_profile_image"
+                app:srcCompat="@drawable/ic_profile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/tv_admin_feature_user_management"
+                android:textAppearance="@style/Admin.TextAppearance.Title"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <!--ORGANISERS MANAGEMENT-->
+    <android.support.v7.widget.CardView
+        android:id="@+id/admin_card_organisers_management"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/green"
+        app:cardElevation="8dp"
+        app:contentPadding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="@dimen/admin_card_image"
+                android:layout_height="@dimen/admin_card_image"
+                android:contentDescription="@string/cd_manager_image"
+                app:srcCompat="@drawable/ic_organisers" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/tv_admin_feature_organiser_management"
+                android:textAppearance="@style/Admin.TextAppearance.Title"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <!--FEEDBACK MANAGEMENT-->
+    <android.support.v7.widget.CardView
+        android:id="@+id/admin_card_feedback_management"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/green"
+        app:cardElevation="8dp"
+        app:contentPadding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="@dimen/admin_card_image"
+                android:layout_height="@dimen/admin_card_image"
+                android:contentDescription="@string/cd_profile_image"
+                app:srcCompat="@drawable/ic_feedbacks" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/tv_admin_feature_feedback_management"
+                android:textAppearance="@style/Admin.TextAppearance.Title"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

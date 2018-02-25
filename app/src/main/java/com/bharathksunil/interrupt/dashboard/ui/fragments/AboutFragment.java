@@ -11,11 +11,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.Utils;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -34,16 +36,20 @@ public class AboutFragment extends Fragment {
     private Unbinder unbinder;
     private final String PROFILE_ID = "bharathksunil";
     private final String APP_PROFILE = "interrupt7.0";
+    private final String PROFILE_IMAGE_URL = "https://avatars2.githubusercontent.com/u/25935717?s=460&v=4";
     private static final int COUNTDOWN_UPDATE_INTERVAL = 500;
 
     private Handler countdownHandler;
     private boolean isThreadActive;
+
     public AboutFragment() {
         // Required empty public constructor
     }
 
     @BindView(R.id.tv_count_down_timer)
     TextView countdown_text;
+    @BindView(R.id.iv_dev_image)
+    ImageView iv_devImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,15 +58,22 @@ public class AboutFragment extends Fragment {
         View view = inflater.inflate(R.layout.dash_fragment_about, container, false);
         unbinder = ButterKnife.bind(this, view);
         isThreadActive = true;
+
+        Picasso.with(getContext()).load(PROFILE_IMAGE_URL)
+                .placeholder(R.drawable.ic_profile)
+                .error(R.drawable.ic_profile)
+                .into(iv_devImage);
+
         startCountdown();
         return view;
     }
+
     /**
      * Stops the  countdown timer.
      */
     private void stopCountdown() {
         if (countdownHandler != null) {
-            isThreadActive =false;
+            isThreadActive = false;
             countdownHandler.removeCallbacks(updateCountdown);
             countdownHandler = null;
         }
@@ -83,10 +96,10 @@ public class AboutFragment extends Fragment {
         public void run() {
             try {
                 Date futureDate;
-                Calendar cal= GregorianCalendar.getInstance();
-                cal.set(2018,2,9,10,0,0);
-                futureDate=cal.getTime();
-                String countdownText= Utils.getCountdownText(getContext(),futureDate);
+                Calendar cal = GregorianCalendar.getInstance();
+                cal.set(2018, 2, 9, 10, 0, 0);
+                futureDate = cal.getTime();
+                String countdownText = Utils.getCountdownText(getContext(), futureDate);
                 if (isThreadActive)
                     countdown_text.setText(countdownText);
             } finally {
@@ -196,7 +209,7 @@ public class AboutFragment extends Fragment {
     @OnClick(R.id.iv_dev_github)
     public void onDevGithubButtonPressed() {
 //        String url = "https://www.github.com/" + PROFILE_ID;
-        String url = "https://"+PROFILE_ID+".github.io/";
+        String url = "https://" + PROFILE_ID + ".github.io/";
         Intent gitIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(gitIntent);
     }

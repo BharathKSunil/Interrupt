@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.bharathksunil.interrupt.admin.model.Feedback;
 import com.bharathksunil.interrupt.admin.presenter.FeedbackPresenter;
-import com.bharathksunil.interrupt.auth.repository.FirebaseConstants;
+import com.bharathksunil.interrupt.FirebaseConstants;
 import com.bharathksunil.interrupt.util.Debug;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -42,8 +42,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/cd_profile_image"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_dev" />
+                android:scaleType="centerCrop" />
             <!--DEVELOPER NAME-->
             <TextView
                 android:id="@+id/tv_dev_name"
