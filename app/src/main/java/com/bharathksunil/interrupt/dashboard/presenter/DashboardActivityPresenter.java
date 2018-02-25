@@ -20,41 +20,58 @@ public interface DashboardActivityPresenter {
         /**
          * The user is an Administrator, load the Dashboard
          */
-        void loadAdministratorDashboard();
+        void loadAdministratorsInfoPage();
 
         /**
-         * The user is a Class Representative, load the Organiser's Dashboard
+         * Load the fragment which displays the events the user is a coordinator for
          */
-        void loadEventsCoordinatorDashboard();
+        void loadCoordinatorsEventsInfoPage();
 
         /**
          * The user is a organiser, load the Organiser's Dashboard
          */
-        void loadOrganisersDashboard();
+        void loadOrganisersInfoPage();
 
         /**
          * Load the user information fragment
          */
-        void loadUserInfoFragment();
+        void loadUserInfoPage();
 
         /**
          * Load the Events fragment
          */
-        void loadAllEventCategoriesFragment();
+        void loadAllEventCategoriesPage();
 
         /**
          * Load the Schedules Fragment
          */
-        void loadSchedulesInfoFragment();
+        void loadSchedulesInfoPage();
 
         /**
          * To load the fragment explaining about the app
          */
-        void loadAboutAppFragment();
+        void loadAboutAppPage();
 
         void setCRTabVisibility(int visibility);
 
         void setCoordinatorTabVisibility(int visibility);
+
+        /**
+         * Show or hide the Floating Action Button here.
+         *
+         * @param isEnabled the visibility of the button
+         */
+        void setSettingsButtonEnabled(boolean isEnabled);
+
+        /**
+         * Load the Organisers Dashboard
+         */
+        void loadOrganisersDashboard();
+
+        /**
+         * Load the Administrators Dashboard
+         */
+        void loadAdministratorsDashboard();
     }
 
     /**
@@ -98,4 +115,9 @@ public interface DashboardActivityPresenter {
      * To be Called by the view when the profile button is pressed
      */
     void onAdministratorTabPressed();
+
+    /**
+     * The Settings Button was pressed by the user
+     */
+    void onSettingsButtonPressed();
 }

@@ -7,7 +7,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.bharathksunil.interrupt.dashboard.ui.fragments.EventCategoriesFragment">
+    tools:context="com.bharathksunil.interrupt.events.ui.fragments.EventCategoriesFragment">
 
     <TextView
         android:layout_width="wrap_content"

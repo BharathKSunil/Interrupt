@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bharathksunil.interrupt.dashboard.ui.fragments.SchedulesFragment">
+    tools:context="com.bharathksunil.interrupt.events.ui.fragments.SchedulesFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

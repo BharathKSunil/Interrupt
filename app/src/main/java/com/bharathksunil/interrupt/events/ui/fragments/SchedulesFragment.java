@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.dashboard.ui.fragments;
+package com.bharathksunil.interrupt.events.ui.fragments;
 
 
 import android.content.Context;
@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bharathksunil.interrupt.R;
-import com.bharathksunil.interrupt.dashboard.presenter.SchedulesPresenter;
-import com.bharathksunil.interrupt.dashboard.presenter.SchedulesPresenterImplementation;
+import com.bharathksunil.interrupt.events.presenter.SchedulesPresenter;
+import com.bharathksunil.interrupt.events.presenter.SchedulesPresenterImplementation;
 import com.bharathksunil.interrupt.events.model.Schedules;
 import com.bharathksunil.interrupt.events.repository.FirebaseSchedulesRepository;
 import com.bharathksunil.interrupt.util.DateUtil;

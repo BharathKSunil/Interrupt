@@ -1,12 +1,10 @@
-package com.bharathksunil.interrupt.dashboard.presenter;
+package com.bharathksunil.interrupt.admin.presenter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bharathksunil.interrupt.admin.model.Feedback;
 import com.bharathksunil.interrupt.admin.model.Users;
-import com.bharathksunil.interrupt.admin.presenter.FeedbackPresenter;
-import com.bharathksunil.interrupt.admin.presenter.UsersInfoRecyclerPresenter;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.util.DateUtil;

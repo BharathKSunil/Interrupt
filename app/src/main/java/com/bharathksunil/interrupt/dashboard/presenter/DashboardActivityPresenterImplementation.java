@@ -12,8 +12,20 @@ import com.bharathksunil.interrupt.auth.model.UserManager;
 
 public class DashboardActivityPresenterImplementation implements DashboardActivityPresenter {
 
+    private enum TAB {
+        PROFILE,
+        ABOUT,
+        SCHEDULES,
+        EVENTS,
+        CR,
+        COORDINATOR,
+        ORGANISERS,
+        ADMIN
+    }
+
     private UserManager userManager;
     private DashboardActivityPresenter.View viewInstance;
+    private TAB activeTabTag;
 
     public DashboardActivityPresenterImplementation(UserManager userManager) {
         this.userManager = userManager;
@@ -28,16 +40,29 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
     public void setView(@Nullable View view) {
         viewInstance = view;
         if (view != null) {
-            view.loadAboutAppFragment();
-            if (userManager.isUserAEventsCoordinator())
-                view.setCoordinatorTabVisibility(android.view.View.VISIBLE);
-            else
-                view.setCoordinatorTabVisibility(android.view.View.GONE);
-            if (userManager.isUserAClassRepresentative())
-                view.setCRTabVisibility(android.view.View.VISIBLE);
-            else
-                view.setCRTabVisibility(android.view.View.GONE);
+            activeTabTag = TAB.ABOUT;
+            view.loadAboutAppPage();
+            setDashboardTabsAccordingToUser();
+            viewInstance.setSettingsButtonEnabled(false);
         }
+    }
+
+    /**
+     * This method controls the tabs in the dashboard and sets them visible according to the user type
+     */
+    private void setDashboardTabsAccordingToUser() {
+        if (viewInstance == null)
+            return;
+        //Event Coordinator Tab
+        if (userManager.isUserAEventsCoordinator())
+            viewInstance.setCoordinatorTabVisibility(android.view.View.VISIBLE);
+        else
+            viewInstance.setCoordinatorTabVisibility(android.view.View.GONE);
+        //Class Representative tab
+        if (userManager.isUserAClassRepresentative())
+            viewInstance.setCRTabVisibility(android.view.View.VISIBLE);
+        else
+            viewInstance.setCRTabVisibility(android.view.View.GONE);
     }
 
     /**
@@ -45,8 +70,11 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
      */
     @Override
     public void onUserProfileTabPressed() {
-        if (viewInstance != null)
-            viewInstance.loadUserInfoFragment();
+        if (viewInstance != null) {
+            activeTabTag = TAB.PROFILE;
+            viewInstance.loadUserInfoPage();
+            viewInstance.setSettingsButtonEnabled(false);
+        }
     }
 
     /**
@@ -54,8 +82,11 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
      */
     @Override
     public void onEventsTabPressed() {
-        if (viewInstance != null)
-            viewInstance.loadAllEventCategoriesFragment();
+        if (viewInstance != null) {
+            activeTabTag = TAB.EVENTS;
+            viewInstance.loadAllEventCategoriesPage();
+            viewInstance.setSettingsButtonEnabled(false);
+        }
     }
 
     /**
@@ -63,8 +94,11 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
      */
     @Override
     public void onSchedulesTabPressed() {
-        if (viewInstance != null)
-            viewInstance.loadSchedulesInfoFragment();
+        if (viewInstance != null) {
+            activeTabTag = TAB.SCHEDULES;
+            viewInstance.loadSchedulesInfoPage();
+            viewInstance.setSettingsButtonEnabled(false);
+        }
     }
 
     /**
@@ -72,8 +106,11 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
      */
     @Override
     public void onClassRepsTabPressed() {
-        if (viewInstance != null && (userManager.isUserAClassRepresentative()))
+        if (viewInstance != null && userManager.isUserAClassRepresentative()) {
+            activeTabTag = TAB.CR;
             viewInstance.loadClassRepsDashboard();
+            viewInstance.setSettingsButtonEnabled(false);
+        }
     }
 
     /**
@@ -84,8 +121,10 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
         if (viewInstance == null)
             return;
 
+        viewInstance.setSettingsButtonEnabled(false);
         if (userManager.isUserAEventsCoordinator()) {
-            viewInstance.loadEventsCoordinatorDashboard();
+            activeTabTag = TAB.COORDINATOR;
+            viewInstance.loadCoordinatorsEventsInfoPage();
         }
     }
 
@@ -96,7 +135,12 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
     public void onEventOrganisersTabPressed() {
         if (viewInstance == null)
             return;
-        viewInstance.loadOrganisersDashboard();
+        activeTabTag = TAB.ORGANISERS;
+        if (userManager.isUserAnOrganiser() || userManager.isUserAnAdministrator())
+            viewInstance.setSettingsButtonEnabled(true);
+        else
+            viewInstance.setSettingsButtonEnabled(false);
+        viewInstance.loadOrganisersInfoPage();
     }
 
     /**
@@ -106,7 +150,43 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
     public void onAdministratorTabPressed() {
         if (viewInstance == null)
             return;
+        activeTabTag = TAB.ADMIN;
+        if (userManager.isUserAnAdministrator())
+            viewInstance.setSettingsButtonEnabled(true);
+        else
+            viewInstance.setSettingsButtonEnabled(false);
 
-        viewInstance.loadAdministratorDashboard();
+        viewInstance.loadAdministratorsInfoPage();
+    }
+
+    /**
+     * The Settings Button was pressed by the user
+     */
+    @Override
+    public void onSettingsButtonPressed() {
+        if (viewInstance == null)
+            return;
+        switch (activeTabTag) {
+            case ADMIN:
+                if (userManager.isUserAnAdministrator())
+                    viewInstance.loadAdministratorsDashboard();
+                else
+                    viewInstance.setSettingsButtonEnabled(false);
+                break;
+            case ORGANISERS:
+                if (userManager.isUserAnOrganiser() || userManager.isUserAnAdministrator())
+                    viewInstance.loadOrganisersDashboard();
+                else
+                    viewInstance.setSettingsButtonEnabled(false);
+                break;
+            case CR:
+                //We are not supporting this feature now, hence hide
+                viewInstance.setSettingsButtonEnabled(false);
+                viewInstance.setCRTabVisibility(android.view.View.GONE);
+                break;
+            default:
+                viewInstance.setSettingsButtonEnabled(false);
+        }
+
     }
 }

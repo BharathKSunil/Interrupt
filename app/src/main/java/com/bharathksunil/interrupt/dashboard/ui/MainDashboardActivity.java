@@ -3,6 +3,7 @@ package com.bharathksunil.interrupt.dashboard.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +11,19 @@ import android.view.View;
 
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.UnderConstructionFragment;
+import com.bharathksunil.interrupt.admin.ui.AdminDashboardActivity;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.ui.LauncherActivity;
+import com.bharathksunil.interrupt.coordinator.ui.CoordinatorsEventsInfoFragment;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenterImplementation;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.AboutFragment;
-import com.bharathksunil.interrupt.dashboard.ui.fragments.AdminInfoFragment;
-import com.bharathksunil.interrupt.dashboard.ui.fragments.EventCategoriesFragment;
-import com.bharathksunil.interrupt.dashboard.ui.fragments.OrganisersInfoFragment;
-import com.bharathksunil.interrupt.dashboard.ui.fragments.SchedulesFragment;
-import com.bharathksunil.interrupt.dashboard.ui.fragments.UserInfoFragment;
+import com.bharathksunil.interrupt.admin.ui.fragments.AdminInfoFragment;
+import com.bharathksunil.interrupt.events.ui.fragments.EventCategoriesFragment;
+import com.bharathksunil.interrupt.organiser.ui.fragments.OrganisersInfoFragment;
+import com.bharathksunil.interrupt.events.ui.fragments.SchedulesFragment;
+import com.bharathksunil.interrupt.auth.ui.fragments.UserInfoFragment;
+import com.bharathksunil.interrupt.organiser.ui.OrganisersDashboardActivity;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
 
@@ -27,16 +31,19 @@ import java.util.List;
 
 import butterknife.BindColor;
 import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class DashboardActivity extends AppCompatActivity implements
+public class MainDashboardActivity extends AppCompatActivity implements
         DashboardActivityPresenter.View, UserInfoFragment.Interactor {
 
+    private UnderConstructionFragment underConstructionFragment;
     private Unbinder unbinder;
     private DashboardActivityPresenter presenter;
+    private boolean backPressedTwice;
 
     @BindString(R.string.snack_back_press_twice)
     String snack_backPress;
@@ -44,6 +51,7 @@ public class DashboardActivity extends AppCompatActivity implements
     int tab_selectedColor;
     @BindColor(R.color.transparent)
     int tab_disSelectedColor;
+
     /**
      * These are the constants which are used for getting the tabs from the ButterKnife tabsViewList;
      */
@@ -52,11 +60,9 @@ public class DashboardActivity extends AppCompatActivity implements
     @BindViews({R.id.tab_profile, R.id.tab_events, R.id.tab_schedule, R.id.tab_class_reps,
             R.id.tab_coordinators, R.id.tab_organisers, R.id.tab_admin, R.id.tab_about})
     List<View> tabsViewList;
+    @BindView(R.id.fab_settings)
+    FloatingActionButton fabSettings;
 
-    private boolean backPressedTwice;
-    private UnderConstructionFragment underConstructionFragment;
-    private UserInfoFragment userInfoFragment;
-    private AboutFragment aboutFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +71,6 @@ public class DashboardActivity extends AppCompatActivity implements
         unbinder = ButterKnife.bind(this);
 
         underConstructionFragment = new UnderConstructionFragment();
-        userInfoFragment = new UserInfoFragment();
-        aboutFragment = new AboutFragment();
 
         presenter = new DashboardActivityPresenterImplementation(UserManager.getInstance());
         presenter.setView(this);
@@ -137,16 +141,21 @@ public class DashboardActivity extends AppCompatActivity implements
 
     @OnClick(R.id.tab_about)
     public void onAboutTabClicked() {
-        loadAboutAppFragment();
+        loadAboutAppPage();
+    }
+
+    @OnClick(R.id.fab_settings)
+    public void onSettingsFabPressed() {
+        presenter.onSettingsButtonPressed();
     }
 
     /**
      * The user is a Participant, load the Participant Dashboard
      */
     @Override
-    public void loadAboutAppFragment() {
+    public void loadAboutAppPage() {
         setTabActive(TAB_ABOUT);
-        loadFragment(aboutFragment);
+        loadFragment(new AboutFragment());
     }
 
     @Override
@@ -157,6 +166,35 @@ public class DashboardActivity extends AppCompatActivity implements
     @Override
     public void setCoordinatorTabVisibility(int visibility) {
         findViewById(R.id.tab_coordinators).setVisibility(visibility);
+    }
+
+    /**
+     * Show or hide the Floating Action Button here.
+     *
+     * @param isEnabled the visibility of the button
+     */
+    @Override
+    public void setSettingsButtonEnabled(boolean isEnabled) {
+        if (isEnabled)
+            fabSettings.show();
+        else
+            fabSettings.hide();
+    }
+
+    /**
+     * Load the Organisers Dashboard
+     */
+    @Override
+    public void loadOrganisersDashboard() {
+        startActivity(new Intent(this, OrganisersDashboardActivity.class));
+    }
+
+    /**
+     * Load the Administrators Dashboard
+     */
+    @Override
+    public void loadAdministratorsDashboard() {
+        startActivity(new Intent(this, AdminDashboardActivity.class));
     }
 
     /**
@@ -172,26 +210,25 @@ public class DashboardActivity extends AppCompatActivity implements
      * The user is an Administrator, load the Dashboard
      */
     @Override
-    public void loadAdministratorDashboard() {
+    public void loadAdministratorsInfoPage() {
         setTabActive(TAB_ADMIN);
         loadFragment(new AdminInfoFragment());
     }
-
 
     /**
      * The user is a Class Representative, load the Organiser's Dashboard
      */
     @Override
-    public void loadEventsCoordinatorDashboard() {
+    public void loadCoordinatorsEventsInfoPage() {
         setTabActive(TAB_COORDINATORS);
-        loadFragment(underConstructionFragment);
+        loadFragment(new CoordinatorsEventsInfoFragment());
     }
 
     /**
      * The user is a organiser, load the Organiser's Dashboard
      */
     @Override
-    public void loadOrganisersDashboard() {
+    public void loadOrganisersInfoPage() {
         setTabActive(TAB_ORGANISERS);
         loadFragment(new OrganisersInfoFragment());
     }
@@ -200,16 +237,16 @@ public class DashboardActivity extends AppCompatActivity implements
      * Load the user information fragment
      */
     @Override
-    public void loadUserInfoFragment() {
+    public void loadUserInfoPage() {
         setTabActive(TAB_PROFILE);
-        loadFragment(userInfoFragment);
+        loadFragment(new UserInfoFragment());
     }
 
     /**
      * Load the Events fragment
      */
     @Override
-    public void loadAllEventCategoriesFragment() {
+    public void loadAllEventCategoriesPage() {
         setTabActive(TAB_EVENTS);
         loadFragment(new EventCategoriesFragment());
     }
@@ -218,7 +255,7 @@ public class DashboardActivity extends AppCompatActivity implements
      * Load the Schedules Fragment
      */
     @Override
-    public void loadSchedulesInfoFragment() {
+    public void loadSchedulesInfoPage() {
         setTabActive(TAB_SCHEDULES);
         loadFragment(new SchedulesFragment());
     }
@@ -240,14 +277,6 @@ public class DashboardActivity extends AppCompatActivity implements
             view.setBackgroundColor(tab_disSelectedColor);
         }
         tabsViewList.get(activeTabID).setBackgroundColor(tab_selectedColor);
-    }
-
-    /**
-     * This is a temporary function called as the desired fragment is still being constructed
-     */
-    @SuppressWarnings("unused")
-    private void loadUnderConstructionFragment() {
-
     }
 
     @Override

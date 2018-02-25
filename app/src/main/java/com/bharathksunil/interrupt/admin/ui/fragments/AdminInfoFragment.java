@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.dashboard.ui.fragments;
+package com.bharathksunil.interrupt.admin.ui.fragments;
 
 
 import android.os.Build;
@@ -20,8 +20,8 @@ import com.bharathksunil.interrupt.admin.model.Users;
 import com.bharathksunil.interrupt.admin.repository.FirebaseFeedbackRepository;
 import com.bharathksunil.interrupt.admin.repository.FirebaseUsersInfoFetchRepositoryImplementation;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
-import com.bharathksunil.interrupt.dashboard.presenter.AdminInfoPresenter;
-import com.bharathksunil.interrupt.dashboard.presenter.AdminInfoPresenterImplementation;
+import com.bharathksunil.interrupt.admin.presenter.AdminInfoPresenter;
+import com.bharathksunil.interrupt.admin.presenter.AdminInfoPresenterImplementation;
 import com.bharathksunil.interrupt.organiser.ui.OrganiserInfoRecyclerAdapter;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.wang.avi.AVLoadingIndicatorView;

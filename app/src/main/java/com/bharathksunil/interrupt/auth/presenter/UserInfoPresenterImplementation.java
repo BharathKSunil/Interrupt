@@ -1,10 +1,9 @@
-package com.bharathksunil.interrupt.dashboard.presenter;
+package com.bharathksunil.interrupt.auth.presenter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bharathksunil.interrupt.auth.model.UserManager;
-import com.bharathksunil.interrupt.auth.presenter.SignInPresenter;
 
 /**
  * This Presenter presents the user info and also interacts with the repository to signOut the user.

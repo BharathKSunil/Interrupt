@@ -10,13 +10,14 @@ import java.util.List;
  * It is stored in both, RealTime Database and the Cloud FireStore as a document
  * <h>RealTime DB:</h>
  * EventRegistrations
- *          |_userEmail
- *              |_eventID
- *                  |_{data}
- *<h>Cloud Firestore</h>
+ * |_userEmail
+ * |_eventID
+ * |_{data}
+ * <h>Cloud Firestore</h>
  * Categories[categoryID]
- *      -Events[eventID]
- *          -Registrations[regID]
+ * -Events[eventID]
+ * -Registrations[regID]
+ *
  * @author Bharath on 18-02-2018.
  */
 @IgnoreExtraProperties
@@ -27,6 +28,15 @@ public class EventRegistrations {
     private String eventPath, eName, eRegistrar, eBannerUrl;
     private List<String> pTeamMembers;
     private String id, pName, pEmail, pPhoneNo, pUSN, pSem, pSection;
+    private Boolean Attended;
+
+    public Boolean getAttended() {
+        return Attended;
+    }
+
+    public void setAttended(Boolean attended) {
+        Attended = attended;
+    }
 
     /**
      * Participants Data

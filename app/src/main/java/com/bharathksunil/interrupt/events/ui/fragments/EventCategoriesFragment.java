@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.dashboard.ui.fragments;
+package com.bharathksunil.interrupt.events.ui.fragments;
 
 
 import android.content.Intent;

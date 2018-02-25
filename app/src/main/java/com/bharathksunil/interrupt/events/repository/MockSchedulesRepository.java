@@ -2,7 +2,7 @@ package com.bharathksunil.interrupt.events.repository;
 
 import android.support.annotation.NonNull;
 
-import com.bharathksunil.interrupt.dashboard.presenter.SchedulesPresenter;
+import com.bharathksunil.interrupt.events.presenter.SchedulesPresenter;
 import com.bharathksunil.interrupt.events.model.Schedules;
 
 import java.util.ArrayList;

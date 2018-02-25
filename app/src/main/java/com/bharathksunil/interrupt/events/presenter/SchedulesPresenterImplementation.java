@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.dashboard.presenter;
+package com.bharathksunil.interrupt.events.presenter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

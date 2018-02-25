@@ -31,15 +31,19 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".dashboard.ui.DashboardActivity"
+            android:name=".dashboard.ui.MainDashboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Dashboard" />
-        <activity android:name=".events.ui.EventsViewerActivity"
+        <activity
+            android:name=".events.ui.EventsViewerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Events"/>
-        <activity android:name=".events.ui.EventsBannerViewer"
+            android:theme="@style/Events" />
+        <activity
+            android:name=".events.ui.EventsBannerViewer"
             android:screenOrientation="portrait"
-            android:theme="@style/Events"/>
+            android:theme="@style/Events" />
+        <activity android:name=".organiser.ui.OrganisersDashboardActivity" />
+        <activity android:name=".admin.ui.AdminDashboardActivity"></activity>
     </application>
 
 </manifest>

@@ -3,7 +3,7 @@ package com.bharathksunil.interrupt.events.repository;
 import android.support.annotation.NonNull;
 
 import com.bharathksunil.interrupt.auth.repository.FirebaseConstants;
-import com.bharathksunil.interrupt.dashboard.presenter.SchedulesPresenter;
+import com.bharathksunil.interrupt.events.presenter.SchedulesPresenter;
 import com.bharathksunil.interrupt.events.model.Schedules;
 import com.bharathksunil.interrupt.util.Debug;
 import com.google.firebase.database.DataSnapshot;

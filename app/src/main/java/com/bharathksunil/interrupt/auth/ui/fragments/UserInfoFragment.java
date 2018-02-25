@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.dashboard.ui.fragments;
+package com.bharathksunil.interrupt.auth.ui.fragments;
 
 
 import android.content.Context;
@@ -18,8 +18,8 @@ import android.widget.TextView;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.repository.FirebaseSignInRepositoryImplementation;
-import com.bharathksunil.interrupt.dashboard.presenter.UserInfoPresenter;
-import com.bharathksunil.interrupt.dashboard.presenter.UserInfoPresenterImplementation;
+import com.bharathksunil.interrupt.auth.presenter.UserInfoPresenter;
+import com.bharathksunil.interrupt.auth.presenter.UserInfoPresenterImplementation;
 import com.bharathksunil.interrupt.events.presenter.RegisteredEventsRecyclerPresenter;
 import com.bharathksunil.interrupt.events.presenter.RegisteredEventsRecyclerPresenterImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseRegisteredEventsRepositoryImplementation;

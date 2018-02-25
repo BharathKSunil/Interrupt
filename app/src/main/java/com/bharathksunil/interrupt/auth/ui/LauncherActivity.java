@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.bharathksunil.interrupt.auth.ui.fragments.SignInFragment;
 import com.bharathksunil.interrupt.auth.ui.fragments.SplashScreenFragment;
-import com.bharathksunil.interrupt.dashboard.ui.DashboardActivity;
+import com.bharathksunil.interrupt.dashboard.ui.MainDashboardActivity;
 
 import com.bharathksunil.interrupt.R;
 
@@ -68,7 +68,7 @@ public class LauncherActivity extends AppCompatActivity implements
      */
     @Override
     public void launchDashboardActivity() {
-        startActivity(new Intent(this, DashboardActivity.class));
+        startActivity(new Intent(this, MainDashboardActivity.class));
         finish();
     }
 
