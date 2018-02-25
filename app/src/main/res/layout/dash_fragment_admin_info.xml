@@ -17,8 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/tv_interrupt_administrators"
-            android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-            android:textColor="@color/primary_dark" />
+            android:textAppearance="@style/Dashboard.TextAppearance.Title" />
 
         <include layout="@layout/layout_progress_bar" />
 
@@ -41,8 +40,10 @@
             android:layout_marginTop="16dp"
             android:padding="6dp"
             android:text="@string/tv_feedback_or_bug_report"
-            android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-            android:textColor="@color/accent" />
+            android:textAppearance="@style/Dashboard.TextAppearance.Title"
+            android:textColor="@color/primary_dark" />
+
+        <include layout="@layout/divider_horizontal" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til_feedback"
@@ -53,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_feedback"
-                android:inputType="textMultiLine"
+                android:inputType="textMultiLine|textCapSentences"
                 android:lines="8" />
         </android.support.design.widget.TextInputLayout>
 

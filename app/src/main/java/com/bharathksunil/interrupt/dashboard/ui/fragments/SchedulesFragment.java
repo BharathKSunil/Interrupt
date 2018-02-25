@@ -15,8 +15,8 @@ import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.dashboard.presenter.SchedulesPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.SchedulesPresenterImplementation;
 import com.bharathksunil.interrupt.events.model.Schedules;
-import com.bharathksunil.interrupt.events.repository.MockSchedulesRepository;
-import com.bharathksunil.interrupt.util.Debug;
+import com.bharathksunil.interrupt.events.repository.FirebaseSchedulesRepository;
+import com.bharathksunil.interrupt.util.DateUtil;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.github.vipulasri.timelineview.TimelineView;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -59,7 +59,7 @@ public class SchedulesFragment extends Fragment implements SchedulesPresenter.Vi
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dash_fragment_schedules, container, false);
         unbinder = ButterKnife.bind(this, view);
-        presenter = new SchedulesPresenterImplementation(new MockSchedulesRepository());
+        presenter = new SchedulesPresenterImplementation(new FirebaseSchedulesRepository());
         presenter.setView(this);
         return view;
     }
@@ -125,7 +125,6 @@ public class SchedulesFragment extends Fragment implements SchedulesPresenter.Vi
             this.inflater = LayoutInflater.from(context);
             this.schedules = schedules;
             now = Calendar.getInstance().getTime();
-            Debug.i("Time: "+now.toString());
         }
 
         @Override
@@ -137,13 +136,11 @@ public class SchedulesFragment extends Fragment implements SchedulesPresenter.Vi
         @Override
         public void onBindViewHolder(TimeLineViewHolder holder, int position) {
             Schedules schedule = schedules.get(position);
-
-            /*int diff = DateTimeUtils.getDateDiff("Sat Feb 24 14:55:35 GMT+05:30 2018", schedule.getTime(), DateTimeUnits.SECONDS);
-            if (diff < 0) {
+            if (DateUtil.isTimePast(schedule.getTime())) {
                 holder.mTimelineView.setMarker(getResources().getDrawable(R.drawable.ic_timeline_marker_past));
             } else {
                 holder.mTimelineView.setMarker(getResources().getDrawable(R.drawable.ic_timeline_marker));
-            }*/
+            }
             holder.date.setText(schedule.getTime());
             holder.name.setText(schedule.getEventName());
             holder.venue.setText(schedule.getVenue());

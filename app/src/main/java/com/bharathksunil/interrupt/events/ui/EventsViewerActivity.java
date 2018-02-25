@@ -16,10 +16,10 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.bharathksunil.interrupt.R;
+import com.bharathksunil.interrupt.events.model.Events;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenterImplementation;
-import com.bharathksunil.interrupt.events.model.Events;
-import com.bharathksunil.interrupt.events.repository.MockEventsRepository;
+import com.bharathksunil.interrupt.events.repository.FirebaseEventsRepositoryImplementation;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.ramotion.cardslider.CardSliderLayoutManager;
@@ -80,7 +80,7 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
         setContentView(R.layout.events_activity_events_viewer);
         unbinder = ButterKnife.bind(this);
         presenter = new EventsViewerPresenterImplementation(
-                new MockEventsRepository());
+                new FirebaseEventsRepositoryImplementation());
         presenter.setView(this);
     }
 

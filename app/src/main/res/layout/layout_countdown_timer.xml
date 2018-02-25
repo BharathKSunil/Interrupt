@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:textAppearance="@style/Dashboard.TextAppearance.Medium"
+    android:textAppearance="@style/Dashboard.TextAppearance.Title"
     android:textColor="@color/white"
-    android:textSize="25sp"
+    android:textSize="23sp"
     tools:text="10Days 20:Hrs" />

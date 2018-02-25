@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bharathksunil.interrupt.R;
+import com.bharathksunil.interrupt.events.model.Categories;
 import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenterImplementation;
-import com.bharathksunil.interrupt.events.model.Categories;
-import com.bharathksunil.interrupt.events.repository.MockEventCategoriesRepositoryImplementation;
+import com.bharathksunil.interrupt.events.repository.FirebaseEventCategoriesRepositoryImplementation;
 import com.bharathksunil.interrupt.events.ui.EventsRecyclerSliderAdapter;
 import com.bharathksunil.interrupt.events.ui.EventsViewerActivity;
 import com.bharathksunil.interrupt.util.ViewUtils;
@@ -62,7 +62,7 @@ public class EventCategoriesFragment extends Fragment implements EventCategories
         View view = inflater.inflate(R.layout.dash_fragment_event_categoies, container, false);
         unbinder = ButterKnife.bind(this, view);
         presenter = new EventCategoriesPresenterImplementation(
-                new MockEventCategoriesRepositoryImplementation());
+                new FirebaseEventCategoriesRepositoryImplementation());
         presenter.setView(this);
         return view;
     }

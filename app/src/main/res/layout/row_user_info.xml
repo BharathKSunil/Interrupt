@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/turquoise"
+    app:cardBackgroundColor="#FFFDE7"
     app:cardElevation="2dp"
     app:cardUseCompatPadding="true"
     app:contentPadding="8dp">
@@ -28,7 +28,7 @@
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/row_user_image"
             android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-            android:textColor="@color/accent"
+            android:textColor="@color/primary_text"
             tools:text="Bharath Kumar S" />
 
         <TextView

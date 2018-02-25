@@ -20,47 +20,47 @@ public class MockSchedulesRepository implements SchedulesPresenter.Repository {
 
         schedulesList.add(new Schedules(
                 "Rapid Fire Coding",
-                "Sat Feb 24 14:45:48 GMT+05:30 2018",
+                "03:13 PM, 25 February 2018",
                 "JPN Lab"
         ));
         schedulesList.add(new Schedules(
                 "Something Crazy",
-                "Sat Feb 24 14:55:48 GMT+05:30 2018",
+                "03:20 PM, 25 February 2018",
                 "BBL Lab"
         ));
         schedulesList.add(new Schedules(
                 "Something Good",
-                "Sat Feb 24 14:59:48 GMT+05:30 2018",
+                "03:25 PM, 25 February 2018",
                 "Room C558"
         ));
         schedulesList.add(new Schedules(
                 "Gala Item",
-                "Sat Feb 24 15:45:48 GMT+05:30 2018",
+                "03:30 PM, 25 February 2018",
                 "C668"
         ));
         schedulesList.add(new Schedules(
                 "Dance Masters",
-                "Sat Feb 24 16:45:48 GMT+05:30 2018"
+                "01:13 PM, 26 February 2018"
                 , "D444"
         ));
         schedulesList.add(new Schedules(
                 "Rapid Fire Coding",
-                "Sat Feb 24 17:45:48 GMT+05:30 2018",
+                "02:13 PM, 26 February 2018",
                 "JPN Lab"
         ));
         schedulesList.add(new Schedules(
                 "Rapid Fire Coding",
-                "Sat Feb 24 18:45:48 GMT+05:30 2018",
+                "03:13 PM, 26 February 2018",
                 "JPN Lab"
         ));
         schedulesList.add(new Schedules(
                 "Rapid Fire Coding",
-                "Sat Feb 24 19:45:48 GMT+05:30 2018",
+                "03:45 PM, 26 February 2018",
                 "JPN Lab"
         ));
         schedulesList.add(new Schedules(
                 "Rapid Fire Coding",
-                "Sat Feb 24 12:45:48 GMT+05:30 2018",
+                "03:13 PM, 26 February 2018",
                 "JPN Lab"
         ));
 

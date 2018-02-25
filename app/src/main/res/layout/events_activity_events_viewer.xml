@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -65,10 +66,12 @@
         android:id="@+id/tv_empty_prompt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/tv_empty_events"
         android:textAppearance="@style/Dashboard.TextAppearance.Small"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <include layout="@layout/layout_progress_bar" />
 
@@ -92,7 +95,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30dp"
             android:contentDescription="@string/cd_event_desc"
-            android:scaleType="fitCenter"
             app:srcCompat="@drawable/star" />
 
         <TextSwitcher
@@ -115,7 +117,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30dp"
             android:contentDescription="@string/cd_event_time"
-            android:scaleType="fitCenter"
             app:srcCompat="@drawable/clock" />
 
         <TextSwitcher
@@ -138,7 +139,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30dp"
             android:contentDescription="@string/cd_event_venue"
-            android:scaleType="fitCenter"
             app:srcCompat="@drawable/venue" />
 
         <TextSwitcher
@@ -161,7 +161,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30dp"
             android:contentDescription="@string/cd_event_coordinator"
-            android:scaleType="fitCenter"
             app:srcCompat="@drawable/coordinator" />
 
         <TextSwitcher

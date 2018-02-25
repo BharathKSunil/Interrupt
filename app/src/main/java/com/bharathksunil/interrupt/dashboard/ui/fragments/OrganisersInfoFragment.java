@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.admin.model.Users;
-import com.bharathksunil.interrupt.admin.repository.MockUsersInfoRepositoryImplementation;
+import com.bharathksunil.interrupt.admin.repository.FirebaseUsersInfoFetchRepositoryImplementation;
 import com.bharathksunil.interrupt.dashboard.presenter.OrganisersInfoPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.OrganisersInfoPresenterImplementation;
 import com.bharathksunil.interrupt.flipviewpager.adapter.BaseFlipAdapter;
@@ -93,8 +93,7 @@ public class OrganisersInfoFragment extends Fragment implements OrganisersInfoPr
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dash_fragment_organisers_info, container, false);
         unbinder = ButterKnife.bind(this, view);
-        //todo: Remove Mock and pass the FirebaseUsersInfoFetchRepositoryImplementation()
-        presenter = new OrganisersInfoPresenterImplementation(new MockUsersInfoRepositoryImplementation());
+        presenter = new OrganisersInfoPresenterImplementation(new FirebaseUsersInfoFetchRepositoryImplementation());
         presenter.setView(this);
         return view;
     }

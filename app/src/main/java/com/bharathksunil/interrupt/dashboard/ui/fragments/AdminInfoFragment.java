@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.admin.model.Users;
 import com.bharathksunil.interrupt.admin.repository.FirebaseFeedbackRepository;
-import com.bharathksunil.interrupt.admin.repository.MockUsersInfoRepositoryImplementation;
+import com.bharathksunil.interrupt.admin.repository.FirebaseUsersInfoFetchRepositoryImplementation;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.dashboard.presenter.AdminInfoPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.AdminInfoPresenterImplementation;
@@ -74,7 +74,7 @@ public class AdminInfoFragment extends Fragment implements AdminInfoPresenter.Vi
         View view = inflater.inflate(R.layout.dash_fragment_admin_info, container, false);
         unbinder = ButterKnife.bind(this, view);
         presenter = new AdminInfoPresenterImplementation(new FirebaseFeedbackRepository(),
-                new MockUsersInfoRepositoryImplementation());
+                new FirebaseUsersInfoFetchRepositoryImplementation());
         presenter.setView(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             til_feedback.setNestedScrollingEnabled(true);

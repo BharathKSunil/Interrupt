@@ -23,7 +23,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
-        app:cardBackgroundColor="#E3F2FD"
+        app:cardBackgroundColor="@color/card_schedules_bg"
         app:cardElevation="2dp"
         app:contentPadding="15dp">
 
@@ -36,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                android:textColor="@color/white"
                 tools:text="24 JAN" />
 
             <TextView
@@ -45,17 +46,17 @@
                 android:layout_below="@id/tv_timeline_date"
                 android:layout_marginTop="5dp"
                 android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-                android:textColor="@color/primary_dark"
+                android:textColor="@color/white"
                 tools:text="Event Name" />
 
             <TextView
                 android:id="@+id/tv_timeline_venue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:layout_below="@+id/tv_timeline_title"
                 android:textAppearance="@style/Dashboard.TextAppearance.Small"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 tools:text="C234" />
 
         </RelativeLayout>

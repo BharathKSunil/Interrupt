@@ -19,14 +19,15 @@
     <string name="cd_right_flip_image">right image</string>
 
     <string name="tv_empty_registered_events">We have Awesome Events for Everyone.\nPlease Register ASAP.</string>
-    <string name="tv_empty_organisers">No Core Team Members Found\nCome Back later for more</string>
-    <string name="tv_empty_off_stage">No Off Stage Team Members Found</string>
-    <string name="tv_empty_events_team">No Events Team Members Found</string>
-    <string name="tv_empty_design_team">No Design Team Members Found</string>
+    <string name="tv_empty_organisers">No Core Team Members Found.</string>
+    <string name="tv_empty_off_stage">No Off Stage Team Members Found.</string>
+    <string name="tv_empty_events_team">No Events Team Members Found.</string>
+    <string name="tv_empty_design_team">No Design Team Members Found.</string>
+    <string name="tv_empty_admin">No Administrators Found</string>
+    <string name="tv_empty_schedules">No Event Schedules Yet.\nWe\'ll be updating it Soon.!</string>
 
-    <string name="tv_registered_events">Your Registered Events</string>
-    <string name="team_members">Team Members</string>
-    <string name="registered_by">Registered By</string>
+    <string name="tv_registered_events">My Registered Events</string>
+
     <string name="tv_dev_name">Bharath Kumar S</string>
     <string name="tv_dev_position">Android Developer</string>
     <string name="tv_dev_email">bharathk.sunil.k@gmail.com</string>
@@ -34,17 +35,19 @@
     <string name="tv_dev_heading">Built With Passion</string>
     <string name="tv_dev_sub_heading">Follow Me</string>
 
-    <string name="tv_categories_heading">Choose an Event Category</string>
-    <string name="tv_interrupt_administrators">Interrupt Administrators</string>
-    <string name="tv_core_team_info_heading">Interrupt Core Team</string>
+    <string name="tv_categories_heading">Categories</string>
+    <string name="tv_interrupt_administrators">Administrators</string>
+    <string name="tv_interrupt_organisers">Organisers</string>
+    <string name="tv_interrupt_schedules">Schedules</string>
+    <string name="tv_core_team_info_heading">Core Team</string>
     <string name="tv_offstage_info_heading">Off Stage Team</string>
     <string name="tv_events_info_heading">Event Management Team</string>
     <string name="tv_design_info_heading">Design Team</string>
     <string name="tv_feedback_or_bug_report">Feedback or Bug Report</string>
-    <string name="tv_empty_admin">No Administrators Found</string>
-    <string name="hint_feedback">Write Your Feedback here</string>
+    <string name="hint_feedback">Give us your Feedback</string>
 
     <color name="tab_selected_color">#F3E5F5</color>
+    <color name="card_schedules_bg">#2980b9</color>
 
     <array name="flip_pager_bg_colors">
         <item>@color/saffron</item>
@@ -124,7 +127,7 @@
     <style name="Dashboard.TextAppearance.Title" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:fontFamily">@font/app_font</item>
         <item name="fontFamily">@font/app_font</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/primary_dark</item>
     </style>
 
 

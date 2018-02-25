@@ -9,9 +9,9 @@ import com.bharathksunil.interrupt.admin.presenter.FeedbackPresenter;
 import com.bharathksunil.interrupt.admin.presenter.UsersInfoRecyclerPresenter;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
+import com.bharathksunil.interrupt.util.DateUtil;
 import com.bharathksunil.interrupt.util.TextUtils;
 
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -48,7 +48,7 @@ public class AdminInfoPresenterImplementation implements AdminInfoPresenter {
             Feedback userFeedback = new Feedback();
             userFeedback.setName(UserManager.getInstance().getUsersName());
             userFeedback.setEmailId(UserManager.getInstance().getUsersEmailID());
-            userFeedback.setTime(Calendar.getInstance().getTime().toString());
+            userFeedback.setTime(DateUtil.getCurrentDateTimeAsString());
             userFeedback.setFeedback(feedback);
 
             feedbackRepositoryInstance.postFeedback(userFeedback,

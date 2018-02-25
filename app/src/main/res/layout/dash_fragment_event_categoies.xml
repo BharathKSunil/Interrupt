@@ -9,18 +9,12 @@
     android:padding="16dp"
     tools:context="com.bharathksunil.interrupt.dashboard.ui.fragments.EventCategoriesFragment">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/app_icon" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/tv_categories_heading"
-        android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-        android:textColor="@color/primary_dark" />
+        android:textAppearance="@style/Dashboard.TextAppearance.Title" />
 
     <include layout="@layout/layout_progress_bar"/>
 
@@ -37,7 +31,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_categories"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="290dp"
         android:layout_marginTop="18dp"
         android:clipChildren="false"
         android:overScrollMode="never" />
@@ -49,7 +43,8 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:textAppearance="@style/Dashboard.TextAppearance.Title"
-        android:textColor="@color/primary_dark" />
+        android:textColor="@color/primary_dark"
+        tools:text="Category Name"/>
 
     <TextView
         android:id="@+id/tv_category_description"
@@ -58,6 +53,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:textAppearance="@style/Dashboard.TextAppearance.Small"
-        android:textColor="@color/primary_text" />
+        android:textColor="@color/primary_text"
+        tools:text="Category Description"/>
 
 </LinearLayout>

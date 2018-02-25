@@ -9,12 +9,16 @@
     <string name="iv_divider">Divider image</string>
 
 
+    <string name="btn_send">Send</string>
+
     <string name="prompt_sign_out_title">SignOut ?</string>
     <string name="prompt_sign_out_message">You will have to SignIn again to use the app.</string>
     <string name="prompt_pick_image">Select a Picture</string>
+
     <string name="err_storage_permission">Storage Permission Declined. Kindly Give Storage Permissions</string>
     <string name="err_offline">Oops :( We live on the Internet. Connect to Proceed.!</string>
     <string name="err_feedback_post_failed">Oops :( Feedback Post Failed…</string>
+
     <string name="snack_feedback_post_successful">Thank You, Your Feedback was Posted Successfully</string>
 
     <string name="section_a">A</string>
@@ -45,18 +49,18 @@
     <string name="section">Section</string>
     <string name="sem">Semester</string>
     <string name="college">College</string>
+    <string name="team_members">Team Members</string>
+    <string name="registered_by">Registered By</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="snack_back_press_twice">We\'ll Miss you, Press Back Again to exit.</string>
     <string name="tv_under_construction">This Page is Under Construction…  We\'ll be ready soon.</string>
+
     <string name="cd_banner">Banner Image</string>
     <string name="cd_event_desc">Event Description</string>
     <string name="cd_event_time">Event Time</string>
     <string name="cd_event_venue">Event Venue</string>
     <string name="cd_event_coordinator">Event Coordinator</string>
-    <string name="btn_send">Send</string>
-    <string name="tv_interrupt_schedules">Interrupt Schedules</string>
-    <string name="tv_empty_schedules">No Event Schedules Yet.\nWe\'ll be updating it Soon.!</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">
