@@ -16,7 +16,7 @@ import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenterImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseEventCategoriesRepositoryImplementation;
 import com.bharathksunil.interrupt.events.ui.EventsRecyclerSliderAdapter;
-import com.bharathksunil.interrupt.events.ui.EventsViewerActivity;
+import com.bharathksunil.interrupt.events.ui.activities.EventsViewerActivity;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;

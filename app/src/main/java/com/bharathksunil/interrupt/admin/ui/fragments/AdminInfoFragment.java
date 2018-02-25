@@ -22,7 +22,7 @@ import com.bharathksunil.interrupt.admin.repository.FirebaseUsersInfoFetchReposi
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.admin.presenter.AdminInfoPresenter;
 import com.bharathksunil.interrupt.admin.presenter.AdminInfoPresenterImplementation;
-import com.bharathksunil.interrupt.organiser.ui.OrganiserInfoRecyclerAdapter;
+import com.bharathksunil.interrupt.events.ui.OrganiserInfoRecyclerAdapter;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 

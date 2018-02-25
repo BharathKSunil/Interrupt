@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.events.ui;
+package com.bharathksunil.interrupt.events.ui.activities;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -20,6 +20,7 @@ import com.bharathksunil.interrupt.events.model.Events;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenterImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseEventsRepositoryImplementation;
+import com.bharathksunil.interrupt.events.ui.EventsRecyclerSliderAdapter;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.ramotion.cardslider.CardSliderLayoutManager;

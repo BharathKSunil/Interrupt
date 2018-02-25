@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.organiser.ui.fragments;
+package com.bharathksunil.interrupt.events.ui.fragments;
 
 
 import android.content.Context;
@@ -22,11 +22,11 @@ import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.admin.model.Users;
 import com.bharathksunil.interrupt.admin.repository.FirebaseUsersInfoFetchRepositoryImplementation;
-import com.bharathksunil.interrupt.organiser.presenter.OrganisersInfoPresenter;
-import com.bharathksunil.interrupt.organiser.presenter.OrganisersInfoPresenterImplementation;
+import com.bharathksunil.interrupt.events.presenter.OrganisersInfoPresenter;
+import com.bharathksunil.interrupt.events.presenter.OrganisersInfoPresenterImplementation;
 import com.bharathksunil.interrupt.flipviewpager.adapter.BaseFlipAdapter;
 import com.bharathksunil.interrupt.flipviewpager.utils.FlipSettings;
-import com.bharathksunil.interrupt.organiser.ui.OrganiserInfoRecyclerAdapter;
+import com.bharathksunil.interrupt.events.ui.OrganiserInfoRecyclerAdapter;
 import com.bharathksunil.interrupt.util.TextDrawable;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.squareup.picasso.Picasso;

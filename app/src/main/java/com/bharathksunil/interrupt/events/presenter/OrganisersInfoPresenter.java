@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.organiser.presenter;
+package com.bharathksunil.interrupt.events.presenter;
 
 import com.bharathksunil.interrupt.BaseView;
 import com.bharathksunil.interrupt.admin.model.Users;

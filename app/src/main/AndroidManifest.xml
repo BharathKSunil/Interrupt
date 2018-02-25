@@ -35,14 +35,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/Dashboard" />
         <activity
-            android:name=".events.ui.EventsViewerActivity"
+            android:name=".events.ui.activities.EventsViewerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Events" />
         <activity
-            android:name=".events.ui.EventsBannerViewer"
+            android:name=".events.ui.activities.EventsBannerViewer"
             android:screenOrientation="portrait"
             android:theme="@style/Events" />
-        <activity android:name=".organiser.ui.OrganisersDashboardActivity" />
+        <activity android:name=".events.ui.activities.OrganisersDashboardActivity" />
         <activity android:name=".admin.ui.AdminDashboardActivity"></activity>
     </application>
 

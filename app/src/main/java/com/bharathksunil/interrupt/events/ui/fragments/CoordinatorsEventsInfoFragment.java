@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.coordinator.ui;
+package com.bharathksunil.interrupt.events.ui.fragments;
 
 
 import android.os.Bundle;
@@ -24,7 +24,7 @@ public class CoordinatorsEventsInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.codr_fragment_events_info, container, false);
+        return inflater.inflate(R.layout.events_fragment_coordinators_events_info, container, false);
     }
 
 }

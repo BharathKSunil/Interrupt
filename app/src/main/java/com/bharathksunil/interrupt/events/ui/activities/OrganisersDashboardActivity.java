@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.organiser.ui;
+package com.bharathksunil.interrupt.events.ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,6 @@ public class OrganisersDashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.org_activity_dashboard);
+        setContentView(R.layout.events_activity_organisers_dashboard);
     }
 }

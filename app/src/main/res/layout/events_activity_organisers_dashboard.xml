@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bharathksunil.interrupt.organiser.ui.OrganisersDashboardActivity">
+    tools:context="com.bharathksunil.interrupt.events.ui.activities.OrganisersDashboardActivity">
 
 </android.support.constraint.ConstraintLayout>

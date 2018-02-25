@@ -1,4 +1,4 @@
-package com.bharathksunil.interrupt.organiser.ui;
+package com.bharathksunil.interrupt.events.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
