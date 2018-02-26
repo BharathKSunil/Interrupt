@@ -3,13 +3,11 @@ package com.bharathksunil.interrupt.auth.presenter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.bharathksunil.interrupt.util.Debug;
-import com.bharathksunil.interrupt.util.TextUtils;
-import com.google.firebase.database.DataSnapshot;
-
-import com.bharathksunil.interrupt.auth.model.UserManager;
+import com.bharathksunil.interrupt.auth.model.AccessType;
 import com.bharathksunil.interrupt.auth.model.User;
-import com.bharathksunil.interrupt.auth.model.UserAccess;
+import com.bharathksunil.interrupt.auth.model.UserPermissions;
+import com.bharathksunil.interrupt.auth.model.UserManager;
+import com.google.firebase.database.DataSnapshot;
 
 /**
  * This is the implementation of the {@link AuthPresenter} for the loading sequence.
@@ -62,16 +60,18 @@ public class AuthPresenterImplementation implements AuthPresenter {
         repositoryInstance.getUserData(new Repository.DataLoadedCallback() {
             @Override
             public void onDataLoaded(DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
+                if (viewInstance == null)
+                    return;
+                if (snapshot.exists()) {
+                    //if the user data exists then load the data and also fetch the access data from the repository
+                    User user = snapshot.getValue(User.class);
+                    userManager.loadUserFromRepositoryInstance(user);
+                    loadTheUserPermissionsFromRepositoryToSingleton();
+                }
                 //if there is no user data ask the user to enter the user info
-                if ((user == null || TextUtils.isEmpty(user.getName())) && viewInstance != null) {
+                else {
                     viewInstance.onProcessEnded();
                     viewInstance.loadSignUpFragmentToRegisterUser();
-                }
-                //if the user data exists then load the data and also fetch the access data from the repository
-                else {
-                    userManager.loadUserFromRepositoryInstance(user);
-                    loadTheUserAccessDataFromTheRepositoryToSingleton();
                 }
             }
 
@@ -81,6 +81,31 @@ public class AuthPresenterImplementation implements AuthPresenter {
                     viewInstance.onProcessEnded();
                     viewInstance.onUnexpectedError();
                 }
+            }
+        });
+    }
+
+    private void loadTheUserPermissionsFromRepositoryToSingleton() {
+        repositoryInstance.getUserPermissionsData(new Repository.DataLoadedCallback() {
+            @Override
+            public void onDataLoaded(DataSnapshot snapshot) {
+                if (viewInstance == null)
+                    return;
+                if (snapshot.exists()) {
+                    UserPermissions userPermissions = snapshot.getValue(UserPermissions.class);
+                    userManager.loadUserPermissionsFromRepositoryInstance(userPermissions);
+                    loadTheUserAccessDataFromTheRepositoryToSingleton();
+                } else {
+                    setTheUsersPermissionsAsDefault();
+                }
+            }
+
+            @Override
+            public void onDataLoadFailed() {
+                if (viewInstance == null)
+                    return;
+                viewInstance.onProcessEnded();
+                viewInstance.onUnexpectedError();
             }
         });
     }
@@ -95,18 +120,17 @@ public class AuthPresenterImplementation implements AuthPresenter {
         repositoryInstance.getUserAccessData(new Repository.DataLoadedCallback() {
             @Override
             public void onDataLoaded(DataSnapshot snapshot) {
+                if (viewInstance == null)
+                    return;
                 if (snapshot.exists()) {
-                    UserAccess userAccess = snapshot.getValue(UserAccess.class);
-                    Debug.i(snapshot.getValue().toString());
+                    AccessType accessType = snapshot.getValue(AccessType.class);
                     //Check if the user is allowed to use the app, if not load the fragment
-                    if (viewInstance != null) {
-                        userManager.loadUserAccessFromRepositoryInstance(userAccess);
-                        viewInstance.onProcessEnded();
-                        if (userManager.isUserAuthorisedToUseApp())
-                            viewInstance.loadDashboard();
-                        else
-                            viewInstance.loadUserNotAllowedToUserAppFragment();
-                    }
+                    userManager.loadUserAccessFromRepositoryInstance(accessType);
+                    viewInstance.onProcessEnded();
+                    if (userManager.isUserAuthorisedToUseApp())
+                        viewInstance.loadDashboard();
+                    else
+                        viewInstance.loadUserNotAllowedToUserAppFragment();
                 } else {
                     setTheUserAsAParticipant();
                 }
@@ -122,8 +146,9 @@ public class AuthPresenterImplementation implements AuthPresenter {
         });
     }
 
+
     /**
-     * This method is called when the {@link UserAccess} tree in the repository is null
+     * This method is called when the {@link UserPermissions} tree in the repository is null
      * Basically the user has no special access assigned.
      */
     private void setTheUserAsAParticipant() {
@@ -142,6 +167,23 @@ public class AuthPresenterImplementation implements AuthPresenter {
                     viewInstance.onProcessEnded();
                     viewInstance.onUnexpectedError();
                 }
+            }
+        });
+    }
+
+    private void setTheUsersPermissionsAsDefault() {
+        repositoryInstance.setUserPermissionsToDefault(new Repository.DataLoadedCallback() {
+            @Override
+            public void onDataLoaded(DataSnapshot snapshot) {
+                loadTheUserAccessDataFromTheRepositoryToSingleton();
+            }
+
+            @Override
+            public void onDataLoadFailed() {
+                if (viewInstance == null)
+                    return;
+                viewInstance.onUnexpectedError();
+                viewInstance.onProcessEnded();
             }
         });
     }

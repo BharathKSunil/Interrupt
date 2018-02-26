@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/cb_edit_event_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_edit_event_schedule"
+        android:textColor="@color/white" />
+
+    <CheckBox
+        android:id="@+id/cb_edit_event_venue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_edit_event_venue"
+        android:textColor="@color/white" />
+
+    <CheckBox
+        android:id="@+id/cb_add_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_add_event_categories"
+        android:textColor="@color/white" />
+
+    <CheckBox
+        android:id="@+id/cb_add_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_add_events"
+        android:textColor="@color/white" />
+
+    <CheckBox
+        android:id="@+id/cb_add_coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_add_event_coordinators"
+        android:textColor="@color/white" />
+
+</LinearLayout>

@@ -2,22 +2,16 @@ package com.bharathksunil.interrupt.auth.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.Map;
-
 /**
- * This represents the structure of the database of UserAccess tree.
+ * This represents the structure of the database of UserPermissions tree.
  * This is used for access management for the system
  *
  * @author Bharath Kumar S
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 @IgnoreExtraProperties
-public class UserAccess {
-    /**
-     * The type of the user, can be:
-     * ADMINISTRATOR, PARTICIPANT, CR, COORDINATOR, CORE_TEAM,
-     */
-    private Map<String, String> AccessTypes;
+public class UserPermissions {
+
     /**
      * Is the user allowed to use the app
      */
@@ -42,23 +36,7 @@ public class UserAccess {
     private Boolean canDownloadPaymentsInfo;
 
 
-    public UserAccess() {
-    }
-
-    public Boolean getCanViewFeedbackData() {
-        return canViewFeedbackData;
-    }
-
-    public void setCanViewFeedbackData(Boolean canViewFeedbackData) {
-        this.canViewFeedbackData = canViewFeedbackData;
-    }
-
-    public Map<String, String> getAccessTypes() {
-        return AccessTypes;
-    }
-
-    public void setAccessTypes(Map<String, String> accessTypes) {
-        AccessTypes = accessTypes;
+    public UserPermissions() {
     }
 
     public boolean isEnabled() {
@@ -67,6 +45,14 @@ public class UserAccess {
 
     public void setEnabled(boolean enabled) {
         Enabled = enabled;
+    }
+
+    public Boolean getCanViewFeedbackData() {
+        return canViewFeedbackData;
+    }
+
+    public void setCanViewFeedbackData(Boolean canViewFeedbackData) {
+        this.canViewFeedbackData = canViewFeedbackData;
     }
 
     public Boolean getCanViewCollection() {

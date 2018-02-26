@@ -83,10 +83,19 @@ public interface AuthPresenter {
          */
         void getUserAccessData(DataLoadedCallback dataLoadedCallback);
 
+        void getUserPermissionsData(DataLoadedCallback dataLoadedCallback);
+
         /**
          * This method is used to set the user access for a participant user
          */
         void setUserAsParticipant(DataLoadedCallback dataLoadedCallback);
+
+        /**
+         * This method is used to set the user permissions to the default.
+         *
+         * @param dataLoadedCallback callback to presenter
+         */
+        void setUserPermissionsToDefault(DataLoadedCallback dataLoadedCallback);
     }
 
     /**

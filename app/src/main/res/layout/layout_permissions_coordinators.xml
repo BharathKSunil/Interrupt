@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/cb_view_event_collection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_view_event_collections"
+        android:textColor="@color/white" />
+
+    <CheckBox
+        android:id="@+id/cb_edit_event_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_edit_event_info"
+        android:textColor="@color/white" />
+
+    <CheckBox
+        android:id="@+id/cb_view_eventRegistrations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_view_event_registrations"
+        android:textColor="@color/white" />
+
+    <CheckBox
+        android:id="@+id/cb_download_eventData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_download_events_registrations"
+        android:textColor="@color/white" />
+
+    <CheckBox
+        android:id="@+id/cb_perform_registrations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permission_perform_registrations"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>

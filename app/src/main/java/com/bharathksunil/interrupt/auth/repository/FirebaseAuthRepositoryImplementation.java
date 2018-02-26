@@ -3,8 +3,11 @@ package com.bharathksunil.interrupt.auth.repository;
 import android.support.annotation.NonNull;
 
 import com.bharathksunil.interrupt.FirebaseConstants;
-import com.bharathksunil.interrupt.auth.model.UserAccess;
+import com.bharathksunil.interrupt.auth.model.AccessType;
+import com.bharathksunil.interrupt.auth.model.UserManager;
+import com.bharathksunil.interrupt.auth.model.UserPermissions;
 import com.bharathksunil.interrupt.auth.model.UserType;
+import com.bharathksunil.interrupt.auth.presenter.AuthPresenter;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.TextUtils;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -16,9 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import com.bharathksunil.interrupt.auth.model.UserManager;
-import com.bharathksunil.interrupt.auth.presenter.AuthPresenter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -77,12 +77,11 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
      */
     @Override
     public void getUserAccessData(final DataLoadedCallback dataLoadedCallback) {
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             //get a reference to the users tree
             DatabaseReference userAccessReference = FirebaseDatabase.getInstance()
-                    .getReference(FirebaseConstants.USERS_ACCESS_TREE)
+                    .getReference(FirebaseConstants.USER_ACCESS_TREE)
                     .child(TextUtils.getEmailAsFirebaseKey(UserManager.getInstance().getUsersEmailID()));
             //read the value
             userAccessReference.keepSynced(true);
@@ -104,6 +103,35 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
         }
     }
 
+    @Override
+    public void getUserPermissionsData(final DataLoadedCallback dataLoadedCallback) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            //get a reference to the users tree
+            DatabaseReference userAccessReference = FirebaseDatabase.getInstance()
+                    .getReference(FirebaseConstants.USERS_PERMISSIONS_TREE)
+                    .child(TextUtils.getEmailAsFirebaseKey(UserManager.getInstance().getUsersEmailID()));
+            //read the value
+            userAccessReference.keepSynced(true);
+            userAccessReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    dataLoadedCallback.onDataLoaded(dataSnapshot);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    dataLoadedCallback.onDataLoadFailed();
+                    Debug.e(FirebaseAuthRepositoryImplementation.class.getName() + databaseError.getMessage());
+                }
+            });
+        } else {
+            Debug.e(FirebaseAuthRepositoryImplementation.this.getClass().getName() + " getUserPermissionData(): user isn't signed in");
+            dataLoadedCallback.onDataLoadFailed();
+        }
+    }
+
     /**
      * This method is used to set the user access for a participant user
      *
@@ -111,20 +139,20 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
      */
     @Override
     public void setUserAsParticipant(final DataLoadedCallback dataLoadedCallback) {
-        UserAccess userAccess = new UserAccess();
-        userAccess.setEnabled(true);
+        final AccessType accessType = new AccessType();
         Map<String, String> accessMap = new HashMap<>();
-        accessMap.put("0", UserType.PARTICIPANT.name());
-        userAccess.setAccessTypes(accessMap);
+        accessMap.put("primary", UserType.PARTICIPANT.name());
+        accessType.setAccessTypes(accessMap);
 
         //noinspection ConstantConditions
         DatabaseReference userAccessReference = FirebaseDatabase.getInstance()
-                .getReference(FirebaseConstants.USERS_ACCESS_TREE)
+                .getReference(FirebaseConstants.USER_ACCESS_TREE)
                 .child(TextUtils.getEmailAsFirebaseKey(UserManager.getInstance().getUsersEmailID()));
-        userAccessReference.setValue(userAccess)
+        userAccessReference.setValue(accessMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        UserManager.getInstance().loadUserAccessFromRepositoryInstance(accessType);
                         dataLoadedCallback.onDataLoaded(null);
                     }
                 })
@@ -132,6 +160,35 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         dataLoadedCallback.onDataLoadFailed();
+                        Debug.e(FirebaseAuthRepositoryImplementation.class.getName() + " setUserAsParticipant(): "
+                                + e.getMessage());
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    @Override
+    public void setUserPermissionsToDefault(final DataLoadedCallback dataLoadedCallback) {
+        final UserPermissions permissions = new UserPermissions();
+        permissions.setEnabled(true);
+        //noinspection ConstantConditions
+        DatabaseReference userAccessReference = FirebaseDatabase.getInstance()
+                .getReference(FirebaseConstants.USERS_PERMISSIONS_TREE)
+                .child(TextUtils.getEmailAsFirebaseKey(UserManager.getInstance().getUsersEmailID()));
+        userAccessReference.setValue(permissions)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        UserManager.getInstance().loadUserPermissionsFromRepositoryInstance(permissions);
+                        dataLoadedCallback.onDataLoaded(null);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dataLoadedCallback.onDataLoadFailed();
+                        Debug.e(FirebaseAuthRepositoryImplementation.class.getName() + " setUserPermissionsToDefault():" + e.getMessage());
+                        e.printStackTrace();
                     }
                 });
     }

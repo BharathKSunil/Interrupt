@@ -9,6 +9,7 @@ import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.UnderConstructionFragment;
 import com.bharathksunil.interrupt.admin.ui.fragments.AdminFunctionsFragment;
 import com.bharathksunil.interrupt.admin.ui.fragments.FeedbackViewerFragment;
+import com.bharathksunil.interrupt.admin.ui.fragments.NewOrganiserFragment;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 
 import butterknife.ButterKnife;
@@ -61,7 +62,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements AdminFu
     }
 
     public void loadNewOrganiserFragment() {
-
+        loadFragment(new NewOrganiserFragment(), NewOrganiserFragment.class.getName());
     }
 
     private void loadFragment(Fragment fragment, String name) {

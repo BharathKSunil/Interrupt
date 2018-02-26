@@ -8,8 +8,9 @@ public interface FirebaseConstants {
     /**
      * The Primary Branches of the NoSql database
      */
-    String USERS_TREE = "Users", USERS_ACCESS_TREE = "UserAccess", ADMINISTRATORS_TREE = "Administrators",
-            EVENT_REGISTRATIONS_TREE = "EventRegistrations", FEEDBACK_TREE="Feedback", SCHEDULES_TREE="Schedules";
+    String USERS_TREE = "Users", USERS_PERMISSIONS_TREE = "UserPermissions", ADMINISTRATORS_TREE = "Administrators",
+    USER_ACCESS_TREE="UserAccess", EVENT_REGISTRATIONS_TREE = "EventRegistrations", FEEDBACK_TREE="Feedback",
+            SCHEDULES_TREE="Schedules";
     /**
      * The Users Info Trees
      */
@@ -18,5 +19,5 @@ public interface FirebaseConstants {
 
 
     String COLLECTIONS_CATEGORIES = "Categories", COLLECTIONS_EVENTS="Events", COLLECTION_REGISTRATIONS="Registrations";
-    String PROFILE_STORE = "/Profiles/";
+    String PROFILE_STORE = "/Profiles/", USERS_STORE="/Users/";
 }

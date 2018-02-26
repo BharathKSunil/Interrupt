@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * This is a singleton which will help store the user information to be available throughout the app.
- * It also helps in access management for various users
+ * It also helps in permissions management for various users
  *
  * @author Bharath Kumar S
  */
@@ -14,12 +14,13 @@ import java.util.Map;
 public class UserManager {
 
     private boolean signedIn;
-    private UserAccess access;
+    private UserPermissions permissions;
+    private AccessType accessType;
     private User user;
     private static UserManager instance = new UserManager();
 
     private UserManager() {
-        access = new UserAccess();
+        permissions = new UserPermissions();
     }
 
     public static UserManager getInstance() {
@@ -60,13 +61,24 @@ public class UserManager {
     }
 
     /**
-     * This method loads the user Accesses instance to the singleton from the UserAccess object.
+     * This method loads the user Permissions instance to the singleton from the UserPermissions object.
      *
-     * @param userAccess passed by the repository
+     * @param userPermissions passed by the repository
      */
-    public void loadUserAccessFromRepositoryInstance(UserAccess userAccess) {
-        checkIntegrity(userAccess);
-        instance.access = userAccess;
+    public void loadUserPermissionsFromRepositoryInstance(UserPermissions userPermissions) {
+        checkIntegrity(userPermissions);
+        instance.permissions = userPermissions;
+
+    }
+
+    /**
+     * This method loads the user Accesses instance to the singleton from the AccessType object.
+     *
+     * @param accessType passed by the repository
+     */
+    public void loadUserAccessFromRepositoryInstance(AccessType accessType) {
+        checkIntegrity(accessType);
+        instance.accessType = accessType;
 
     }
 
@@ -77,7 +89,7 @@ public class UserManager {
 
     public String getUsersDesignation() {
         StringBuilder designation = new StringBuilder("| ");
-        Map<String, String> access = instance.access.getAccessTypes();
+        Map<String, String> access = instance.accessType.getAccessTypes();
         //as The user may be coordinating more than one event
         boolean flagCoordinatorDesignationAlreadyAdded = false;
         for (String string : access.values()) {
@@ -128,12 +140,12 @@ public class UserManager {
 
 
     /**
-     * Check if the admin has restricted access to the user to use th app
+     * Check if the admin has restricted permissions to the user to use th app
      *
-     * @return true, when the user has the access
+     * @return true, when the user has the permissions
      */
     public boolean isUserAuthorisedToUseApp() {
-        return instance.access.isEnabled();
+        return instance.permissions.isEnabled();
     }
 
     /**
@@ -142,8 +154,8 @@ public class UserManager {
      * @return true, if the user is a class representative
      */
     public boolean isUserAClassRepresentative() {
-        checkIntegrity(instance.access.getAccessTypes()); //all users must have an access type
-        for (String type : instance.access.getAccessTypes().values()) {
+        checkIntegrity(instance.accessType.getAccessTypes()); //all users must have an permissions type
+        for (String type : instance.accessType.getAccessTypes().values()) {
             if (TextUtils.areEqual(type, UserType.CR.name()))
                 return true;
         }
@@ -156,9 +168,9 @@ public class UserManager {
      * @return true, if user is a event coordinator
      */
     public boolean isUserAEventsCoordinator() {
-        checkIntegrity(instance.access.getAccessTypes()); //all users must have an access type
+        checkIntegrity(instance.accessType.getAccessTypes()); //all users must have an permissions type
 
-        for (String type : instance.access.getAccessTypes().values()) {
+        for (String type : instance.accessType.getAccessTypes().values()) {
             if (TextUtils.areEqual(type, UserType.COORDINATOR.name()))
                 return true;
         }
@@ -171,9 +183,9 @@ public class UserManager {
      * @return true, if the user is an organiser
      */
     public boolean isUserAnOrganiser() {
-        checkIntegrity(instance.access.getAccessTypes()); //all users must have an access type
+        checkIntegrity(instance.accessType.getAccessTypes()); //all users must have an permissions type
 
-        for (String type : instance.access.getAccessTypes().values()) {
+        for (String type : instance.accessType.getAccessTypes().values()) {
             if (TextUtils.areEqual(type, UserType.CORE_TEAM.name())
                     || TextUtils.areEqual(type, UserType.CULTURAL_TEAM.name())
                     || TextUtils.areEqual(type, UserType.OFF_STAGE_TEAM.name())
@@ -193,9 +205,9 @@ public class UserManager {
      * @return true, if the user is an Administrator
      */
     public boolean isUserAnAdministrator() {
-        checkIntegrity(instance.access.getAccessTypes()); //all users must have an access type
+        checkIntegrity(instance.accessType.getAccessTypes()); //all users must have an permissions type
 
-        for (String type : instance.access.getAccessTypes().values()) {
+        for (String type : instance.accessType.getAccessTypes().values()) {
             if (TextUtils.areEqual(type, UserType.ADMINISTRATOR.name()))
                 return true;
         }
@@ -208,8 +220,8 @@ public class UserManager {
      * @return true, if the user can view the data
      */
     public boolean canUserViewAllUserData() {
-        return isUserAnAdministrator() && instance.access.getCanViewUserData() != null
-                && instance.access.getCanViewUserData();
+        return isUserAnAdministrator() && instance.permissions.getCanViewUserData() != null
+                && instance.permissions.getCanViewUserData();
     }
 
     /**
@@ -218,8 +230,8 @@ public class UserManager {
      * @return true, if the user can view the data
      */
     public boolean canUserModifyAllOrganisersData() {
-        return isUserAnAdministrator() && instance.access.getCanModifyOrganiserData() != null
-                && instance.access.getCanModifyOrganiserData();
+        return isUserAnAdministrator() && instance.permissions.getCanModifyOrganiserData() != null
+                && instance.permissions.getCanModifyOrganiserData();
     }
 
     /**
@@ -228,8 +240,8 @@ public class UserManager {
      * @return true, if the user can view the data
      */
     public boolean canUserViewAllFeedback() {
-        return isUserAnAdministrator() && instance.access.getCanViewFeedbackData() != null
-                && instance.access.getCanViewFeedbackData();
+        return isUserAnAdministrator() && instance.permissions.getCanViewFeedbackData() != null
+                && instance.permissions.getCanViewFeedbackData();
     }
 
     /**
