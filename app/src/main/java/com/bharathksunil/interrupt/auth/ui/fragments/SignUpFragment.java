@@ -3,6 +3,7 @@ package com.bharathksunil.interrupt.auth.ui.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -21,8 +22,6 @@ import com.bharathksunil.interrupt.auth.presenter.SignUpPresenter;
 import com.bharathksunil.interrupt.auth.presenter.SignUpPresenterImplementation;
 import com.bharathksunil.interrupt.auth.repository.FirebaseSignUpRepositoryImplementation;
 import com.bharathksunil.interrupt.util.CircleTransform;
-import com.bharathksunil.interrupt.util.Debug;
-import com.bharathksunil.interrupt.util.ImageCompression;
 import com.bharathksunil.interrupt.util.TextDrawable;
 import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
@@ -30,6 +29,7 @@ import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindColor;
@@ -39,6 +39,7 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import id.zelory.compressor.Compressor;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -185,13 +186,18 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
                         && data.getData() != null
                 ) {
             //Compress the image and set the image
-            String compressedFilePath;
-            File file = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
-            Uri mediaPath = Uri.fromFile(file);
-            Debug.i("Media Path : " + mediaPath + " Raw Path: " + data.getData());
-            compressedFilePath = new ImageCompression().compressImage(file.getAbsolutePath());
-            imagePath = Uri.fromFile(new File(compressedFilePath));
-            Picasso.with(getActivity()).load(imagePath).transform(new CircleTransform()).into(iv_profile);
+            try {
+                File compressedFile;
+                File file = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
+                compressedFile = new Compressor(getContext())
+                        .setQuality(5)
+                        .setCompressFormat(Bitmap.CompressFormat.JPEG)
+                        .compressToFile(file);
+                imagePath = Uri.fromFile(compressedFile);
+                Picasso.with(getActivity()).load(imagePath).transform(new CircleTransform()).into(iv_profile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

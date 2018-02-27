@@ -1,5 +1,7 @@
 package com.bharathksunil.interrupt.events.model;
 
+import android.support.annotation.Keep;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
@@ -7,6 +9,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
  *
  * @author Bharath on 24-02-2018.
  */
+@Keep
 @IgnoreExtraProperties
 public class Schedules {
     private String EventName, Time, Venue;

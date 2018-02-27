@@ -1,5 +1,7 @@
 package com.bharathksunil.interrupt.auth.model;
 
+import android.support.annotation.Keep;
+
 /**
  * This app has 5 types of users, these types are mentioned here
  * Some users can have a combination of more than one type. e.g,
@@ -8,7 +10,7 @@ package com.bharathksunil.interrupt.auth.model;
  *
  * @author Bharath Kumar S
  */
-
+@Keep
 public enum UserType {
     /**
      * The basic user is the participant who has:

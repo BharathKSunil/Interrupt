@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/row_user_image"
-            android:textAppearance="@style/Dashboard.TextAppearance.Medium"
+            android:textAppearance="@style/Dashboard.TextAppearance.Small"
             android:textColor="@color/primary_text"
             tools:text="Bharath Kumar S" />
 

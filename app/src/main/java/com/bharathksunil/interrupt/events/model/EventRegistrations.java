@@ -1,5 +1,7 @@
 package com.bharathksunil.interrupt.events.model;
 
+import android.support.annotation.Keep;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
  *
  * @author Bharath on 18-02-2018.
  */
+@Keep
 @IgnoreExtraProperties
 public class EventRegistrations {
     /*

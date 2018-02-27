@@ -12,17 +12,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bharathksunil.interrupt.R;
+import com.bharathksunil.interrupt.events.model.Schedules;
 import com.bharathksunil.interrupt.events.presenter.SchedulesPresenter;
 import com.bharathksunil.interrupt.events.presenter.SchedulesPresenterImplementation;
-import com.bharathksunil.interrupt.events.model.Schedules;
 import com.bharathksunil.interrupt.events.repository.FirebaseSchedulesRepository;
 import com.bharathksunil.interrupt.util.DateUtil;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.github.vipulasri.timelineview.TimelineView;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindString;
@@ -119,12 +117,10 @@ public class SchedulesFragment extends Fragment implements SchedulesPresenter.Vi
 
         private List<Schedules> schedules;
         private LayoutInflater inflater;
-        private Date now;
 
         SchedulesTimelineAdapter(Context context, List<Schedules> schedules) {
             this.inflater = LayoutInflater.from(context);
             this.schedules = schedules;
-            now = Calendar.getInstance().getTime();
         }
 
         @Override

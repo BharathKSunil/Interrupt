@@ -86,6 +86,7 @@ public class OrganiserInfoRecyclerAdapter extends
 
         void loadUsersImageFromUrl(String imageUrl) {
             Picasso.with(context).load(imageUrl).error(R.drawable.ic_profile)
+
                     .transform(new CircleTransform())
                     .placeholder(R.drawable.ic_profile).into(userImage);
         }

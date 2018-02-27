@@ -1,5 +1,7 @@
 package com.bharathksunil.interrupt.admin.model;
 
+import android.support.annotation.Keep;
+
 import com.bharathksunil.interrupt.auth.model.User;
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -10,6 +12,7 @@ import java.util.List;
  * class.
  * @author Bharath on 19-02-2018.
  */
+@Keep
 @IgnoreExtraProperties
 public class Users {
     private String Name, Designation, PhoneNo, Email, ProfileUrl;

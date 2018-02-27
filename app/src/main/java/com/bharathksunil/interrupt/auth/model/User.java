@@ -1,5 +1,7 @@
 package com.bharathksunil.interrupt.auth.model;
 
+import android.support.annotation.Keep;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
@@ -7,6 +9,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
  *
  * @author Bharath Kumar S
  */
+@Keep
 @SuppressWarnings("unused")
 @IgnoreExtraProperties
 public class User {

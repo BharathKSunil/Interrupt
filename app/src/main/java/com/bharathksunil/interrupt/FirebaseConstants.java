@@ -1,9 +1,11 @@
 package com.bharathksunil.interrupt;
 
+import android.support.annotation.Keep;
+
 /**
  * This stores all the firebase related constants
  */
-
+@Keep
 public interface FirebaseConstants {
     /**
      * The Primary Branches of the NoSql database

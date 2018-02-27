@@ -4,6 +4,7 @@ package com.bharathksunil.interrupt.admin.ui.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,15 +27,17 @@ import com.bharathksunil.interrupt.admin.presenter.NewOrganiserPresenter;
 import com.bharathksunil.interrupt.admin.presenter.NewOrganiserPresenterImplementation;
 import com.bharathksunil.interrupt.admin.repository.FirebaseNewOrganiserRepository;
 import com.bharathksunil.interrupt.auth.model.UserPermissions;
+import com.bharathksunil.interrupt.auth.model.UserType;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.util.CircleTransform;
-import com.bharathksunil.interrupt.util.ImageCompression;
+import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindString;
@@ -42,6 +46,7 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import id.zelory.compressor.Compressor;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -57,6 +62,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
     private NewOrganiserPresenter presenter;
     private Uri profilePath;
     private UserPermissions permissions;
+    private File profileFile;
 
     public NewOrganiserFragment() {
         // Required empty public constructor
@@ -83,6 +89,8 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
     ImageView iv_profile;
     @BindView(R.id.tv_heading)
     TextView heading;
+    @BindView(R.id.scroll)
+    ScrollView scrollView;
     @BindViews({R.id.cb_edit_event_schedule, R.id.cb_edit_event_venue, R.id.cb_add_category,
             R.id.cb_add_event, R.id.cb_add_coordinator, R.id.cb_view_event_collection, R.id.cb_edit_event_info,
             R.id.cb_view_eventRegistrations, R.id.cb_download_eventData, R.id.cb_perform_registrations,
@@ -229,10 +237,8 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
                         && data.getData() != null
                 ) {
             //Compress the image and set the image
-            String compressedFilePath;
-            File file = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
-            compressedFilePath = new ImageCompression().compressImage(file.getAbsolutePath());
-            profilePath = Uri.fromFile(new File(compressedFilePath));
+            profileFile = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
+            profilePath = Uri.fromFile(profileFile);
             Picasso.with(getActivity()).load(profilePath).transform(new CircleTransform()).into(iv_profile);
         }
     }
@@ -240,6 +246,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
     @Override
     public void onProcessStarted() {
         loadingIndicatorView.smoothToShow();
+        ViewUtils.focusOnView(loadingIndicatorView, scrollView);
         ViewUtils.setDisabled(
                 textInputLayoutList.get(0),
                 textInputLayoutList.get(1),
@@ -332,6 +339,23 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
 
     @Override
     public Uri getProfileImageUri() {
+        if (profileFile != null) {
+            try {
+                File compressedFile;
+                Debug.i("Before Compressing: " + profileFile.length());
+                int quality = 5;
+                if (getUserDesignation().equals(UserType.CORE_TEAM.name()))
+                    quality = 15;
+                compressedFile = new Compressor(getContext())
+                        .setQuality(quality)
+                        .setCompressFormat(Bitmap.CompressFormat.JPEG)
+                        .compressToFile(profileFile);
+                Debug.i("After Compressing, Quality: " + quality + ": " + compressedFile.length());
+                profilePath = Uri.fromFile(compressedFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return profilePath;
     }
 
@@ -349,6 +373,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
 
     @Override
     public void setNameFieldError(FormErrorType type) {
+        ViewUtils.focusOnView(textInputLayoutList.get(NAME), scrollView);
         switch (type) {
             case EMPTY:
                 textInputLayoutList.get(NAME).setErrorEnabled(true);
@@ -360,6 +385,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
 
     @Override
     public void setEmailIDFieldError(FormErrorType type) {
+        ViewUtils.focusOnView(textInputLayoutList.get(EMAIL), scrollView);
         switch (type) {
             case INVALID:
                 textInputLayoutList.get(EMAIL).setError(err_invalid_field);
@@ -373,6 +399,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
 
     @Override
     public void setPhoneNoFieldError(FormErrorType type) {
+        ViewUtils.focusOnView(textInputLayoutList.get(PHONE), scrollView);
         switch (type) {
             case INVALID:
                 textInputLayoutList.get(PHONE).setError(err_invalid_field);
@@ -386,6 +413,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
 
     @Override
     public void setRolesFieldError(FormErrorType type) {
+        ViewUtils.focusOnView(textInputLayoutList.get(ROLES), scrollView);
         switch (type) {
             case INVALID:
                 textInputLayoutList.get(ROLES).setError(err_invalid_field);

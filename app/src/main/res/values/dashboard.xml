@@ -40,9 +40,9 @@
     <string name="tv_interrupt_organisers">Organisers</string>
     <string name="tv_interrupt_schedules">Schedules</string>
     <string name="tv_core_team_info_heading">Core Team</string>
-    <string name="tv_offstage_info_heading">Off Stage Team</string>
-    <string name="tv_events_info_heading">Event Management Team</string>
-    <string name="tv_design_info_heading">Design Team</string>
+    <string name="tv_offstage_info_heading">Off Stage &amp; Volunteer Team</string>
+    <string name="tv_events_info_heading">Events &amp; Cultural Team</string>
+    <string name="tv_design_info_heading">Tech &amp; Design Team</string>
     <string name="tv_feedback_or_bug_report">Feedback or Bug Report</string>
     <string name="hint_feedback">Give us your Feedback</string>
 

@@ -1,5 +1,7 @@
 package com.bharathksunil.interrupt.events.model;
 
+import android.support.annotation.Keep;
+
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 /**
@@ -7,6 +9,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
  *
  * @author Bharath on 18-02-2018.
  */
+@Keep
 @IgnoreExtraProperties
 public class Categories {
     private String id;
