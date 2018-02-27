@@ -16,24 +16,20 @@ public class UserPermissions {
      * Is the user allowed to use the app
      */
     private boolean Enabled;
-    /**
-     * All configurations for the user to have access to the Collections
-     */
-    private Boolean canViewCollection, canEditCollections, canViewCollectionsHistory;
+
     private Boolean canRegisterParticipant, canEditEventBanner;
     /**
      * All configurations for event managements
      */
     private Boolean canEditEventsInfo, canViewEventCollections,
             canViewRegistrations, canDownloadEventData, canAddCategories, canAddEvents,
-            canChangeSchedule, canChangeVenue;
+            canChangeSchedule, canChangeVenue, canModifyCoordinatorData;
     /**
-     * All configurations for access Management
+     * All configurations for Admin
      */
-    protected Boolean canModifyCoordinatorData, canModifyOrganiserData, canAddClassRepresentatives,
-            canViewUserData, canViewFeedbackData;
+    protected Boolean canModifyOrganiserData, canViewUserData, canViewFeedbackData;
 
-    private Boolean canDownloadPaymentsInfo;
+    private Boolean canDownloadPaymentsInfo, canViewPaymentsInfo;
 
 
     public UserPermissions() {
@@ -47,36 +43,20 @@ public class UserPermissions {
         Enabled = enabled;
     }
 
+    public Boolean getCanViewPaymentsInfo() {
+        return canViewPaymentsInfo;
+    }
+
+    public void setCanViewPaymentsInfo(Boolean canViewPaymentsInfo) {
+        this.canViewPaymentsInfo = canViewPaymentsInfo;
+    }
+
     public Boolean getCanViewFeedbackData() {
         return canViewFeedbackData;
     }
 
     public void setCanViewFeedbackData(Boolean canViewFeedbackData) {
         this.canViewFeedbackData = canViewFeedbackData;
-    }
-
-    public Boolean getCanViewCollection() {
-        return canViewCollection;
-    }
-
-    public void setCanViewCollection(Boolean canViewCollection) {
-        this.canViewCollection = canViewCollection;
-    }
-
-    public Boolean getCanEditCollections() {
-        return canEditCollections;
-    }
-
-    public void setCanEditCollections(Boolean canEditCollections) {
-        this.canEditCollections = canEditCollections;
-    }
-
-    public Boolean getCanViewCollectionsHistory() {
-        return canViewCollectionsHistory;
-    }
-
-    public void setCanViewCollectionsHistory(Boolean canViewCollectionsHistory) {
-        this.canViewCollectionsHistory = canViewCollectionsHistory;
     }
 
     public Boolean getCanRegisterParticipant() {
@@ -173,14 +153,6 @@ public class UserPermissions {
 
     public void setCanModifyOrganiserData(Boolean canModifyOrganiserData) {
         this.canModifyOrganiserData = canModifyOrganiserData;
-    }
-
-    public Boolean getCanAddClassRepresentatives() {
-        return canAddClassRepresentatives;
-    }
-
-    public void setCanAddClassRepresentatives(Boolean canAddClassRepresentatives) {
-        this.canAddClassRepresentatives = canAddClassRepresentatives;
     }
 
     public Boolean getCanViewUserData() {

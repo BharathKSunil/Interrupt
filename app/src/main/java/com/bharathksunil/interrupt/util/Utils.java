@@ -41,7 +41,7 @@ public class Utils {
      *
      * @return true if the app is connected to the internet
      */
-    public static boolean isConnected(@NonNull Activity context) {
+    public static boolean isConnected(@NonNull Context context) {
         ConnectivityManager cManager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo nInfo = cManager != null ? cManager.getActiveNetworkInfo() : null;
         //IF THE NETWORK IS AVAILABLE:

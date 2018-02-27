@@ -19,6 +19,7 @@
             android:layout_height="60dp"
             android:layout_centerVertical="true"
             android:contentDescription="@string/cd_profile_image"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/ic_profile" />
 
         <TextView

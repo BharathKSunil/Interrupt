@@ -116,6 +116,8 @@ public interface DashboardActivityPresenter {
      */
     void onAdministratorTabPressed();
 
+    void onAboutTabPressed();
+
     /**
      * The Settings Button was pressed by the user
      */

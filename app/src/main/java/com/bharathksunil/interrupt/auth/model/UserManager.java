@@ -1,5 +1,6 @@
 package com.bharathksunil.interrupt.auth.model;
 
+import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.TextUtils;
 
 import java.util.Map;
@@ -114,7 +115,7 @@ public class UserManager {
     }
 
     public String getUsersCollege() {
-        //todo: FUTURE CHANGES: Change this to instance.user.getCollegeName()
+        //: FUTURE CHANGES: Change this to instance.user.getCollegeName()
         /*
         Interrupt 7.0 was a interDepartment Fest, So no college name was accepted
         If it is inter-college use a college field too
@@ -168,6 +169,7 @@ public class UserManager {
      * @return true, if user is a event coordinator
      */
     public boolean isUserAEventsCoordinator() {
+        Debug.i("Access Type: "+instance.accessType.getAccessTypes());
         checkIntegrity(instance.accessType.getAccessTypes()); //all users must have an permissions type
 
         for (String type : instance.accessType.getAccessTypes().values()) {

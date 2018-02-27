@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="tv_heading_admin_dash">Administrators Dashboard</string>
+    <string name="hint_designation">Designation</string>
+    <string name="tv_permissions">Permissions</string>
+    <string name="btn_add">Add</string>
+    <string name="hint_roles">Roles(separated by , )</string>
 
+    <string name="cb_permission_download_events_registrations">Can Download Events Registrations</string>
+    <string name="cb_permission_perform_registrations">Can Perform Registrations</string>
+    <string name="cb_permission_view_event_registrations">Can View Event Registrations</string>
+    <string name="cb_permission_edit_event_info">Can Edit Event Info</string>
+    <string name="cb_permission_view_event_collections">Can View Event Collections</string>
+    <string name="cb_permission_edit_event_schedule">Can Edit Event Schedule</string>
+    <string name="cb_permission_edit_event_venue">Can Edit Event Venue</string>
+    <string name="cb_permission_add_event_categories">Can Add Event Categories</string>
+    <string name="cb_permission_add_events">Can Add Events</string>
+    <string name="cb_permission_add_event_coordinators">Can Add Event Coordinators</string>
+    <string name="cb_permissions_edit_event_graphics">Can Edit Event Graphics</string>
+    <string name="cb_permissions_view_all_events_payment_details">Can View All Events Payment Details</string>
 
     <color name="admin_bg">#2c3e50</color>
     <dimen name="admin_card_image">60dp</dimen>

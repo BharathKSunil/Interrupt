@@ -141,7 +141,7 @@ public class MainDashboardActivity extends AppCompatActivity implements
 
     @OnClick(R.id.tab_about)
     public void onAboutTabClicked() {
-        loadAboutAppPage();
+        presenter.onAboutTabPressed();
     }
 
     @OnClick(R.id.fab_settings)

@@ -159,6 +159,15 @@ public class DashboardActivityPresenterImplementation implements DashboardActivi
         viewInstance.loadAdministratorsInfoPage();
     }
 
+    @Override
+    public void onAboutTabPressed() {
+        if (viewInstance != null) {
+            activeTabTag = TAB.ABOUT;
+            viewInstance.loadAboutAppPage();
+            viewInstance.setSettingsButtonEnabled(false);
+        }
+    }
+
     /**
      * The Settings Button was pressed by the user
      */

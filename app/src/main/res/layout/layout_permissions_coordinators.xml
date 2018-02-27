@@ -39,5 +39,12 @@
         android:text="@string/cb_permission_perform_registrations"
         android:textColor="@color/white" />
 
+    <CheckBox
+        android:id="@+id/cb_edit_event_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_permissions_edit_event_graphics"
+        android:textColor="@color/white" />
+
 
 </LinearLayout>

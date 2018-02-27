@@ -9,7 +9,6 @@ import com.bharathksunil.interrupt.auth.model.UserType;
 import com.bharathksunil.interrupt.util.TextUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.bharathksunil.interrupt.auth.presenter.FormErrorType.EMPTY;
@@ -44,6 +43,7 @@ public class NewOrganiserPresenterImplementation implements NewOrganiserPresente
             designations.add(UserType.EVENT_TEAM.name());
             designations.add(UserType.OFF_STAGE_TEAM.name());
             designations.add(UserType.CULTURAL_TEAM.name());
+            designations.add(UserType.VOLUNTEER_MANAGEMENT.name());
             viewInstance.loadDesignations(designations);
         }
     }
@@ -58,24 +58,26 @@ public class NewOrganiserPresenterImplementation implements NewOrganiserPresente
                 uploadProfileImage();
             else
                 storeDataOnObjects();
-
+        else
+            viewInstance.onProcessEnded();
     }
 
     private void uploadProfileImage() {
         if (viewInstance != null)
-            repositoryInstance.uploadUserImage(viewInstance.getProfileImageUri(), new Repository.OnProfileUploadedCallback() {
-                @Override
-                public void onProfileUploadedSuccessfully(String url) {
-                    profileUrl = url;
-                    storeDataOnObjects();
-                }
+            repositoryInstance.uploadUserImage(viewInstance.getOrganiserEmail(),
+                    viewInstance.getProfileImageUri(), new Repository.OnProfileUploadedCallback() {
+                        @Override
+                        public void onProfileUploadedSuccessfully(String url) {
+                            profileUrl = url;
+                            storeDataOnObjects();
+                        }
 
-                @Override
-                public void onProfileUploadFailed() {
-                    profileUrl = null;
-                    storeDataOnObjects();
-                }
-            });
+                        @Override
+                        public void onProfileUploadFailed() {
+                            profileUrl = null;
+                            storeDataOnObjects();
+                        }
+                    });
     }
 
     private void storeDataOnObjects() {
@@ -83,7 +85,9 @@ public class NewOrganiserPresenterImplementation implements NewOrganiserPresente
             return;
         UserPermissions access = viewInstance.getPermissionsSelected();
         List<String> roles = new ArrayList<>();
-        roles.addAll(Arrays.asList(viewInstance.getOrganiserRoles().split(",")));
+        for (String role : viewInstance.getOrganiserRoles().split(",")) {
+            roles.add(role.trim());
+        }
         Users user = new Users(
                 viewInstance.getOrganiserName(),
                 viewInstance.getUserDesignation(),
@@ -134,6 +138,7 @@ public class NewOrganiserPresenterImplementation implements NewOrganiserPresente
             viewInstance.setRolesFieldError(EMPTY);
             return false;
         }
+
         return true;
     }
 

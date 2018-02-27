@@ -88,6 +88,7 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
             userAccessReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    Debug.i("UserAccess: "+dataSnapshot);
                     dataLoadedCallback.onDataLoaded(dataSnapshot);
                 }
 
@@ -148,7 +149,7 @@ public class FirebaseAuthRepositoryImplementation implements AuthPresenter.Repos
         DatabaseReference userAccessReference = FirebaseDatabase.getInstance()
                 .getReference(FirebaseConstants.USER_ACCESS_TREE)
                 .child(TextUtils.getEmailAsFirebaseKey(UserManager.getInstance().getUsersEmailID()));
-        userAccessReference.setValue(accessMap)
+        userAccessReference.setValue(accessType)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

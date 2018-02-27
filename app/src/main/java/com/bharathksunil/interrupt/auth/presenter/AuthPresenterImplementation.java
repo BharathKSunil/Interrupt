@@ -14,7 +14,7 @@ import com.google.firebase.database.DataSnapshot;
  *
  * @author Bharath Kumar S
  */
-//todo: Write Test Cases
+//: Write Test Cases
 public class AuthPresenterImplementation implements AuthPresenter {
     @Nullable
     private View viewInstance;

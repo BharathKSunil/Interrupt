@@ -66,6 +66,8 @@ public enum UserType {
      */
     DIGITAL_MARKETING,
 
+    VOLUNTEER_MANAGEMENT,
+
     /**
      * Interrupt organisers Design team
      */

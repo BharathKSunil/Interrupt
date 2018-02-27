@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,7 +27,6 @@ import com.bharathksunil.interrupt.admin.repository.FirebaseNewOrganiserReposito
 import com.bharathksunil.interrupt.auth.model.UserPermissions;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.util.CircleTransform;
-import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ImageCompression;
 import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
@@ -56,6 +56,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
     private Unbinder unbinder;
     private NewOrganiserPresenter presenter;
     private Uri profilePath;
+    private UserPermissions permissions;
 
     public NewOrganiserFragment() {
         // Required empty public constructor
@@ -84,7 +85,8 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
     TextView heading;
     @BindViews({R.id.cb_edit_event_schedule, R.id.cb_edit_event_venue, R.id.cb_add_category,
             R.id.cb_add_event, R.id.cb_add_coordinator, R.id.cb_view_event_collection, R.id.cb_edit_event_info,
-            R.id.cb_view_eventRegistrations, R.id.cb_download_eventData, R.id.cb_perform_registrations})
+            R.id.cb_view_eventRegistrations, R.id.cb_download_eventData, R.id.cb_perform_registrations,
+            R.id.cb_edit_event_banner, R.id.cb_view_payment_info, R.id.cb_download_payment_info})
     List<CheckBox> permissionsCheckBoxList;
 
     @BindString(R.string.err_unexpected_error)
@@ -106,7 +108,94 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
         unbinder = ButterKnife.bind(this, view);
         presenter = new NewOrganiserPresenterImplementation(new FirebaseNewOrganiserRepository());
         presenter.setView(this);
+
+        permissions = new UserPermissions();
+        permissions.setEnabled(true);
+
+
+        setPermissionsCheckboxCheckedListener();
         return view;
+    }
+
+    private void setPermissionsCheckboxCheckedListener() {
+        permissionsCheckBoxList.get(0).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanChangeSchedule(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(1).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanChangeVenue(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(2).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanAddCategories(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(3).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanAddEvents(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(4).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanModifyCoordinatorData(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(5).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanViewEventCollections(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(6).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanEditEventsInfo(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(7).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanViewRegistrations(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(8).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanDownloadEventData(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(9).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanRegisterParticipant(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(10).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanEditEventBanner(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(11).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanViewPaymentsInfo(b ? true : null);
+            }
+        });
+        permissionsCheckBoxList.get(12).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                permissions.setCanDownloadPaymentsInfo(b ? true : null);
+            }
+        });
     }
 
     @Override
@@ -142,8 +231,6 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
             //Compress the image and set the image
             String compressedFilePath;
             File file = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
-            Uri mediaPath = Uri.fromFile(file);
-            Debug.i("Media Path : " + mediaPath + " Raw Path: " + data.getData());
             compressedFilePath = new ImageCompression().compressImage(file.getAbsolutePath());
             profilePath = Uri.fromFile(new File(compressedFilePath));
             Picasso.with(getActivity()).load(profilePath).transform(new CircleTransform()).into(iv_profile);
@@ -251,19 +338,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
     @NonNull
     @Override
     public UserPermissions getPermissionsSelected() {
-        UserPermissions access = new UserPermissions();
-        access.setCanChangeSchedule(permissionsCheckBoxList.get(0).isChecked());
-        access.setCanChangeVenue(permissionsCheckBoxList.get(1).isChecked());
-        access.setCanAddCategories(permissionsCheckBoxList.get(2).isChecked());
-        access.setCanAddEvents(permissionsCheckBoxList.get(3).isChecked());
-        access.setCanModifyCoordinatorData(permissionsCheckBoxList.get(4).isChecked());
-        access.setCanViewEventCollections(permissionsCheckBoxList.get(5).isChecked());
-        access.setCanEditEventsInfo(permissionsCheckBoxList.get(6).isChecked());
-        access.setCanViewRegistrations(permissionsCheckBoxList.get(7).isChecked());
-        access.setCanDownloadEventData(permissionsCheckBoxList.get(8).isChecked());
-        access.setCanRegisterParticipant(permissionsCheckBoxList.get(9).isChecked());
-
-        return access;
+        return permissions;
     }
 
     @NonNull
@@ -313,10 +388,10 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
     public void setRolesFieldError(FormErrorType type) {
         switch (type) {
             case INVALID:
-                textInputLayoutList.get(PHONE).setError(err_invalid_field);
+                textInputLayoutList.get(ROLES).setError(err_invalid_field);
                 break;
             case EMPTY:
-                textInputLayoutList.get(PHONE).setError(errEmptyField);
+                textInputLayoutList.get(ROLES).setError(errEmptyField);
                 break;
         }
 

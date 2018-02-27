@@ -77,7 +77,7 @@ public interface NewOrganiserPresenter {
             void onProfileUploadFailed();
         }
 
-        void uploadUserImage(Uri uri, @NonNull OnProfileUploadedCallback callback);
+        void uploadUserImage(String email, Uri uri, @NonNull OnProfileUploadedCallback callback);
 
         void addOrganiser(Users users, UserPermissions userPermissions, OnAddedCallback callback);
     }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.admin.presenter.UsersInfoRecyclerPresenter;
+import com.bharathksunil.interrupt.util.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -89,6 +90,7 @@ public class UserInfoRecyclerAdapter extends RecyclerView.Adapter<UserInfoRecycl
         @Override
         public void loadUsersImageFromUrl(String imageUrl) {
             Picasso.with(context).load(imageUrl).error(R.drawable.ic_profile)
+                    .transform(new CircleTransform())
                     .placeholder(R.drawable.ic_profile).into(userImage);
         }
 
