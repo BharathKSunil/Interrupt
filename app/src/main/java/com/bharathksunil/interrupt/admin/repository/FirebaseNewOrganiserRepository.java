@@ -35,6 +35,7 @@ public class FirebaseNewOrganiserRepository implements NewOrganiserPresenter.Rep
     private Users users;
     private AccessType accessType;
     private UserPermissions permissions;
+
     @Override
     public void uploadUserImage(String email, Uri uri, @NonNull final OnProfileUploadedCallback callback) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -115,24 +116,24 @@ public class FirebaseNewOrganiserRepository implements NewOrganiserPresenter.Rep
                 });
     }
 
-    private void getPreviousUserPermissions(final OnAddedCallback callback){
+    private void getPreviousUserPermissions(final OnAddedCallback callback) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference(FirebaseConstants.USERS_PERMISSIONS_TREE)
                 .child(TextUtils.getEmailAsFirebaseKey(users.getEmail()));
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     UserPermissions existingPerm = dataSnapshot.getValue(UserPermissions.class);
                     //todo: merge the two here
-                }else {
+                } else {
                     updateUserPermissions(callback);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Debug.e(FirebaseNewOrganiserRepository.class.getName()+" getPreviousUserPermissions(): "+databaseError.getMessage());
+                Debug.e(FirebaseNewOrganiserRepository.class.getName() + " getPreviousUserPermissions(): " + databaseError.getMessage());
                 databaseError.toException().printStackTrace();
                 callback.onAddFailed();
             }
@@ -162,11 +163,11 @@ public class FirebaseNewOrganiserRepository implements NewOrganiserPresenter.Rep
                 });
     }
 
-    private void giveUserUserAccess(final OnAddedCallback callback){
+    private void giveUserUserAccess(final OnAddedCallback callback) {
 
         FirebaseDatabase.getInstance().getReference(FirebaseConstants.USER_ACCESS_TREE)
                 .child(TextUtils.getEmailAsFirebaseKey(users.getEmail()))
-                .child("second").setValue(users.getDesignation())
+                .child("accessTypes").child("secondary").setValue(users.getDesignation())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -176,7 +177,7 @@ public class FirebaseNewOrganiserRepository implements NewOrganiserPresenter.Rep
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Debug.e(FirebaseNewOrganiserRepository.class.getName()+" giveUserUserAccess(): "+e.getMessage());
+                        Debug.e(FirebaseNewOrganiserRepository.class.getName() + " giveUserUserAccess(): " + e.getMessage());
                         e.printStackTrace();
                         callback.onAddFailed();
                     }

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.bharathksunil.interrupt.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link Fragment} subclass which displays all the events the user has registered to.
  */
 public class CoordinatorsEventsInfoFragment extends Fragment {
 
