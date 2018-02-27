@@ -1,5 +1,7 @@
 package com.bharathksunil.interrupt.events.model;
 
+import com.bharathksunil.interrupt.FirebaseConstants;
+
 /**
  * This Manager manages all the event related data and stored in the singleton instance
  *
@@ -34,6 +36,15 @@ public class EventsManager {
 
     public String getCurrentCategoryID() {
         return instance.categories.getId();
+    }
+
+    public String getEventCategoryID() {
+        return instance.events.getCategoryID();
+    }
+
+    public String getCurrentEventPath() {
+        return "/" + FirebaseConstants.COLLECTIONS_CATEGORIES + "/" + getEventCategoryID() + "/"
+                + FirebaseConstants.COLLECTIONS_EVENTS + "/" + getCurrentEventsID() + "/";
     }
 
     public String getCurrentEventsID() {

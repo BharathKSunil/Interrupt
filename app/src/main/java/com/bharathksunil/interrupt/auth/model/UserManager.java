@@ -1,8 +1,9 @@
 package com.bharathksunil.interrupt.auth.model;
 
-import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.TextUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -139,6 +140,16 @@ public class UserManager {
         return instance.user.getProfileUrl();
     }
 
+    public List<String> getCoordinatingEventsPathID() {
+        List<String> pathIds = new ArrayList<>();
+        for (String key : instance.accessType.getAccessTypes().keySet()) {
+            if (!TextUtils.areEqual(key, "main") && !TextUtils.areEqual(key, "primary")
+                    && !TextUtils.areEqual(key, "secondary"))
+                pathIds.add(key);
+        }
+        return pathIds;
+    }
+
 
     /**
      * Check if the admin has restricted permissions to the user to use th app
@@ -169,7 +180,6 @@ public class UserManager {
      * @return true, if user is a event coordinator
      */
     public boolean isUserAEventsCoordinator() {
-        Debug.i("Access Type: "+instance.accessType.getAccessTypes());
         checkIntegrity(instance.accessType.getAccessTypes()); //all users must have an permissions type
 
         for (String type : instance.accessType.getAccessTypes().values()) {

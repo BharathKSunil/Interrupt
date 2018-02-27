@@ -17,6 +17,7 @@
     <include layout="@layout/layout_progress_bar" />
 
     <TextView
+        android:id="@+id/tv_empty_prompt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

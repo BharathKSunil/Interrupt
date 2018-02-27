@@ -14,7 +14,7 @@ import java.util.List;
 @Keep
 @IgnoreExtraProperties
 public class Events {
-    private String id, category, name, description, dateTime, bannerUrl, venue;
+    private String id, category, categoryID, name, description, dateTime, bannerUrl, venue;
     private int price;
     private List<String> coordinators;
 
@@ -32,6 +32,14 @@ public class Events {
         this.venue = venue;
         this.price = price;
         this.coordinators = coordinators;
+    }
+
+    public String getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(String categoryID) {
+        this.categoryID = categoryID;
     }
 
     public String getVenue() {

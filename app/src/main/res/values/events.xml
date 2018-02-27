@@ -6,6 +6,10 @@
     <string name="tv_empty_coordinating_events">No Events Has yet been Assigned to you.\nYour Events will appear Here.</string>
 
     <string name="tv_heading_coordinating_events">Coordinating Events</string>
+    <string name="tv_row_events_more_info">More Info</string>
+    <string name="tv_row_events_coordinators">Coordinators:</string>
+    <string name="tv_row_events_venue">Venue:</string>
+    <string name="tv_row_events_time">Time:</string>
 
     <color name="blue">#348af7</color>
     <color name="event_price_background">@color/blue</color>
