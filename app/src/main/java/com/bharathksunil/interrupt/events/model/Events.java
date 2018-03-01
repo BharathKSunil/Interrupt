@@ -21,10 +21,11 @@ public class Events {
     public Events() {
     }
 
-    public Events(String id, String category, String name, String description, String dateTime,
-                  String bannerUrl, String venue, int price, List<String> coordinators) {
+    public Events(String id, String category, String categoryID, String name, String description,
+                  String dateTime, String bannerUrl, String venue, int price, List<String> coordinators) {
         this.id = id;
         this.category = category;
+        this.categoryID = categoryID;
         this.name = name;
         this.description = description;
         this.dateTime = dateTime;

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bharathksunil.interrupt.auth.model.UserManager;
+import com.bharathksunil.interrupt.events.model.Categories;
 import com.bharathksunil.interrupt.events.model.Events;
 import com.bharathksunil.interrupt.events.model.EventsManager;
 
@@ -77,6 +78,12 @@ public class CoordinatorsEventsInfoPresenterImplementation implements Coordinato
         if (viewInstance == null)
             return;
         eventsManager.loadEvents(eventsList.get(position));
+        eventsManager.loadCategories(new Categories(
+                eventsList.get(position).getCategoryID(),
+                eventsList.get(position).getCategory(),
+                null,
+                null
+        ));
         viewInstance.loadEventsDashboard();
     }
 

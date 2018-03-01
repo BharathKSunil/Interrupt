@@ -67,6 +67,7 @@
     <string name="tv_heading_user_feedback">User Feedback</string>
     <string name="tv_empty_feedback">No Feedbacks Yet</string>
     <string name="cb_permissions_download_all_events_payment_details">Can Download All Events Payment Details</string>
+    <string name="hint_event_category">Event Category</string>
 
     <!--FOR COUNTDOWN-->
     <plurals name="days">

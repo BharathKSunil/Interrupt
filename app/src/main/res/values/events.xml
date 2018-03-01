@@ -10,6 +10,17 @@
     <string name="tv_row_events_coordinators">Coordinators:</string>
     <string name="tv_row_events_venue">Venue:</string>
     <string name="tv_row_events_time">Time:</string>
+    <string name="hint_event_name">Event Name</string>
+    <string name="hint_description">Event Description</string>
+    <string name="hint_time">Time</string>
+    <string name="btn_set_date_time">Set Date Time</string>
+    <string name="hint_venue">Venue</string>
+    <string name="btn_save_changes">Save Changes</string>
+    <string name="btn_view_registrations">View Event Registrations</string>
+    <string name="hint_coordinator_name">Coordinator Name</string>
+    <string name="hint_coordinator_email">Coordinator Email</string>
+    <string name="hint_coordinator_phone">Coordinator PhoneNo</string>
+    <string name="hint_price">Event Price</string>
 
     <color name="blue">#348af7</color>
     <color name="event_price_background">@color/blue</color>
@@ -69,14 +80,14 @@
         <item name="colorControlHighlight">@color/primary_dark</item>
         <item name="colorButtonNormal">@color/primary</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Small</item>
     </style>
 
     <style name="Events.ButtonInverse" parent="Dashboard">
         <item name="colorControlHighlight">@color/primary_light</item>
         <item name="colorButtonNormal">@color/white</item>
         <item name="android:textColor">@color/primary_text</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Small</item>
     </style>
 
     <style name="Events.ButtonBorderLess" parent="Dashboard">

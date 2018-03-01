@@ -2,6 +2,7 @@ package com.bharathksunil.interrupt.events.ui.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,11 +18,10 @@ import android.widget.TextView;
 import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.events.model.Events;
-import com.bharathksunil.interrupt.events.model.EventsManager;
 import com.bharathksunil.interrupt.events.presenter.CoordinatorsEventsInfoPresenter;
 import com.bharathksunil.interrupt.events.presenter.CoordinatorsEventsInfoPresenterImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseCoordinatorsEventsInfoRepository;
-import com.bharathksunil.interrupt.util.Debug;
+import com.bharathksunil.interrupt.events.ui.activities.EventDashboardActivity;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -121,8 +121,7 @@ public class CoordinatorsEventsInfoFragment extends Fragment implements Coordina
 
     @Override
     public void loadEventsDashboard() {
-        //todo: Create and load the events dashboard activity
-        Debug.i("Loading Event: " + EventsManager.getInstance().getCurrentEventPath());
+        startActivity(new Intent(getActivity(), EventDashboardActivity.class));
     }
 
     @Override

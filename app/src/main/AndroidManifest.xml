@@ -50,6 +50,9 @@
             android:name=".admin.ui.AdminDashboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Admin" />
+        <activity android:name=".events.ui.activities.EventDashboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Events"/>
     </application>
 
 </manifest>

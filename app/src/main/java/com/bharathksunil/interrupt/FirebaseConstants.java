@@ -21,5 +21,5 @@ public interface FirebaseConstants {
 
 
     String COLLECTIONS_CATEGORIES = "Categories", COLLECTIONS_EVENTS="Events", COLLECTION_REGISTRATIONS="Registrations";
-    String PROFILE_STORE = "/Profiles/", USERS_STORE="/Users/";
+    String PROFILE_STORE = "/Profiles/", USERS_STORE="/Users/", EVENTS_STORE="/Events/";
 }

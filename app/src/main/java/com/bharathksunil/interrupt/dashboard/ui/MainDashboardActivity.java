@@ -12,19 +12,18 @@ import android.view.View;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.UnderConstructionFragment;
 import com.bharathksunil.interrupt.admin.ui.AdminDashboardActivity;
+import com.bharathksunil.interrupt.admin.ui.fragments.AdminInfoFragment;
 import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.auth.ui.LauncherActivity;
-import com.bharathksunil.interrupt.events.ui.fragments.CoordinatorsEventsInfoFragment;
+import com.bharathksunil.interrupt.auth.ui.fragments.UserInfoFragment;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenter;
 import com.bharathksunil.interrupt.dashboard.presenter.DashboardActivityPresenterImplementation;
 import com.bharathksunil.interrupt.dashboard.ui.fragments.AboutFragment;
-import com.bharathksunil.interrupt.admin.ui.fragments.AdminInfoFragment;
+import com.bharathksunil.interrupt.events.ui.activities.OrganisersDashboardActivity;
+import com.bharathksunil.interrupt.events.ui.fragments.CoordinatorsEventsInfoFragment;
 import com.bharathksunil.interrupt.events.ui.fragments.EventCategoriesFragment;
 import com.bharathksunil.interrupt.events.ui.fragments.OrganisersInfoFragment;
 import com.bharathksunil.interrupt.events.ui.fragments.SchedulesFragment;
-import com.bharathksunil.interrupt.auth.ui.fragments.UserInfoFragment;
-import com.bharathksunil.interrupt.events.ui.activities.OrganisersDashboardActivity;
-import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
 
 import java.util.List;
@@ -287,7 +286,6 @@ public class MainDashboardActivity extends AppCompatActivity implements
 
     @Override
     public void loadEventsViewerActivityForTheEvent(String eventId) {
-        //todo: Load the Events Viewer for the event id
-        Debug.i("Load the Events Activity Viewer for the Event:" + eventId);
+        //unimplemented
     }
 }

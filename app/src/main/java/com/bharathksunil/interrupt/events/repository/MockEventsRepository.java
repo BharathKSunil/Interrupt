@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * This Mocks the Events Repository and sends some data
- * Created by Bharath on 20-02-2018.
+ * @author Bharath on 20-02-2018.
  */
 
 public class MockEventsRepository implements EventsViewerPresenter.Repository {
@@ -45,6 +45,7 @@ public class MockEventsRepository implements EventsViewerPresenter.Repository {
 
         data.add(new Events(
                 "1",
+                "Technical",
                 "1",
                 "Rapid Fire Coding",
                 "Registered teams will appear for Screening Test which will be a MCQ round." +
@@ -59,6 +60,7 @@ public class MockEventsRepository implements EventsViewerPresenter.Repository {
 
         data.add(new Events(
                 "2",
+                "Technical Events",
                 "1",
                 "Coding",
                 "Registered teams will appear for Screening Test which will be a MCQ round." +
@@ -71,6 +73,7 @@ public class MockEventsRepository implements EventsViewerPresenter.Repository {
         ));
         data.add(new Events(
                 "3",
+                "Technical",
                 "1",
                 "Rock Paper",
                 "Registered teams will appear for Screening Test which will be a MCQ round." +
@@ -106,6 +109,7 @@ public class MockEventsRepository implements EventsViewerPresenter.Repository {
 
         data.add(new Events(
                 "1",
+                "Some Category",
                 "2",
                 "Dancing",
                 "Registered teams will appear for Screening Test which will be a MCQ round." +
@@ -120,6 +124,7 @@ public class MockEventsRepository implements EventsViewerPresenter.Repository {
 
         data.add(new Events(
                 "2",
+                "Some Category",
                 "2",
                 "Singing",
                 "Registered teams will appear for Screening Test which will be a MCQ round." +
@@ -132,6 +137,7 @@ public class MockEventsRepository implements EventsViewerPresenter.Repository {
         ));
         data.add(new Events(
                 "3",
+                "Some Category",
                 "2",
                 "Blah- Blah",
                 "Registered teams will appear for Screening Test which will be a MCQ round." +

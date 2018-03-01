@@ -58,6 +58,16 @@ public class Utils {
         context.startActivityForResult(getIntent, requestCode);
     }
 
+    /**
+     * THIS IS TO SELECT A PICTURE FROM GALLERY TO UPLOAD THE PROFILE PIC
+     */
+    public static void showFileChooser(@NonNull String type, @NonNull String title,
+                                       int requestCode, @NonNull Activity context) {
+        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType(type);
+        context.startActivityForResult(getIntent, requestCode);
+    }
+
     public static String getMediaPathFromURI(Uri contentUri, Context context) {
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};

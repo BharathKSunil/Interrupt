@@ -256,6 +256,38 @@ public class UserManager {
                 && instance.permissions.getCanViewFeedbackData();
     }
 
+    public boolean canUserAddEvents() {
+        return instance.permissions.getCanAddEvents() != null && instance.permissions.getCanAddEvents();
+    }
+
+    public boolean canUserModifyEventInfo() {
+        return instance.permissions.getCanEditEventsInfo() != null && instance.permissions.getCanEditEventsInfo();
+    }
+
+    public boolean canUserModifyEventGraphics() {
+        return instance.permissions.getCanEditEventBanner() != null && instance.permissions.getCanEditEventBanner();
+    }
+
+    public boolean canUserModifyEventSchedule() {
+        return instance.permissions.getCanChangeSchedule() != null && instance.permissions.getCanChangeSchedule();
+    }
+
+    public boolean canUserModifyEventVenue() {
+        return instance.permissions.getCanChangeVenue() != null && instance.permissions.getCanChangeVenue();
+    }
+
+    public boolean canUserRegisterParticipant() {
+        return instance.permissions.getCanRegisterParticipant() != null && instance.permissions.getCanRegisterParticipant();
+    }
+
+    public boolean canUserViewEventRegistrations() {
+        return instance.permissions.getCanViewRegistrations() != null && instance.permissions.getCanViewRegistrations();
+    }
+
+    public boolean canUserDownloadEventsRegistrations() {
+        return instance.permissions.getCanDownloadEventData() != null && instance.permissions.getCanDownloadEventData();
+    }
+
     /**
      * This method checks if any parameter, viz essential for the functioning of the app is not null
      * call this method before performing any action on such objects
