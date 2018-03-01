@@ -34,7 +34,6 @@ import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -132,7 +131,8 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
                         .compressToFile(file);
                 bannerImage = Uri.fromFile(compressedFile);
                 Picasso.with(this).load(bannerImage).transform(new CircleTransform()).into(iv_eventBanner);
-            } catch (IOException e) {
+            } catch (Exception e) {
+                ViewUtils.errorBar("Couldn't Load File, Choose From Gallery", this);
                 e.printStackTrace();
             }
         }
@@ -327,12 +327,13 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
 
     @Override
     public void loadNewParticipantRegistrationPage() {
-        //todo: create and load the new Registrations Page
+        startActivity(new Intent(this, NewParticipantRegistrationActivity.class));
     }
 
     @Override
     public void loadEventRegistrationsViewer() {
         //todo: create and load the registrations viewer page
+        ViewUtils.snackBar("Coming in the Next Update", this);
     }
 
     @Override
@@ -367,12 +368,17 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
             @SuppressLint("SetTextI18n")
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                String hour = "", minute = "";
+                if (selectedHour < 10 || (selectedHour > 12 && selectedHour < 22))
+                    hour = "0";
+                if (selectedMinute < 10)
+                    minute = "0";
                 if (selectedHour < 12)
-                    btnList.get(TIME).setText(selectedHour + ":" + selectedMinute + " AM, " + date + " March " + year);
+                    btnList.get(TIME).setText(hour + selectedHour + ":" + minute + selectedMinute + " AM, " + date + " March " + year);
                 else if (selectedHour == 12)
-                    btnList.get(TIME).setText(selectedHour + ":" + selectedMinute + " PM, " + date + " March " + year);
+                    btnList.get(TIME).setText(hour + selectedHour + ":" + hour + selectedMinute + " PM, " + date + " March " + year);
                 else
-                    btnList.get(TIME).setText((selectedHour - 12) + ":" + selectedMinute + " AM, " + date + " March " + year);
+                    btnList.get(TIME).setText(hour + (selectedHour - 12) + ":" + hour + selectedMinute + " AM, " + date + " March " + year);
             }
         }, hour, minute, true);//Not 24 hour time
         mTimePicker.setTitle("Select Event Time");

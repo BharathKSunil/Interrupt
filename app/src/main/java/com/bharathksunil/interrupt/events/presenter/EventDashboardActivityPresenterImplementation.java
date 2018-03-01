@@ -242,8 +242,9 @@ public class EventDashboardActivityPresenterImplementation implements EventDashb
     public void onAddRegistrationButtonPressed() {
         if (viewInstance == null)
             return;
-        if (userManager.canUserRegisterParticipant())
+        if (userManager.canUserRegisterParticipant()) {
             viewInstance.loadNewParticipantRegistrationPage();
+        }
         else
             viewInstance.showPermissionDeniedMessage();
     }

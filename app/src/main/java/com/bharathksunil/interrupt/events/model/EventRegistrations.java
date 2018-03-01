@@ -4,8 +4,6 @@ import android.support.annotation.Keep;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.List;
-
 /**
  * This is the object structure which will be saved to the Firebase Database
  * for the event registrations
@@ -28,18 +26,10 @@ public class EventRegistrations {
     /*
      * Events Registration Data, as stored in the EventRegistration Tree in the Firebase RealTime Database
      */
-    private String eventPath, eName, eRegistrar, eBannerUrl;
-    private List<String> pTeamMembers;
+    private String eName, eRegistrar, eBannerUrl;
+    private String pTeamMembers;
     private String id, pName, pEmail, pPhoneNo, pUSN, pSem, pSection;
     private Boolean Attended;
-
-    public Boolean getAttended() {
-        return Attended;
-    }
-
-    public void setAttended(Boolean attended) {
-        Attended = attended;
-    }
 
     /**
      * Participants Data
@@ -47,12 +37,27 @@ public class EventRegistrations {
     public EventRegistrations() {
     }
 
-    public String getEventPath() {
-        return eventPath;
+    public EventRegistrations(String eName, String eRegistrar, String eBannerUrl, String pTeamMembers, String id, String pName, String pEmail, String pPhoneNo, String pUSN, String pSem, String pSection, Boolean attended) {
+        this.eName = eName;
+        this.eRegistrar = eRegistrar;
+        this.eBannerUrl = eBannerUrl;
+        this.pTeamMembers = pTeamMembers;
+        this.id = id;
+        this.pName = pName;
+        this.pEmail = pEmail;
+        this.pPhoneNo = pPhoneNo;
+        this.pUSN = pUSN;
+        this.pSem = pSem;
+        this.pSection = pSection;
+        Attended = attended;
     }
 
-    public void setEventPath(String eventPath) {
-        this.eventPath = eventPath;
+    public Boolean getAttended() {
+        return Attended;
+    }
+
+    public void setAttended(Boolean attended) {
+        Attended = attended;
     }
 
     public String geteBannerUrl() {
@@ -135,11 +140,11 @@ public class EventRegistrations {
         this.pSection = pSection;
     }
 
-    public List<String> getpTeamMembers() {
+    public String getpTeamMembers() {
         return pTeamMembers;
     }
 
-    public void setpTeamMembers(List<String> pTeamMembers) {
+    public void setpTeamMembers(String pTeamMembers) {
         this.pTeamMembers = pTeamMembers;
     }
 }

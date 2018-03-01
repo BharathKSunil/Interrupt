@@ -65,10 +65,7 @@ public class RegisteredEventsRecyclerPresenterImplementation implements Register
         rowView.setEventName(registrations.geteName());
         rowView.setParticipantsRegistrar(registrations.geteRegistrar());
         rowView.setOnItemClickListener(this);
-        StringBuilder teamMembers = new StringBuilder();
-        for (String member : registrations.getpTeamMembers())
-            teamMembers.append(member).append("\n");
-        rowView.setParticipantsTeamMembers(teamMembers.toString().trim());
+        rowView.setParticipantsTeamMembers(registrations.getpTeamMembers().trim());
         rowView.loadEventImage(registrations.geteBannerUrl(), registrations.geteName());
     }
 
@@ -116,7 +113,7 @@ public class RegisteredEventsRecyclerPresenterImplementation implements Register
 
     @Override
     public void onItemClick(int itemPosition) {
-        if (viewInstance != null)
-            viewInstance.loadEventsViewerForTheEventGivenBy(data.get(itemPosition).getEventPath());
+        /*if (viewInstance != null)
+            viewInstance.loadEventsViewerForTheEventGivenBy(data.get(itemPosition).getEventPath());*/
     }
 }

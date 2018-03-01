@@ -195,7 +195,8 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
                         .compressToFile(file);
                 imagePath = Uri.fromFile(compressedFile);
                 Picasso.with(getActivity()).load(imagePath).transform(new CircleTransform()).into(iv_profile);
-            } catch (IOException e) {
+            } catch (Exception e) {
+                ViewUtils.errorBar("Couldn't Load File", getActivity());
                 e.printStackTrace();
             }
         }

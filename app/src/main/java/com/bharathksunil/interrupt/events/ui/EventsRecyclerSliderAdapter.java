@@ -98,8 +98,8 @@ public class EventsRecyclerSliderAdapter extends RecyclerView.Adapter<EventsRecy
         private void loadImage(String imgUrl) {
             TextDrawable drawable = TextDrawable.builder()
                     .beginConfig().textColor(context.getResources().getColor(R.color.white)).bold()
-                    .fontSize(95).endConfig()
-                    .buildRect("I7.0", context.getResources().getColor(R.color.alizarin));
+                    .fontSize(65).endConfig()
+                    .buildRect("Interrupt 7", context.getResources().getColor(R.color.admin_bg));
             Picasso.with(context).load(imgUrl)
                     .placeholder(drawable)
                     .error(drawable)

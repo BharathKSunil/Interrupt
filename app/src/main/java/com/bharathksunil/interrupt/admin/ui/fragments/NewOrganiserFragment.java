@@ -237,9 +237,15 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
                         && data.getData() != null
                 ) {
             //Compress the image and set the image
-            profileFile = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
-            profilePath = Uri.fromFile(profileFile);
-            Picasso.with(getActivity()).load(profilePath).transform(new CircleTransform()).into(iv_profile);
+            try {
+                profileFile = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
+                profilePath = Uri.fromFile(profileFile);
+                Picasso.with(getActivity()).load(profilePath).transform(new CircleTransform()).into(iv_profile);
+            } catch (Exception e) {
+                e.printStackTrace();
+                ViewUtils.errorBar("Couldn't Load File, Choose From Gallery", getActivity());
+                e.printStackTrace();
+            }
         }
     }
 
