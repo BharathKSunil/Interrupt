@@ -26,6 +26,8 @@ import com.bharathksunil.interrupt.events.presenter.EventDashboardActivityPresen
 import com.bharathksunil.interrupt.events.repository.FirebaseEventCategoriesRepositoryImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseEventsRepositoryImplementation;
 import com.bharathksunil.interrupt.util.CircleTransform;
+import com.bharathksunil.interrupt.util.TextDrawable;
+import com.bharathksunil.interrupt.util.TextUtils;
 import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.squareup.picasso.Picasso;
@@ -36,6 +38,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
+import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -83,6 +86,11 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
     String err_invalid_field;
     @BindString(R.string.prompt_pick_image)
     String prompt_pickImage;
+
+    @BindColor(R.color.white)
+    int banner_image_text_color;
+    @BindColor(R.color.admin_bg)
+    int banner_image_bg_color;
 
 
     @Override
@@ -292,9 +300,15 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
 
     @Override
     public void loadEventBanner(String url) {
-        Picasso.with(this).load(url).placeholder(R.drawable.app_icon)
-                .error(R.drawable.app_icon)
-                .into(iv_eventBanner);
+        if (TextUtils.isEmpty(url)) {
+            TextDrawable textDrawable = TextDrawable.builder().beginConfig()
+                    .withBorder(1).fontSize(65).textColor(banner_image_text_color)
+                    .endConfig().buildRect("Upload Event Banner", banner_image_bg_color);
+            iv_eventBanner.setImageDrawable(textDrawable);
+        } else
+            Picasso.with(this).load(url).placeholder(R.drawable.app_icon)
+                    .error(R.drawable.app_icon)
+                    .into(iv_eventBanner);
     }
 
     @Override

@@ -21,6 +21,7 @@
     <string name="hint_coordinator_email">Coordinator Email</string>
     <string name="hint_coordinator_phone">Coordinator PhoneNo</string>
     <string name="hint_price">Event Price</string>
+    <string name="tv_heading_organisers_dash">Organisers Dashboard</string>
 
     <color name="blue">#348af7</color>
     <color name="event_price_background">@color/blue</color>

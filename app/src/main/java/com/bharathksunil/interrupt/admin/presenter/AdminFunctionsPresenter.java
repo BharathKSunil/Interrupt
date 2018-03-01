@@ -15,6 +15,8 @@ public interface AdminFunctionsPresenter {
         void loadOrganiserManagementPage();
 
         void loadFeedbackViewerPage();
+
+        void loadNewEventsActivity();
     }
 
     void setView(View view);
@@ -24,4 +26,6 @@ public interface AdminFunctionsPresenter {
     void onOrganiserManagementSelected();
 
     void onFeedbackManagementSelected();
+
+    void onEventManagementSelected();
 }

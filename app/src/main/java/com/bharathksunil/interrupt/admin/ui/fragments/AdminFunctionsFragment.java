@@ -2,6 +2,7 @@ package com.bharathksunil.interrupt.admin.ui.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.admin.presenter.AdminFunctionsPresenter;
 import com.bharathksunil.interrupt.admin.presenter.AdminFunctionsPresenterImplementation;
+import com.bharathksunil.interrupt.events.ui.activities.EventDashboardActivity;
 import com.bharathksunil.interrupt.util.ViewUtils;
 
 import butterknife.BindString;
@@ -75,6 +77,10 @@ public class AdminFunctionsFragment extends Fragment implements AdminFunctionsPr
     public void onFeedbackManagementCardPressed() {
         presenter.onFeedbackManagementSelected();
     }
+    @OnClick(R.id.admin_card_event_management)
+    public void onEventManagementCardPressed(){
+        presenter.onEventManagementSelected();
+    }
 
     @Override
     public void showPermissionDeniedMessage() {
@@ -94,6 +100,11 @@ public class AdminFunctionsFragment extends Fragment implements AdminFunctionsPr
     @Override
     public void loadFeedbackViewerPage() {
         interactor.loadUserFeedbackFragment();
+    }
+
+    @Override
+    public void loadNewEventsActivity() {
+        startActivity(new Intent(getActivity(), EventDashboardActivity.class));
     }
 
     public interface Interactor {

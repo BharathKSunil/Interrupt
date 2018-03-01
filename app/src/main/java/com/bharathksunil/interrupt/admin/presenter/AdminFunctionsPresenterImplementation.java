@@ -56,4 +56,11 @@ public class AdminFunctionsPresenterImplementation implements AdminFunctionsPres
                 viewInstance.showPermissionDeniedMessage();
         }
     }
+
+    @Override
+    public void onEventManagementSelected() {
+        if (viewInstance == null)
+            return;
+        viewInstance.loadNewEventsActivity();
+    }
 }

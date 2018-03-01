@@ -65,6 +65,7 @@ public class EventDashboardActivityPresenterImplementation implements EventDashb
             return;
         isEditing = false;
         viewInstance.setEventBannerImageEnabled(true);
+        viewInstance.loadEventBanner("");
         viewInstance.setEventNameFieldEnabled(true);
         viewInstance.setEventCategoryFieldEnabled(true);
         categoriesRepositoryInstance.downloadEventCategories(
@@ -307,6 +308,7 @@ public class EventDashboardActivityPresenterImplementation implements EventDashb
 
             if (isEditing) {
                 events.setId(eventsManager.getCurrentEventsID());
+                events.setBannerUrl(eventsManager.getCurrentEventBannerURL());
                 eventRepositoryInstance.updateEvent(events, viewInstance.getEventBanner(),
                         new Repository.OnEventRegistrationCallback() {
                             @Override
