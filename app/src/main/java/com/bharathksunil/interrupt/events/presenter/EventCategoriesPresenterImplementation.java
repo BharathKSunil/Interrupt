@@ -43,8 +43,10 @@ public class EventCategoriesPresenterImplementation implements EventCategoriesPr
     public void onDataSuccessfullyLoaded(@NonNull List<Categories> categoriesList) {
         if (viewInstance != null) {
             viewInstance.onProcessEnded();
-            if (categoriesList.size() == 0)
+            if (categoriesList.size() == 0) {
                 viewInstance.showNoEventCategoriesAvailable();
+                return;
+            }
             else
                 viewInstance.hideNoEventCategoriesAvailable();
             List<String> urls = new ArrayList<>();
