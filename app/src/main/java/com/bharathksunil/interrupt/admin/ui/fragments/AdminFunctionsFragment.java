@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.admin.presenter.AdminFunctionsPresenter;
 import com.bharathksunil.interrupt.admin.presenter.AdminFunctionsPresenterImplementation;
+import com.bharathksunil.interrupt.events.model.EventsManager;
 import com.bharathksunil.interrupt.events.ui.activities.EventDashboardActivity;
 import com.bharathksunil.interrupt.util.ViewUtils;
 
@@ -104,6 +105,7 @@ public class AdminFunctionsFragment extends Fragment implements AdminFunctionsPr
 
     @Override
     public void loadNewEventsActivity() {
+        EventsManager.getInstance().loadEvents(null);
         startActivity(new Intent(getActivity(), EventDashboardActivity.class));
     }
 

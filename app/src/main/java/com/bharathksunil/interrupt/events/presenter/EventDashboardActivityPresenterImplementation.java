@@ -357,7 +357,7 @@ public class EventDashboardActivityPresenterImplementation implements EventDashb
                                 if (viewInstance != null) {
                                     viewInstance.showProcessFinishedMessage("Event Added Successfully");
                                     viewInstance.onProcessEnded();
-                                    loadEventsViewerPage();
+                                    loadNewEventsPage();
                                 }
                             }
 

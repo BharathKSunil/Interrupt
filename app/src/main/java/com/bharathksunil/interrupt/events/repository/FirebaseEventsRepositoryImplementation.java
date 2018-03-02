@@ -146,6 +146,7 @@ public class FirebaseEventsRepositoryImplementation implements EventsViewerPrese
     private void addCoordinatorToEvent() {
         FirebaseDatabase.getInstance().getReference(FirebaseConstants.USER_ACCESS_TREE)
                 .child(TextUtils.getEmailAsFirebaseKey(coordinator.getEmail()))
+                .child("accessTypes")
                 .child(events.getCategoryID() + "_" + eventID)
                 .setValue(UserType.COORDINATOR.name())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

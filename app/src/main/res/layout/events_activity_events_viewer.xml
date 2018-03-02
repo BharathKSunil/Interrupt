@@ -19,8 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/frameLayout">
+            android:layout_centerVertical="true">
 
             <TextView
                 android:id="@+id/tv_event_name_1"
@@ -29,8 +28,8 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="@style/Events.TextAppearance.Medium"
                 android:textColor="@color/primary_dark"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="SOME BIG TITLE"/>
 
             <TextView
                 android:id="@+id/tv_event_name_2"
@@ -39,7 +38,6 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="@style/Events.TextAppearance.Medium"
                 android:textColor="@color/primary_dark"
-                android:textSize="28sp"
                 android:textStyle="bold" />
 
         </FrameLayout>
