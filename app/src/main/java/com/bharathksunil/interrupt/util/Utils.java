@@ -3,18 +3,13 @@ package com.bharathksunil.interrupt.util;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 
 import com.bharathksunil.interrupt.R;
 
@@ -46,40 +41,6 @@ public class Utils {
         NetworkInfo nInfo = cManager != null ? cManager.getActiveNetworkInfo() : null;
         //IF THE NETWORK IS AVAILABLE:
         return (nInfo != null && nInfo.isConnected());
-    }
-
-    /**
-     * THIS IS TO SELECT A PICTURE FROM GALLERY TO UPLOAD THE PROFILE PIC
-     */
-    public static void showFileChooser(@NonNull String type, @NonNull String title,
-                                       int requestCode, @NonNull Fragment context) {
-        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        getIntent.setType(type);
-        context.startActivityForResult(getIntent, requestCode);
-    }
-
-    /**
-     * THIS IS TO SELECT A PICTURE FROM GALLERY TO UPLOAD THE PROFILE PIC
-     */
-    public static void showFileChooser(@NonNull String type, @NonNull String title,
-                                       int requestCode, @NonNull Activity context) {
-        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        getIntent.setType(type);
-        context.startActivityForResult(getIntent, requestCode);
-    }
-
-    public static String getMediaPathFromURI(Uri contentUri, Context context) {
-        String res = null;
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
-        if (cursor != null && cursor.moveToFirst()) {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            res = cursor.getString(column_index);
-        }
-        if (cursor != null) {
-            cursor.close();
-        }
-        return res;
     }
 
     public static boolean isStoragePermissionGranted(Activity activity) {

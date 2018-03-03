@@ -244,8 +244,7 @@ public class EventDashboardActivityPresenterImplementation implements EventDashb
             return;
         if (userManager.canUserRegisterParticipant()) {
             viewInstance.loadNewParticipantRegistrationPage();
-        }
-        else
+        } else
             viewInstance.showPermissionDeniedMessage();
     }
 

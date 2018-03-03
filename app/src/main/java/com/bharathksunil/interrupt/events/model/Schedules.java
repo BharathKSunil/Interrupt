@@ -13,6 +13,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Schedules {
     private String EventName, Time, Venue;
+    private Long Timestamp;
 
     public Schedules() {
     }
@@ -45,5 +46,13 @@ public class Schedules {
 
     public void setVenue(String venue) {
         Venue = venue;
+    }
+
+    public Long getTimestamp() {
+        return Timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        Timestamp = timestamp;
     }
 }

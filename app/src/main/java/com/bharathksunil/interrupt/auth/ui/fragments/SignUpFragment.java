@@ -25,11 +25,14 @@ import com.bharathksunil.interrupt.util.CircleTransform;
 import com.bharathksunil.interrupt.util.TextDrawable;
 import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
+import com.kbeanie.multipicker.api.ImagePicker;
+import com.kbeanie.multipicker.api.Picker;
+import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
+import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindColor;
@@ -57,7 +60,6 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
     }
 
     public static final String TAG = "SignUpFragment";
-    private static final int IMAGE_REQUEST_CODE = 1;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -67,6 +69,8 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
     private Unbinder unbinder;
     private Interactor interactor;
     private Uri imagePath;
+    private ImagePickerCallback imagePickerCallback;
+    private ImagePicker imagePicker;
 
     @BindViews({R.id.til_name, R.id.til_email, R.id.til_phone, R.id.til_usn, R.id.til_department, R.id.til_password})
     List<TextInputLayout> textInputLayoutList;
@@ -168,9 +172,35 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
     //Profile Image Clicked
     @OnClick(R.id.iv_profile)
     public void chooseProfileImage() {
-        if (Utils.isStoragePermissionGranted(getActivity()))
-            Utils.showFileChooser("image/*", prompt_pickImage,
-                    IMAGE_REQUEST_CODE, this);
+        if (Utils.isStoragePermissionGranted(getActivity())){
+            imagePicker = new ImagePicker(this);
+            imagePickerCallback = new ImagePickerCallback() {
+                @Override
+                public void onImagesChosen(List<ChosenImage> list) {
+                    //Compress the image and set the image
+                    try {
+                        File compressedFile;
+                        File file = new File(list.get(0).getOriginalPath());
+                        compressedFile = new Compressor(getContext())
+                                .setQuality(5)
+                                .setCompressFormat(Bitmap.CompressFormat.JPEG)
+                                .compressToFile(file);
+                        imagePath = Uri.fromFile(compressedFile);
+                        Picasso.with(getActivity()).load(imagePath).transform(new CircleTransform()).into(iv_profile);
+                    } catch (Exception e) {
+                        ViewUtils.errorBar("Couldn't Load File", getActivity());
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(String s) {
+                    ViewUtils.errorBar(s, getActivity());
+                }
+            };
+            imagePicker.setImagePickerCallback(imagePickerCallback);
+            imagePicker.pickImage();
+        }
         else
             ViewUtils.errorBar(err_perm_storage, getActivity());
     }
@@ -179,26 +209,13 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (
-                requestCode == IMAGE_REQUEST_CODE
-                        && resultCode == RESULT_OK
-                        && data != null
-                        && data.getData() != null
-                ) {
-            //Compress the image and set the image
-            try {
-                File compressedFile;
-                File file = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
-                compressedFile = new Compressor(getContext())
-                        .setQuality(5)
-                        .setCompressFormat(Bitmap.CompressFormat.JPEG)
-                        .compressToFile(file);
-                imagePath = Uri.fromFile(compressedFile);
-                Picasso.with(getActivity()).load(imagePath).transform(new CircleTransform()).into(iv_profile);
-            } catch (Exception e) {
-                ViewUtils.errorBar("Couldn't Load File", getActivity());
-                e.printStackTrace();
+        if (resultCode == RESULT_OK) {
+            if (imagePicker == null){
+                imagePicker = new ImagePicker(this);
+                imagePicker.setImagePickerCallback(imagePickerCallback);
             }
+            if (requestCode == Picker.PICK_IMAGE_DEVICE)
+                imagePicker.submit(data);
         }
     }
 

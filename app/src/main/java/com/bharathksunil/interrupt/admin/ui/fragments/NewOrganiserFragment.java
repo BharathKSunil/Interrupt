@@ -30,9 +30,12 @@ import com.bharathksunil.interrupt.auth.model.UserPermissions;
 import com.bharathksunil.interrupt.auth.model.UserType;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.util.CircleTransform;
-import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
+import com.kbeanie.multipicker.api.ImagePicker;
+import com.kbeanie.multipicker.api.Picker;
+import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
+import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -57,7 +60,8 @@ import static android.app.Activity.RESULT_OK;
 public class NewOrganiserFragment extends Fragment implements NewOrganiserPresenter.View {
 
 
-    private static final int IMAGE_REQUEST_CODE = 1;
+    private ImagePickerCallback imagePickerCallback;
+    private ImagePicker imagePicker;
     private Unbinder unbinder;
     private NewOrganiserPresenter presenter;
     private Uri profilePath;
@@ -220,32 +224,49 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
 
     @OnClick(R.id.iv_profile)
     public void onProfileImageButtonPressed() {
-        if (Utils.isStoragePermissionGranted(getActivity()))
-            Utils.showFileChooser("image/*", prompt_pickImage,
-                    IMAGE_REQUEST_CODE, this);
-        else
+        if (Utils.isStoragePermissionGranted(getActivity())) {
+            imagePicker = new ImagePicker(this);
+            imagePickerCallback = new ImagePickerCallback() {
+                @Override
+                public void onImagesChosen(List<ChosenImage> list) {
+                    //Compress the image and set the image
+                    try {
+                        File compressedFile;
+                        profileFile = new File(list.get(0).getOriginalPath());
+                        compressedFile = new Compressor(getContext())
+                                .setQuality(5)
+                                .setCompressFormat(Bitmap.CompressFormat.JPEG)
+                                .compressToFile(profileFile);
+                        profilePath = Uri.fromFile(compressedFile);
+                        Picasso.with(getActivity()).load(profilePath).transform(new CircleTransform()).into(iv_profile);
+                    } catch (Exception e) {
+                        ViewUtils.errorBar("Couldn't Load File", getActivity());
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(String s) {
+                    ViewUtils.errorBar(s, getActivity());
+                }
+            };
+            imagePicker.setImagePickerCallback(imagePickerCallback);
+            imagePicker.pickImage();
+        } else
             ViewUtils.errorBar(errStoragePermission, getActivity());
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (
-                requestCode == IMAGE_REQUEST_CODE
-                        && resultCode == RESULT_OK
-                        && data != null
-                        && data.getData() != null
-                ) {
-            //Compress the image and set the image
-            try {
-                profileFile = new File(Utils.getMediaPathFromURI(data.getData(), getContext()));
-                profilePath = Uri.fromFile(profileFile);
-                Picasso.with(getActivity()).load(profilePath).transform(new CircleTransform()).into(iv_profile);
-            } catch (Exception e) {
-                e.printStackTrace();
-                ViewUtils.errorBar("Couldn't Load File, Choose From Gallery", getActivity());
-                e.printStackTrace();
+        if (resultCode == RESULT_OK) {
+            if (imagePicker == null) {
+                imagePicker = new ImagePicker(this);
+                imagePicker.setImagePickerCallback(imagePickerCallback);
             }
+            if (requestCode == Picker.PICK_IMAGE_DEVICE)
+                imagePicker.submit(data);
         }
     }
 
@@ -348,7 +369,6 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
         if (profileFile != null) {
             try {
                 File compressedFile;
-                Debug.i("Before Compressing: " + profileFile.length());
                 int quality = 5;
                 if (getUserDesignation().equals(UserType.CORE_TEAM.name()))
                     quality = 15;
@@ -356,7 +376,6 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
                         .setQuality(quality)
                         .setCompressFormat(Bitmap.CompressFormat.JPEG)
                         .compressToFile(profileFile);
-                Debug.i("After Compressing, Quality: " + quality + ": " + compressedFile.length());
                 profilePath = Uri.fromFile(compressedFile);
             } catch (IOException e) {
                 e.printStackTrace();

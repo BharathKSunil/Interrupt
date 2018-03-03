@@ -25,11 +25,14 @@ import com.bharathksunil.interrupt.events.presenter.EventDashboardActivityPresen
 import com.bharathksunil.interrupt.events.presenter.EventDashboardActivityPresenterImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseEventCategoriesRepositoryImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseEventsRepositoryImplementation;
-import com.bharathksunil.interrupt.util.CircleTransform;
 import com.bharathksunil.interrupt.util.TextDrawable;
 import com.bharathksunil.interrupt.util.TextUtils;
 import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
+import com.kbeanie.multipicker.api.ImagePicker;
+import com.kbeanie.multipicker.api.Picker;
+import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
+import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -52,6 +55,8 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
     private Unbinder unbinder;
     private EventDashboardActivityPresenter presenter;
     private Uri bannerImage;
+    private ImagePickerCallback imagePickerCallback;
+    private ImagePicker imagePicker;
 
     private static final int NAME = 0, DESCRIPTION = 1, VENUE = 2, COORDINATOR_NAME = 3, EMAIL = 4,
             PHONE_NO = 5, PRICE = 6;
@@ -115,26 +120,13 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (
-                requestCode == 1
-                        && resultCode == RESULT_OK
-                        && data != null
-                        && data.getData() != null
-                ) {
-            //Compress the image and set the image
-            try {
-                File compressedFile;
-                File file = new File(Utils.getMediaPathFromURI(data.getData(), this));
-                compressedFile = new Compressor(this)
-                        .setQuality(35)
-                        .setCompressFormat(Bitmap.CompressFormat.JPEG)
-                        .compressToFile(file);
-                bannerImage = Uri.fromFile(compressedFile);
-                Picasso.with(this).load(bannerImage).transform(new CircleTransform()).into(iv_eventBanner);
-            } catch (Exception e) {
-                ViewUtils.errorBar("Couldn't Load File, Choose From Gallery", this);
-                e.printStackTrace();
+        if (resultCode == RESULT_OK) {
+            if (imagePicker == null) {
+                imagePicker = new ImagePicker(this);
+                imagePicker.setImagePickerCallback(imagePickerCallback);
             }
+            if(requestCode == Picker.PICK_IMAGE_DEVICE)
+                imagePicker.submit(data);
         }
     }
 
@@ -318,11 +310,35 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
 
     @Override
     public void showBannerImageChooser() {
-        if (Utils.isStoragePermissionGranted(this))
-            Utils.showFileChooser("image/*", prompt_pickImage,
-                    1, this);
-        else
-            ViewUtils.errorBar(err_storage_permission, this);
+        if (Utils.isStoragePermissionGranted(EventDashboardActivity.this)) {
+            imagePicker = new ImagePicker(this);
+            imagePickerCallback = new ImagePickerCallback() {
+                @Override
+                public void onImagesChosen(List<ChosenImage> list) {
+                    //Compress the image and set the image
+                    try {
+                        File compressedFile;
+                        File file = new File(list.get(0).getOriginalPath());
+                        compressedFile = new Compressor(EventDashboardActivity.this)
+                                .setQuality(35)
+                                .setCompressFormat(Bitmap.CompressFormat.JPEG)
+                                .compressToFile(file);
+                        bannerImage = Uri.fromFile(compressedFile);
+                        Picasso.with(EventDashboardActivity.this).load(bannerImage).into(iv_eventBanner);
+                    } catch (Exception e) {
+                        ViewUtils.errorBar("Couldn't Load File", EventDashboardActivity.this);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(String s) {
+                    ViewUtils.errorBar(s, EventDashboardActivity.this);
+                }
+            };
+            imagePicker.setImagePickerCallback(imagePickerCallback);
+            imagePicker.pickImage();
+        }
     }
 
     @Override
@@ -378,7 +394,7 @@ public class EventDashboardActivity extends AppCompatActivity implements EventDa
                 else if (selectedHour == 12)
                     btnList.get(TIME).setText(hour + selectedHour + ":" + hour + selectedMinute + " PM, " + date + " March " + year);
                 else
-                    btnList.get(TIME).setText(hour + (selectedHour - 12) + ":" + hour + selectedMinute + " AM, " + date + " March " + year);
+                    btnList.get(TIME).setText(hour + (selectedHour - 12) + ":" + minute + selectedMinute + " PM, " + date + " March " + year);
             }
         }, hour, minute, true);//Not 24 hour time
         mTimePicker.setTitle("Select Event Time");

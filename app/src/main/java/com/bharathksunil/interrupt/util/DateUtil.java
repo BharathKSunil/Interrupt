@@ -3,6 +3,7 @@ package com.bharathksunil.interrupt.util;
 import com.github.thunder413.datetimeutils.DateTimeUnits;
 import com.github.thunder413.datetimeutils.DateTimeUtils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,5 +38,15 @@ public class DateUtil {
         return diff > 0;
     }
 
+    public static Long getTimestampFromDate(String date){
+        Date thisDate;
+        try {
+            thisDate = new SimpleDateFormat(PATTERN, Locale.getDefault()).parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return thisDate.getTime();
+    }
 
 }

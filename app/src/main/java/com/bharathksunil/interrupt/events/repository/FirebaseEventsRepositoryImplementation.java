@@ -12,6 +12,7 @@ import com.bharathksunil.interrupt.events.model.Events;
 import com.bharathksunil.interrupt.events.model.Schedules;
 import com.bharathksunil.interrupt.events.presenter.EventDashboardActivityPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenter;
+import com.bharathksunil.interrupt.util.DateUtil;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.TextUtils;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -119,6 +120,7 @@ public class FirebaseEventsRepositoryImplementation implements EventsViewerPrese
 
     private void addEventToSchedule() {
         Schedules schedules = new Schedules(events.getName(), events.getDateTime(), events.getVenue());
+        schedules.setTimestamp(DateUtil.getTimestampFromDate(events.getDateTime()));
         FirebaseDatabase.getInstance().getReference(FirebaseConstants.SCHEDULES_TREE)
                 .child(eventID).setValue(schedules)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
