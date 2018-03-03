@@ -131,11 +131,12 @@ public class TextUtils {
     }
 
     public static String getEmailAsFirebaseKey(String email) {
+        email = email.toLowerCase();
         return email.replaceAll("\\.", "_dot_");
     }
 
     public static String getEmailFromFirebaseKey(String key) {
-        return key.replaceAll("_dot_", "\\.");
+        return key.replaceAll("_dot_", "\\.").toLowerCase();
     }
 
 }

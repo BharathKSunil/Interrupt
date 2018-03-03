@@ -32,7 +32,7 @@ public class FirebaseSignInRepositoryImplementation implements SignInPresenter.R
             signInCallbacks.isAlreadySignedIn();
             return;
         }
-
+        email = email.toLowerCase();
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
@@ -71,6 +71,7 @@ public class FirebaseSignInRepositoryImplementation implements SignInPresenter.R
      */
     @Override
     public void sendPasswordResetEmail(@NonNull String email, @NonNull final PasswordResetTaskCallback callback) {
+        email = email.toLowerCase();
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

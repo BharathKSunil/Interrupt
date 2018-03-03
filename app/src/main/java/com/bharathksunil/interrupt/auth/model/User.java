@@ -80,11 +80,11 @@ public class User {
     }
 
     public String getEmail() {
-        return Email;
+        return Email.toLowerCase();
     }
 
     public void setEmail(String email) {
-        Email = email;
+        Email = email.toLowerCase();
     }
 
     public String getProfileUrl() {

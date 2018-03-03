@@ -25,11 +25,11 @@ public class Feedback {
     }
 
     public String getEmailId() {
-        return EmailId;
+        return EmailId.toLowerCase();
     }
 
     public void setEmailId(String emailId) {
-        EmailId = emailId;
+        EmailId = emailId.toLowerCase();
     }
 
     public String getFeedback() {

@@ -29,8 +29,9 @@ import com.bharathksunil.interrupt.util.Debug;
 
 public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.Repository {
     @Override
-    public void signUpWithEmailAndPassword(@NonNull final String email, @NonNull final String password,
+    public void signUpWithEmailAndPassword(@NonNull String email, @NonNull final String password,
                                            @NonNull final SignUpCallbacks signUpCallbacks) {
+        email = email.toLowerCase();
         checkForEmailAvailabilityAndSignUpIfAvailable(email, password, signUpCallbacks);
     }
 

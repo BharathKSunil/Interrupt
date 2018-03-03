@@ -93,11 +93,11 @@ public class EventRegistrations {
     }
 
     public String getpEmail() {
-        return pEmail;
+        return pEmail.toLowerCase();
     }
 
     public void setpEmail(String pEmail) {
-        this.pEmail = pEmail;
+        this.pEmail = pEmail.toLowerCase();
     }
 
     public String getpPhoneNo() {
