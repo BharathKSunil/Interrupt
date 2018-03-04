@@ -29,6 +29,7 @@
     <color name="blue">#348af7</color>
     <color name="event_price_background">@color/blue</color>
     <color name="event_price_text">@android:color/white</color>
+    <color name="organisers_bg">#3498db</color>
 
     <dimen name="recycler_view_left_offset">9dp</dimen>
     <dimen name="left_offset">61dp</dimen>

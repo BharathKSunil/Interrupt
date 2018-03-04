@@ -1,6 +1,5 @@
 package com.bharathksunil.interrupt.events.ui.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
@@ -21,9 +19,12 @@ import com.bharathksunil.interrupt.util.TextDrawable;
 import com.bharathksunil.interrupt.util.TextUtils;
 import com.bharathksunil.interrupt.util.Utils;
 import com.bharathksunil.interrupt.util.ViewUtils;
+import com.cloudrail.si.CloudRail;
+import com.cloudrail.si.services.MailJet;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindColor;
@@ -39,6 +40,7 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
 
     private Unbinder unbinder;
     private ParticipantRegistrationActivityPresenter presenter;
+    private MailJet mailJet;
 
     @BindView(R.id.progress_bar)
     AVLoadingIndicatorView loadingIndicatorView;
@@ -88,6 +90,9 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
                 new FirebaseParticipantRegistrationRepository()
         );
         presenter.setView(this);
+        CloudRail.setAppKey("5a9ba23c2d1ce0242d0fd785");
+        mailJet = new MailJet(this, "30904bf10495d81dc2d5c4f41a44542e",
+                "7abcbb3d9fa093dc511eeb31e9279577");
     }
 
     @Override
@@ -337,8 +342,28 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
     }
 
     @Override
-    public void sendEmail(String emailID, String subject, String body) {
-        Intent i = new Intent(Intent.ACTION_SEND);
+    public void sendEmail(final String emailID, final String subject, final String body) {
+        new Thread(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        mailJet.sendEmail(
+                                "bharath.cse@dr-ait.org",
+                                "Bharath Kumar S",
+                                Arrays.asList(emailID),
+                                subject,
+                                body,
+                                null,
+                                null,
+                                null,
+                                null
+                        );
+                    }
+                }
+        ).start();
+
+        //OLD METHOD
+        /*Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("message/rfc822");
         i.putExtra(Intent.EXTRA_EMAIL, new String[]{emailID});
         i.putExtra(Intent.EXTRA_SUBJECT, subject);
@@ -347,6 +372,6 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
             startActivity(Intent.createChooser(i, "Send mail to Participant..."));
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 }

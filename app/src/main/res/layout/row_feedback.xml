@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/Admin.TextAppearance.Small"
             android:textColor="@color/black"
+            android:autoLink="email"
             tools:text="bharathk.sunil.k@gmail.com" />
 
         <TextView
