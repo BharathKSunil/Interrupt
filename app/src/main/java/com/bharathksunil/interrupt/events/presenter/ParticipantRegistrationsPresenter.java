@@ -13,7 +13,7 @@ import com.bharathksunil.interrupt.events.model.EventRegistrations;
  * @author Bharath on 01-03-2018.
  */
 
-public interface ParticipantRegistrationActivityPresenter {
+public interface ParticipantRegistrationsPresenter {
     interface View extends BaseView {
         void loadEventBanner(String url);
 
@@ -91,6 +91,8 @@ public interface ParticipantRegistrationActivityPresenter {
         void resetAllUserData();
 
         void sendEmail(String emailID, String subject, String body);
+
+        void exit();
     }
 
     interface Repository {

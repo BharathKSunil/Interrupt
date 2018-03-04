@@ -60,7 +60,7 @@ public class LauncherActivity extends AppCompatActivity implements
      */
     @Override
     public void loadPermissionsFragment() {
-        //todo: Create a fragment explaining why the permissions are required
+        //UnImplemented
     }
 
     /**

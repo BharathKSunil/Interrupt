@@ -1,8 +1,13 @@
-package com.bharathksunil.interrupt.events.ui.activities;
+package com.bharathksunil.interrupt.events.ui.fragments;
 
+
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -12,8 +17,8 @@ import android.widget.TextView;
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
 import com.bharathksunil.interrupt.events.model.EventsManager;
-import com.bharathksunil.interrupt.events.presenter.ParticipantRegistrationActivityPresenter;
-import com.bharathksunil.interrupt.events.presenter.ParticipantRegistrationActivityPresenterImplementation;
+import com.bharathksunil.interrupt.events.presenter.ParticipantRegistrationsPresenter;
+import com.bharathksunil.interrupt.events.presenter.ParticipantRegistrationsPresenterImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseParticipantRegistrationRepository;
 import com.bharathksunil.interrupt.util.TextDrawable;
 import com.bharathksunil.interrupt.util.TextUtils;
@@ -24,7 +29,7 @@ import com.cloudrail.si.services.MailJet;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindColor;
@@ -35,11 +40,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+/**
+ * A simple {@link Fragment} subclass that Registers a New Participant to the event.
+ */
 @SuppressWarnings("ConstantConditions")
-public class NewParticipantRegistrationActivity extends AppCompatActivity implements ParticipantRegistrationActivityPresenter.View {
+public class NewParticipantRegistrationFragment extends Fragment implements ParticipantRegistrationsPresenter.View {
+    public NewParticipantRegistrationFragment() {
+        // Required empty public constructor
+    }
 
     private Unbinder unbinder;
-    private ParticipantRegistrationActivityPresenter presenter;
+    private ParticipantRegistrationsPresenter presenter;
     private MailJet mailJet;
 
     @BindView(R.id.progress_bar)
@@ -81,23 +92,29 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
     int banner_image_bg_color;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.event_activity_participant_registration);
-        unbinder = ButterKnife.bind(this);
-
-        presenter = new ParticipantRegistrationActivityPresenterImplementation(
-                new FirebaseParticipantRegistrationRepository()
-        );
-        presenter.setView(this);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         CloudRail.setAppKey("5a9ba23c2d1ce0242d0fd785");
-        mailJet = new MailJet(this, "30904bf10495d81dc2d5c4f41a44542e",
+        mailJet = new MailJet(context, "30904bf10495d81dc2d5c4f41a44542e",
                 "7abcbb3d9fa093dc511eeb31e9279577");
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.events_fragment_participant_registration, container, false);
+        unbinder = ButterKnife.bind(this, view);
+
+        presenter = new ParticipantRegistrationsPresenterImplementation(
+                new FirebaseParticipantRegistrationRepository()
+        );
+        presenter.setView(this);
+        return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
         unbinder.unbind();
         presenter.setView(null);
     }
@@ -105,10 +122,10 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
     @OnClick(R.id.btn_submit)
     public void onRegisterButtonPressed() {
         ViewUtils.resetTextInputError(textInputLayoutList);
-        if (Utils.isConnected(this))
+        if (Utils.isConnected(getContext()))
             presenter.onRegisterButtonPressed();
         else
-            ViewUtils.errorBar(err_offline, this);
+            ViewUtils.errorBar(err_offline, getActivity());
     }
 
     @OnClick(R.id.btn_cancel)
@@ -151,18 +168,18 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
 
     @Override
     public void onUnexpectedError() {
-        ViewUtils.errorBar(err_unexpected_error, this);
+        ViewUtils.errorBar(err_unexpected_error, getActivity());
     }
 
     @Override
     public void loadEventBanner(String url) {
         if (TextUtils.isEmpty(url)) {
             TextDrawable textDrawable = TextDrawable.builder().beginConfig()
-                    .withBorder(1).fontSize(65).textColor(banner_image_text_color)
+                    .withBorder(1).fontSize(55).textColor(banner_image_text_color)
                     .endConfig().buildRect(EventsManager.getInstance().getEventName(), banner_image_bg_color);
             iv_banner.setImageDrawable(textDrawable);
         }
-        Picasso.with(this).load(url).placeholder(R.drawable.app_icon)
+        Picasso.with(getContext()).load(url).placeholder(R.drawable.app_icon)
                 .error(R.drawable.app_icon)
                 .into(iv_banner);
 
@@ -303,10 +320,10 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
         ViewUtils.focusOnView(rg_section, scrollView);
         switch (errorType) {
             case EMPTY:
-                ViewUtils.errorBar(err_empty_field, this);
+                ViewUtils.errorBar(err_empty_field, getActivity());
                 break;
             case INVALID:
-                ViewUtils.errorBar(err_invalid_section, this);
+                ViewUtils.errorBar(err_invalid_section, getActivity());
                 break;
         }
     }
@@ -316,22 +333,22 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
         ViewUtils.focusOnView(rg_semester, scrollView);
         switch (errorType) {
             case EMPTY:
-                ViewUtils.errorBar(err_empty_field, this);
+                ViewUtils.errorBar(err_empty_field, getActivity());
                 break;
             case INVALID:
-                ViewUtils.errorBar(err_invalid_sem, this);
+                ViewUtils.errorBar(err_invalid_sem, getActivity());
                 break;
         }
     }
 
     @Override
     public void userRegisteredSuccessfully() {
-        ViewUtils.snackBar("User Registered Successfully", this);
+        ViewUtils.snackBar("User Registered Successfully, Sending Mail...", getActivity());
     }
 
     @Override
     public void showUserAlreadyRegisteredError() {
-        ViewUtils.errorBar("This User Is Already Registered", this);
+        ViewUtils.errorBar("This User Is Already Registered", getActivity());
     }
 
     @Override
@@ -350,7 +367,7 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
                         mailJet.sendEmail(
                                 "bharath.cse@dr-ait.org",
                                 "Bharath Kumar S",
-                                Arrays.asList(emailID),
+                                Collections.singletonList(emailID),
                                 subject,
                                 body,
                                 null,
@@ -361,17 +378,12 @@ public class NewParticipantRegistrationActivity extends AppCompatActivity implem
                     }
                 }
         ).start();
-
-        //OLD METHOD
-        /*Intent i = new Intent(Intent.ACTION_SEND);
-        i.setType("message/rfc822");
-        i.putExtra(Intent.EXTRA_EMAIL, new String[]{emailID});
-        i.putExtra(Intent.EXTRA_SUBJECT, subject);
-        i.putExtra(Intent.EXTRA_TEXT, body);
-        try {
-            startActivity(Intent.createChooser(i, "Send mail to Participant..."));
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-        }*/
     }
+
+    @Override
+    public void exit() {
+        getActivity().onBackPressed();
+    }
+
 }
+

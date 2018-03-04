@@ -45,9 +45,11 @@
     <string name="tv_design_info_heading">Tech &amp; Design Team</string>
     <string name="tv_feedback_or_bug_report">Feedback or Bug Report</string>
     <string name="hint_feedback">Give us your Feedback</string>
+    <string name="tv_schedule_venue">Venue</string>
 
     <color name="tab_selected_color">#F3E5F5</color>
     <color name="card_schedules_bg">#2980b9</color>
+    <color name="card_schedules_font">#2980b9</color>
 
     <array name="flip_pager_bg_colors">
         <item>@color/saffron</item>

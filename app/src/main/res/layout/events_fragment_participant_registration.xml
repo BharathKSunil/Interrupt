@@ -4,11 +4,9 @@
     android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.bharathksunil.interrupt.events.ui.activities.NewParticipantRegistrationActivity">
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

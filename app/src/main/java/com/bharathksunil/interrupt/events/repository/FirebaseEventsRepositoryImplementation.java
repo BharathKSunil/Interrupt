@@ -10,7 +10,7 @@ import com.bharathksunil.interrupt.auth.model.UserPermissions;
 import com.bharathksunil.interrupt.auth.model.UserType;
 import com.bharathksunil.interrupt.events.model.Events;
 import com.bharathksunil.interrupt.events.model.Schedules;
-import com.bharathksunil.interrupt.events.presenter.EventDashboardActivityPresenter;
+import com.bharathksunil.interrupt.events.presenter.EventInfoPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenter;
 import com.bharathksunil.interrupt.util.DateUtil;
 import com.bharathksunil.interrupt.util.Debug;
@@ -35,7 +35,7 @@ import java.util.List;
  * @author Bharath on 20-02-2018.
  */
 
-public class FirebaseEventsRepositoryImplementation implements EventsViewerPresenter.Repository, EventDashboardActivityPresenter.Repository {
+public class FirebaseEventsRepositoryImplementation implements EventsViewerPresenter.Repository, EventInfoPresenter.Repository {
     private String eventID;
     private boolean isUpdate;
     private OnEventRegistrationCallback callback;

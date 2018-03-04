@@ -54,10 +54,6 @@
             android:name=".events.ui.activities.EventDashboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Events" />
-        <activity
-            android:name=".events.ui.activities.NewParticipantRegistrationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Events" />
     </application>
 
 </manifest>

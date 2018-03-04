@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import com.bharathksunil.interrupt.FirebaseConstants;
 import com.bharathksunil.interrupt.events.model.EventRegistrations;
 import com.bharathksunil.interrupt.events.model.EventsManager;
-import com.bharathksunil.interrupt.events.presenter.ParticipantRegistrationActivityPresenter;
+import com.bharathksunil.interrupt.events.presenter.ParticipantRegistrationsPresenter;
 import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.TextUtils;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * @author Bharath on 01-03-2018.
  */
 
-public class FirebaseParticipantRegistrationRepository implements ParticipantRegistrationActivityPresenter.Repository {
+public class FirebaseParticipantRegistrationRepository implements ParticipantRegistrationsPresenter.Repository {
     private RegistrationCompleteCallback callback;
     private EventRegistrations participant;
     private String regId;

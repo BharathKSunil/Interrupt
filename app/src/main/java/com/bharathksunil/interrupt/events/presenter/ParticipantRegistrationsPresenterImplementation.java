@@ -12,12 +12,12 @@ import static com.bharathksunil.interrupt.auth.presenter.FormErrorType.EMPTY;
 import static com.bharathksunil.interrupt.auth.presenter.FormErrorType.INVALID;
 
 /**
- * This implements the {@link ParticipantRegistrationActivityPresenter}
+ * This implements the {@link ParticipantRegistrationsPresenter}
  *
  * @author Bharath on 01-03-2018.
  */
 
-public class ParticipantRegistrationActivityPresenterImplementation implements ParticipantRegistrationActivityPresenter {
+public class ParticipantRegistrationsPresenterImplementation implements ParticipantRegistrationsPresenter {
 
     private String name, email, phoneNo, usn, department, section, semester, teamMembers;
     @Nullable
@@ -29,7 +29,7 @@ public class ParticipantRegistrationActivityPresenterImplementation implements P
     @NonNull
     private UserManager userManager;
 
-    public ParticipantRegistrationActivityPresenterImplementation(@NonNull Repository repositoryInstance) {
+    public ParticipantRegistrationsPresenterImplementation(@NonNull Repository repositoryInstance) {
         this.repositoryInstance = repositoryInstance;
         this.eventsManager = EventsManager.getInstance();
         this.userManager = UserManager.getInstance();
@@ -48,7 +48,7 @@ public class ParticipantRegistrationActivityPresenterImplementation implements P
     public void onCancelButtonPressed() {
         if (viewInstance == null)
             return;
-        viewInstance.resetAllUserData();
+        viewInstance.exit();
     }
 
     @Override

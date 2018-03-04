@@ -24,42 +24,60 @@
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
         app:cardBackgroundColor="@color/card_schedules_bg"
-        app:cardElevation="2dp"
-        app:contentPadding="15dp">
+        app:cardElevation="2dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_timeline_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:textAppearance="@style/Dashboard.TextAppearance.Small"
                 android:textColor="@color/white"
                 tools:text="24 JAN" />
 
             <TextView
                 android:id="@+id/tv_timeline_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_timeline_date"
-                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
                 android:textAppearance="@style/Dashboard.TextAppearance.Medium"
-                android:textColor="@color/white"
+                android:textColor="@color/card_schedules_font"
                 tools:text="Event Name" />
 
-            <TextView
-                android:id="@+id/tv_timeline_venue"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_below="@+id/tv_timeline_title"
-                android:textAppearance="@style/Dashboard.TextAppearance.Small"
-                android:textColor="@color/white"
-                tools:text="C234" />
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_schedule_venue"
+                    android:textAppearance="@style/Events.TextAppearance.Small"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:id="@+id/tv_timeline_venue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textAppearance="@style/Dashboard.TextAppearance.Small"
+                    android:textColor="@color/card_schedules_font"
+                    tools:text="C234" />
+            </LinearLayout>
+
+
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 

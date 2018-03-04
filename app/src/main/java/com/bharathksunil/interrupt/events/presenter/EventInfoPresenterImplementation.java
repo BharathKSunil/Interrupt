@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This is the implementation of the {@link EventDashboardActivityPresenter}
+ * This is the implementation of the {@link EventInfoPresenter}
  *
  * @author Bharath on 28-02-2018.
  */
 
-public class EventDashboardActivityPresenterImplementation implements EventDashboardActivityPresenter {
+public class EventInfoPresenterImplementation implements EventInfoPresenter {
 
 
     @NonNull
@@ -37,9 +37,9 @@ public class EventDashboardActivityPresenterImplementation implements EventDashb
     private List<Categories> allCategoriesList;
     private boolean isEditing;
 
-    public EventDashboardActivityPresenterImplementation(@NonNull EventCategoriesPresenter.Repository
+    public EventInfoPresenterImplementation(@NonNull EventCategoriesPresenter.Repository
                                                                  categoriesRepositoryInstance,
-                                                         @NonNull Repository eventRepository) {
+                                            @NonNull Repository eventRepository) {
         this.categoriesRepositoryInstance = categoriesRepositoryInstance;
         this.eventRepositoryInstance = eventRepository;
         this.eventsManager = EventsManager.getInstance();
@@ -109,7 +109,8 @@ public class EventDashboardActivityPresenterImplementation implements EventDashb
         if (viewInstance == null)
             return;
         if (eventsManager.isEventsEmpty()) {
-            viewInstance.onUnexpectedError();
+            viewInstance.showPermissionDeniedMessage();
+            //viewInstance.onUnexpectedError();
             viewInstance.onProcessEnded();
             return;
         }
@@ -429,6 +430,9 @@ public class EventDashboardActivityPresenterImplementation implements EventDashb
     public void onCancelButtonPressed() {
         if (viewInstance == null)
             return;
-        viewInstance.exitActivity();
+        if (! isEditing)
+            viewInstance.exitActivity();
+        else
+            loadEventsViewerPage();
     }
 }

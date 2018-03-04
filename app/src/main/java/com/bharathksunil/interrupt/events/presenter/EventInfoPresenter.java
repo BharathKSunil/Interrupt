@@ -17,7 +17,7 @@ import java.util.List;
  * @author Bharath on 28-02-2018.
  */
 
-public interface EventDashboardActivityPresenter {
+public interface EventInfoPresenter {
     interface View extends BaseView {
         void setEventName(String eventName);
 

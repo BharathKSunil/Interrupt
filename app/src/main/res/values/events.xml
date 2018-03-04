@@ -25,6 +25,7 @@
     <string name="tv_heading_participant_registration">Participant Registration</string>
     <string name="btn_register">Register</string>
     <string name="hint_team_members">Team Members(separated by , )</string>
+    <string name="tv_heading_events_dashboard">Events Dashboard</string>
 
     <color name="blue">#348af7</color>
     <color name="event_price_background">@color/blue</color>
