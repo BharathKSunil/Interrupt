@@ -8,12 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.bharathksunil.interrupt.R;
 import com.bharathksunil.interrupt.events.ui.fragments.EventInfoFragment;
+import com.bharathksunil.interrupt.events.ui.fragments.EventRegistrationsViewerFragment;
 import com.bharathksunil.interrupt.events.ui.fragments.NewParticipantRegistrationFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class EventDashboardActivity extends AppCompatActivity implements EventInfoFragment.Interactor{
+public class EventDashboardActivity extends AppCompatActivity implements EventInfoFragment.Interactor {
 
     private Unbinder unbinder;
 
@@ -39,7 +40,7 @@ public class EventDashboardActivity extends AppCompatActivity implements EventIn
 
     @Override
     public void loadEventRegistrationsFragment() {
-        //todo: Create an Events Registration Fragment to view the registrations
+        loadFragment(new EventRegistrationsViewerFragment(), EventRegistrationsViewerFragment.class.getName());
     }
 
     private void loadFragment(Fragment fragment, @Nullable String name) {

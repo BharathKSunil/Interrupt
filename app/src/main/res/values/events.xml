@@ -26,6 +26,10 @@
     <string name="btn_register">Register</string>
     <string name="hint_team_members">Team Members(separated by , )</string>
     <string name="tv_heading_events_dashboard">Events Dashboard</string>
+    <string name="tv_event_registrations">Registrations</string>
+    <string name="tv_empty_registrations">No Registrations for the event yet.\nHurry Up Folks.!</string>
+    <string name="tv_no_of_registrations">No Of Registrations</string>
+    <string name="tv_total_amount">Total Amount</string>
 
     <color name="blue">#348af7</color>
     <color name="event_price_background">@color/blue</color>

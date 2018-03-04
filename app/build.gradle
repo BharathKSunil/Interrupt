@@ -53,5 +53,6 @@ dependencies {
     compile 'com.github.thunder413:DateTimeUtils:1.0'
     compile 'id.zelory:compressor:2.1.0'
     compile 'com.cloudrail:cloudrail-si-android:2.21.6'
+    compile 'com.stone.vega.library:VegaLayoutManager:1.0.6'
 }
 apply plugin: "com.google.gms.google-services"
