@@ -3,10 +3,12 @@ package com.bharathksunil.interrupt.events.ui.activities;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -21,7 +23,6 @@ import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenter;
 import com.bharathksunil.interrupt.events.presenter.EventsViewerPresenterImplementation;
 import com.bharathksunil.interrupt.events.repository.FirebaseEventsRepositoryImplementation;
 import com.bharathksunil.interrupt.events.ui.EventsRecyclerSliderAdapter;
-import com.bharathksunil.interrupt.util.Debug;
 import com.bharathksunil.interrupt.util.ViewUtils;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
@@ -34,6 +35,7 @@ import butterknife.BindInt;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class EventsViewerActivity extends AppCompatActivity implements EventsViewerPresenter.View {
@@ -61,6 +63,11 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
     AVLoadingIndicatorView loadingIndicatorView;
     @BindView(R.id.tv_empty_prompt)
     TextView tv_empty_prompt;
+    @BindView(R.id.fab_edit)
+    FloatingActionButton fab_edit;
+    @BindView(R.id.fab_call)
+    FloatingActionButton fab_call;
+
 
     @BindDimen(R.dimen.left_offset)
     int eventNameOffset1;
@@ -74,6 +81,8 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
     String currencySymbol;
     @BindString(R.string.err_unexpected_error)
     String err_unexpected_error;
+    @BindString(R.string.err_permission_denied)
+    String err_permission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +142,17 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
         presenter.onActiveCardChange(pos);
     }
 
+    @OnClick(R.id.fab_edit)
+    public void onEditButtonPressed() {
+        presenter.onEditEventButtonPressed();
+    }
+
+    @OnClick(R.id.fab_call)
+    public void onCallButtonPressed() {
+        presenter.onCallButtonPressed();
+    }
+
+
     @Override
     public void onProcessStarted() {
         loadingIndicatorView.smoothToShow();
@@ -146,6 +166,26 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
     @Override
     public void onUnexpectedError() {
         ViewUtils.errorBar(err_unexpected_error, this);
+    }
+
+    @Override
+    public void showEditButton() {
+        fab_edit.show();
+    }
+
+    @Override
+    public void hideEditButton() {
+        fab_edit.hide();
+    }
+
+    @Override
+    public void loadEventsDashboardActivity() {
+        startActivity(new Intent(this, EventDashboardActivity.class));
+    }
+
+    @Override
+    public void showNoPermissionsMessage() {
+        ViewUtils.errorBar(err_permission, this);
     }
 
     @Override
@@ -165,7 +205,6 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
                 new EventsRecyclerSliderAdapter(imageUrls.toArray(urls),
                         this,
                         new OnCardClickListener());
-        Debug.i("LoadRecyclerCalled:" + urls.length);
 
         layoutManger = new CardSliderLayoutManager(this);
         recyclerView.setAdapter(sliderAdapter);
@@ -244,6 +283,12 @@ public class EventsViewerActivity extends AppCompatActivity implements EventsVie
         coordinatorSwitcher.setText(event.getCoordinators().get(0));
 
         currentPosition = pos;
+    }
+
+    @Override
+    public void makeACallToNumber(String number) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+        startActivity(intent);
     }
 
     private class TextViewFactory implements ViewSwitcher.ViewFactory {

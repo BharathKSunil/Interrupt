@@ -16,6 +16,14 @@ import java.util.List;
 
 public interface EventsViewerPresenter {
     interface View extends BaseView {
+        void showEditButton();
+
+        void hideEditButton();
+
+        void loadEventsDashboardActivity();
+
+        void showNoPermissionsMessage();
+
         void showNoEventsInCategoryText();
 
         void hideNoEventsInCategoryText();
@@ -25,6 +33,8 @@ public interface EventsViewerPresenter {
         void initialiseEventDataForFirstCard(@NonNull Events events);
 
         void setActiveSlide(int pos, @NonNull Events event);
+
+        void makeACallToNumber(String number);
     }
 
     interface Repository {
@@ -40,4 +50,8 @@ public interface EventsViewerPresenter {
     void setView(@Nullable View view);
 
     void onActiveCardChange(int activePosition);
+
+    void onCallButtonPressed();
+
+    void onEditEventButtonPressed();
 }

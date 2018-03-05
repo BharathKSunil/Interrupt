@@ -40,7 +40,6 @@ public class FirebaseEventCategoriesRepositoryImplementation implements EventCat
                         Categories category = snapshot.toObject(Categories.class);
                         category.setId(snapshot.getId());
                         categoriesList.add(category);
-                        Debug.i("Categories: " + category.getName() + "Category ID: " + category.getId());
                     }
                 }
                 callback.onDataSuccessfullyLoaded(categoriesList);

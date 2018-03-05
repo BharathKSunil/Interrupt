@@ -60,9 +60,8 @@ public class FirebaseEventsRepositoryImplementation implements EventsViewerPrese
                 for (DocumentSnapshot snapshot : documentSnapshots.getDocuments()) {
                     if (snapshot.exists()) {
                         Events events = snapshot.toObject(Events.class);
-                        events.setId(id);
+                        events.setCategoryID(id);
                         eventsList.add(events);
-                        Debug.i("Events: " + events.getName() + "Event ID: " + events.getId());
                     }
                 }
                 callback.onDataLoadedSuccessful(eventsList);

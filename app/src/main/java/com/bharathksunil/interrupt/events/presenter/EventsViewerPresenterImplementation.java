@@ -3,6 +3,7 @@ package com.bharathksunil.interrupt.events.presenter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.bharathksunil.interrupt.auth.model.UserManager;
 import com.bharathksunil.interrupt.events.model.EventsManager;
 import com.bharathksunil.interrupt.events.model.Events;
 
@@ -10,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Bharath on 20-02-2018.
+ * This is the implementation of the {@link EventsViewerPresenter}
+ *
+ * @author Bharath on 20-02-2018.
  */
 
 public class EventsViewerPresenterImplementation implements EventsViewerPresenter {
@@ -33,6 +36,11 @@ public class EventsViewerPresenterImplementation implements EventsViewerPresente
         viewInstance = view;
         if (viewInstance != null) {
             viewInstance.onProcessStarted();
+            if (UserManager.getInstance().isUserAnAdministrator() ||
+                    (UserManager.getInstance().isUserAnOrganiser()) && UserManager.getInstance().canUserModifyEventInfo())
+                viewInstance.showEditButton();
+            else
+                viewInstance.hideEditButton();
             repositoryInstance.loadEventsDataForCategoryGivenByID(eventsManager.getCurrentCategoryID(),
                     new Repository.DataLoadedCallback() {
                         @Override
@@ -74,5 +82,23 @@ public class EventsViewerPresenterImplementation implements EventsViewerPresente
             eventsManager.loadEvents(data.get(activePosition));
             viewInstance.setActiveSlide(activePosition, data.get(activePosition));
         }
+    }
+
+    @Override
+    public void onCallButtonPressed() {
+        if (viewInstance!=null) {
+            viewInstance.makeACallToNumber(eventsManager.getEventCoordinatorPhone());
+        }
+    }
+
+    @Override
+    public void onEditEventButtonPressed() {
+        if (viewInstance == null)
+            return;
+        if (UserManager.getInstance().isUserAnAdministrator() ||
+                (UserManager.getInstance().isUserAnOrganiser()) && UserManager.getInstance().canUserModifyEventInfo())
+            viewInstance.loadEventsDashboardActivity();
+        else
+            viewInstance.showNoPermissionsMessage();
     }
 }
