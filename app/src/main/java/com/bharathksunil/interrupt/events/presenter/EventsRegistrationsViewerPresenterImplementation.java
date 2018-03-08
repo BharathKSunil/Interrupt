@@ -40,6 +40,7 @@ public class EventsRegistrationsViewerPresenterImplementation implements EventsR
                 if (viewInstance == null)
                     return;
                 viewInstance.onProcessEnded();
+                viewInstance.setEventName(eventsManager.getEventName());
                 if (eventRegistrations.size() > 0)
                     viewInstance.hideNoRegistrationsText();
                 else

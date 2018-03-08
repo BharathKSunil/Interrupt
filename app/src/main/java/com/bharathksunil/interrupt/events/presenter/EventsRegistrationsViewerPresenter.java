@@ -16,6 +16,8 @@ import java.util.List;
 
 public interface EventsRegistrationsViewerPresenter {
     interface View extends BaseView {
+        void setEventName(String name);
+
         void showNoRegistrationsText();
 
         void hideNoRegistrationsText();

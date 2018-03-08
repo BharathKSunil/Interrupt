@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.bharathksunil.interrupt.events.ui.fragments.EventRegistrationsViewerFragment"
-    android:padding="8dp">
+    android:padding="8dp"
+    tools:context="com.bharathksunil.interrupt.events.ui.fragments.EventRegistrationsViewerFragment">
 
     <TextView
         android:layout_width="match_parent"
@@ -13,6 +13,15 @@
         android:text="@string/tv_event_registrations"
         android:textAppearance="@style/Events.TextAppearance.Medium"
         android:textColor="@color/green" />
+
+    <TextView
+        android:id="@+id/tv_event_name_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/Events.TextAppearance.Small"
+        android:textColor="@color/green" />
+
 
     <GridLayout
         android:layout_width="match_parent"
@@ -54,7 +63,7 @@
 
     </GridLayout>
 
-    <include layout="@layout/divider_horizontal"/>
+    <include layout="@layout/divider_horizontal" />
 
     <include layout="@layout/layout_progress_bar" />
 

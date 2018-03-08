@@ -49,6 +49,8 @@ public class EventRegistrationsViewerFragment extends Fragment implements Events
     TextView tv_totalRegistrationCount;
     @BindView(R.id.tv_reg_amount)
     TextView tv_totalRegistrationAmount;
+    @BindView(R.id.tv_event_name_1)
+    TextView tv_eventName;
 
     @BindString(R.string.currency)
     String Rs;
@@ -59,7 +61,7 @@ public class EventRegistrationsViewerFragment extends Fragment implements Events
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_event_registrations_viewer, container, false);
+        View view = inflater.inflate(R.layout.events_fragment_registrations_viewer, container, false);
         unbinder = ButterKnife.bind(this, view);
         presenter = new EventsRegistrationsViewerPresenterImplementation(new FirebaseFetchEventRegistrationsRepository());
         presenter.setView(this);
@@ -89,6 +91,11 @@ public class EventRegistrationsViewerFragment extends Fragment implements Events
     @Override
     public void onUnexpectedError() {
         ViewUtils.errorBar(err_unexpectedError, getActivity());
+    }
+
+    @Override
+    public void setEventName(String name) {
+        tv_eventName.setText(name);
     }
 
     @Override

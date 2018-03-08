@@ -28,7 +28,7 @@ public class FirebaseSchedulesRepository implements SchedulesPresenter.Repositor
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference(FirebaseConstants.SCHEDULES_TREE);
         reference.keepSynced(true);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.orderByChild("timestamp").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
