@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.auth.repository;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bharathksunil.interrupt.auth.presenter.SignInPresenter;
 import com.bharathksunil.interrupt.util.Debug;

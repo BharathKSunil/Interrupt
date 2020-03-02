@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -135,7 +135,7 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
         presenter = new SignUpPresenterImplementation(new FirebaseSignUpRepositoryImplementation());
         presenter.setView(this);
         if (imagePath != null) {
-            Picasso.with(getActivity()).load(imagePath)
+            Picasso.get().load(imagePath)
                     .transform(new CircleTransform()).into(iv_profile);
         } else {
             TextDrawable textDrawable = TextDrawable.builder().beginConfig()
@@ -186,7 +186,7 @@ public class SignUpFragment extends Fragment implements SignUpPresenter.View {
                                 .setCompressFormat(Bitmap.CompressFormat.JPEG)
                                 .compressToFile(file);
                         imagePath = Uri.fromFile(compressedFile);
-                        Picasso.with(getActivity()).load(imagePath).transform(new CircleTransform()).into(iv_profile);
+                        Picasso.get().load(imagePath).transform(new CircleTransform()).into(iv_profile);
                     } catch (Exception e) {
                         ViewUtils.errorBar("Couldn't Load File", getActivity());
                         e.printStackTrace();

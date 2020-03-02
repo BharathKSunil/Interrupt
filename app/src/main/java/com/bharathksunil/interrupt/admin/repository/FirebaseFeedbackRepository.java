@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.admin.repository;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bharathksunil.interrupt.admin.model.Feedback;
 import com.bharathksunil.interrupt.admin.presenter.FeedbackPresenter;

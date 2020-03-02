@@ -1,9 +1,9 @@
 package com.bharathksunil.interrupt.events.ui;
 
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.CardView;
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.cardview.widget.CardView;
 import android.view.View;
 
 import com.ramotion.cardslider.CardSliderLayoutManager;

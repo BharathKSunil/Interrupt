@@ -9,9 +9,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -332,7 +332,7 @@ public class EventInfoFragment extends Fragment implements EventInfoPresenter.Vi
                     .endConfig().buildRect("Upload Event Banner", banner_image_bg_color);
             iv_eventBanner.setImageDrawable(textDrawable);
         } else
-            Picasso.with(getContext()).load(url).placeholder(R.drawable.app_icon)
+            Picasso.get().load(url).placeholder(R.drawable.app_icon)
                     .error(R.drawable.app_icon)
                     .into(iv_eventBanner);
     }
@@ -358,7 +358,7 @@ public class EventInfoFragment extends Fragment implements EventInfoPresenter.Vi
                                 .setCompressFormat(Bitmap.CompressFormat.JPEG)
                                 .compressToFile(file);
                         bannerImage = Uri.fromFile(compressedFile);
-                        Picasso.with(getContext()).load(bannerImage).into(iv_eventBanner);
+                        Picasso.get().load(bannerImage).into(iv_eventBanner);
                     } catch (Exception e) {
                         ViewUtils.errorBar("Couldn't Load File", getActivity());
                         e.printStackTrace();

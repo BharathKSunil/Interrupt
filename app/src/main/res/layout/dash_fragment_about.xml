@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:paddingTop="16dp">
         <!--APP ABOUT-->
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/accent"
@@ -106,7 +106,7 @@
                         android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
         <!--ABOUT DEVELOPER-->
         <include layout="@layout/layout_about_developer"/>
     </LinearLayout>

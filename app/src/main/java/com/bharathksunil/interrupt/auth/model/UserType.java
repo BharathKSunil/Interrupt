@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.auth.model;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 /**
  * This app has 5 types of users, these types are mentioned here

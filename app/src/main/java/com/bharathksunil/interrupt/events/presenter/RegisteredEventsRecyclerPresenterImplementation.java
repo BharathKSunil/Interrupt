@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.events.presenter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bharathksunil.interrupt.OnItemClickListener;
 import com.bharathksunil.interrupt.auth.model.UserManager;

@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.admin.ui;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,7 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 /**
- * The {@link android.support.v7.widget.RecyclerView} Adapter for Loading user Data
+ * The {@link RecyclerView} Adapter for Loading user Data
  *
  * @author Bharath on 19-02-2018.
  */
@@ -89,7 +89,7 @@ public class UserInfoRecyclerAdapter extends RecyclerView.Adapter<UserInfoRecycl
 
         @Override
         public void loadUsersImageFromUrl(String imageUrl) {
-            Picasso.with(context).load(imageUrl).error(R.drawable.ic_profile)
+            Picasso.get().load(imageUrl).error(R.drawable.ic_profile)
                     .transform(new CircleTransform())
                     .placeholder(R.drawable.ic_profile).into(userImage);
         }

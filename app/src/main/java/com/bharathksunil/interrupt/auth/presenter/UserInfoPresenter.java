@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.auth.presenter;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * This presenter is responsible for presenting the user info

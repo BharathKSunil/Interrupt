@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.events.ui;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +87,7 @@ public class RegisteredEventsRecyclerAdapter extends
                     .fontSize(55).endConfig()
                     .buildRect(eventName, backGroundColor);
 
-            Picasso.with(context).load(imageBannerUrl).error(drawable)
+            Picasso.get().load(imageBannerUrl).error(drawable)
                     .placeholder(drawable).into(eventsBanner);
         }
 

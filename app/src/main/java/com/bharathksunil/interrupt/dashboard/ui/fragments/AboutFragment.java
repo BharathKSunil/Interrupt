@@ -7,7 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +59,7 @@ public class AboutFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         isThreadActive = true;
 
-        Picasso.with(getContext()).load(PROFILE_IMAGE_URL)
+        Picasso.get().load(PROFILE_IMAGE_URL)
                 .placeholder(R.drawable.ic_profile)
                 .error(R.drawable.ic_profile)
                 .into(iv_devImage);

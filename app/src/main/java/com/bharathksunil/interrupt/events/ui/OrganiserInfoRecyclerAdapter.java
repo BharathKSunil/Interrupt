@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.events.ui;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +85,7 @@ public class OrganiserInfoRecyclerAdapter extends
         }
 
         void loadUsersImageFromUrl(String imageUrl) {
-            Picasso.with(context).load(imageUrl).error(R.drawable.ic_profile)
+            Picasso.get().load(imageUrl).error(R.drawable.ic_profile)
 
                     .transform(new CircleTransform())
                     .placeholder(R.drawable.ic_profile).into(userImage);

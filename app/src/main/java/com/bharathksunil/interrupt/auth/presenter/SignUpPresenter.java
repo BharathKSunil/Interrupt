@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.auth.presenter;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bharathksunil.interrupt.BaseView;
 import com.bharathksunil.interrupt.auth.model.User;

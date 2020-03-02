@@ -4,11 +4,11 @@ package com.bharathksunil.interrupt.auth.ui.fragments;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -211,7 +211,7 @@ public class UserInfoFragment extends Fragment implements UserInfoPresenter.View
      */
     @Override
     public void loadUserImage(String profileUrl) {
-        Picasso.with(getActivity()).load(profileUrl)
+        Picasso.get().load(profileUrl)
                 .placeholder(R.drawable.ic_profile)
                 .error(R.drawable.ic_profile)
                 .transform(new CircleTransform()).into(iv_profile);

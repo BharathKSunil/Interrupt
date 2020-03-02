@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.events.presenter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bharathksunil.interrupt.BaseView;
 import com.bharathksunil.interrupt.OnItemClickListener;

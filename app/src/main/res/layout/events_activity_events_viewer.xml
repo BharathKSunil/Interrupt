@@ -75,7 +75,7 @@
 
     <include layout="@layout/layout_progress_bar" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_events"
         android:layout_width="match_parent"
         android:layout_height="210dp"
@@ -180,7 +180,7 @@
 
     </FrameLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
         app:fabSize="auto"
         app:srcCompat="@drawable/ic_edit" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

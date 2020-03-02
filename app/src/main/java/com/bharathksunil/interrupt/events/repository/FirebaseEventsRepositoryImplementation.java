@@ -1,8 +1,8 @@
 package com.bharathksunil.interrupt.events.repository;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bharathksunil.interrupt.FirebaseConstants;
 import com.bharathksunil.interrupt.admin.model.Users;
@@ -204,14 +204,14 @@ public class FirebaseEventsRepositoryImplementation implements EventsViewerPrese
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                //noinspection ConstantConditions
-                events.setBannerUrl(taskSnapshot.getDownloadUrl().toString());
-                if (isUpdate) {
-                    updateEventInfo();
-                } else {
-                    addNewEvent();
-                }
-
+                reference.getDownloadUrl().addOnSuccessListener(uri -> {
+                    events.setBannerUrl(uri.toString());
+                    if (isUpdate) {
+                        updateEventInfo();
+                    } else {
+                        addNewEvent();
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

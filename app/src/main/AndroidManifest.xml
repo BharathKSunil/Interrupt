@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".auth.ui.LauncherActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/Auth">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,27 +32,27 @@
 
         <activity
             android:name=".dashboard.ui.MainDashboardActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/Dashboard" />
         <activity
             android:name=".events.ui.activities.EventsViewerActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/Events" />
         <activity
             android:name=".events.ui.activities.EventsBannerViewer"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/Events" />
         <activity
             android:name=".events.ui.activities.OrganisersDashboardActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/Events" />
         <activity
             android:name=".admin.ui.AdminDashboardActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/Admin" />
         <activity
             android:name=".events.ui.activities.EventDashboardActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/Events" />
     </application>
 

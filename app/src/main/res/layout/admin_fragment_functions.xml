@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.bharathksunil.interrupt.admin.ui.fragments.AdminFunctionsFragment">
     <!--USER MANAGEMENT-->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/admin_card_user_management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,9 +37,9 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
     <!--ORGANISERS MANAGEMENT-->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/admin_card_organisers_management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,9 +70,9 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
     <!--FEEDBACK MANAGEMENT-->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/admin_card_feedback_management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,8 +103,8 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-    </android.support.v7.widget.CardView><!--FEEDBACK MANAGEMENT-->
-    <android.support.v7.widget.CardView
+    </androidx.cardview.widget.CardView><!--FEEDBACK MANAGEMENT-->
+    <androidx.cardview.widget.CardView
         android:id="@+id/admin_card_event_management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -135,5 +135,5 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

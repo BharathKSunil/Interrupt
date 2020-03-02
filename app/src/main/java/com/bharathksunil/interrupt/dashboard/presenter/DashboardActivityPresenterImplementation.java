@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.dashboard.presenter;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.bharathksunil.interrupt.auth.model.UserManager;
 

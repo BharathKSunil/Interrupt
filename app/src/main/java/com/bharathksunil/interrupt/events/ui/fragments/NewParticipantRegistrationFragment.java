@@ -3,8 +3,8 @@ package com.bharathksunil.interrupt.events.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -179,7 +179,7 @@ public class NewParticipantRegistrationFragment extends Fragment implements Part
                     .endConfig().buildRect(EventsManager.getInstance().getEventName(), banner_image_bg_color);
             iv_banner.setImageDrawable(textDrawable);
         }
-        Picasso.with(getContext()).load(url).placeholder(R.drawable.app_icon)
+        Picasso.get().load(url).placeholder(R.drawable.app_icon)
                 .error(R.drawable.app_icon)
                 .into(iv_banner);
 

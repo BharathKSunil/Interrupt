@@ -1,10 +1,6 @@
 package com.bharathksunil.interrupt.auth.presenter;
 
-import android.support.annotation.NonNull;
-
-import com.bharathksunil.interrupt.auth.presenter.FormErrorType;
-import com.bharathksunil.interrupt.auth.presenter.SignInPresenter;
-import com.bharathksunil.interrupt.auth.presenter.SignInPresenterImplementation;
+import androidx.annotation.NonNull;
 
 import org.junit.Rule;
 import org.junit.Test;

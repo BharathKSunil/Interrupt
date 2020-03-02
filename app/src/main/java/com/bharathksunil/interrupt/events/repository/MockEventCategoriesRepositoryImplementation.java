@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.events.repository;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bharathksunil.interrupt.events.model.Categories;
 import com.bharathksunil.interrupt.events.presenter.EventCategoriesPresenter;

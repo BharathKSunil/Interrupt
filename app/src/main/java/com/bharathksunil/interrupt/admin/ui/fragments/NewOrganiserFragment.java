@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -238,7 +238,7 @@ public class NewOrganiserFragment extends Fragment implements NewOrganiserPresen
                                 .setCompressFormat(Bitmap.CompressFormat.JPEG)
                                 .compressToFile(profileFile);
                         profilePath = Uri.fromFile(compressedFile);
-                        Picasso.with(getActivity()).load(profilePath).transform(new CircleTransform()).into(iv_profile);
+                        Picasso.get().load(profilePath).transform(new CircleTransform()).into(iv_profile);
                     } catch (Exception e) {
                         ViewUtils.errorBar("Couldn't Load File", getActivity());
                         e.printStackTrace();

@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.admin.repository;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bharathksunil.interrupt.FirebaseConstants;
 import com.bharathksunil.interrupt.admin.model.Users;
@@ -53,16 +53,15 @@ public class FirebaseNewOrganiserRepository implements NewOrganiserPresenter.Rep
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 //noinspection ConstantConditions
-                callback.onProfileUploadedSuccessfully(taskSnapshot.getDownloadUrl().toString());
+                reference.getDownloadUrl().addOnSuccessListener(uri -> {
+                    callback.onProfileUploadedSuccessfully(uri.toString());
+                });
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Debug.e(FirebaseNewOrganiserRepository.class.getName() +
-                        "uploadProfilePicture()" + e.getLocalizedMessage());
-                e.printStackTrace();
-                callback.onProfileUploadFailed();
-            }
+        }).addOnFailureListener(e -> {
+            Debug.e(FirebaseNewOrganiserRepository.class.getName() +
+                    "uploadProfilePicture()" + e.getLocalizedMessage());
+            e.printStackTrace();
+            callback.onProfileUploadFailed();
         });
     }
 

@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.auth.repository;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bharathksunil.interrupt.FirebaseConstants;
 import com.bharathksunil.interrupt.auth.model.User;
@@ -12,7 +12,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.ProviderQueryResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -37,22 +36,19 @@ public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.R
 
     private void checkForEmailAvailabilityAndSignUpIfAvailable(final @NonNull String email, final @NonNull String password,
                                                                final @NonNull SignUpCallbacks signUpCallbacks) {
-        FirebaseAuth.getInstance().fetchProvidersForEmail(email)
-                .addOnSuccessListener(new OnSuccessListener<ProviderQueryResult>() {
-                    @Override
-                    public void onSuccess(ProviderQueryResult providerQueryResult) {
-                        if (providerQueryResult.getProviders() != null) {
-                            if (providerQueryResult.getProviders().size() == 1) {
-                                //email already in use
-                                signUpCallbacks.onUserAlreadySignedUp();
-                            } else {
-                                //email is available
-                                proceedWithUserSignUp(email, password, signUpCallbacks);
-                            }
+        FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email)
+                .addOnSuccessListener(providerQueryResult -> {
+                    if (providerQueryResult.getSignInMethods() != null) {
+                        if (providerQueryResult.getSignInMethods().size() == 1) {
+                            //email already in use
+                            signUpCallbacks.onUserAlreadySignedUp();
                         } else {
                             //email is available
                             proceedWithUserSignUp(email, password, signUpCallbacks);
                         }
+                    } else {
+                        //email is available
+                        proceedWithUserSignUp(email, password, signUpCallbacks);
                     }
                 })
                 .addOnFailureListener(TaskExecutors.MAIN_THREAD, new OnFailureListener() {
@@ -103,20 +99,15 @@ public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.R
                 .getReference().child(FirebaseConstants.PROFILE_STORE +
                         user.getUid() + ".jpg");
         UploadTask uploadTask = reference.putFile(profilePath);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                //noinspection ConstantConditions
-                callback.onProfileUploaded(taskSnapshot.getDownloadUrl().toString());
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Debug.e(FirebaseSignInRepositoryImplementation.class.getName() +
-                        "uploadProfilePicture()" + e.getLocalizedMessage());
-                e.printStackTrace();
-                callback.onProfileUploadFailed();
-            }
+        uploadTask.addOnSuccessListener(taskSnapshot -> {
+            reference.getDownloadUrl().addOnSuccessListener( uri-> {
+                callback.onProfileUploaded(uri.toString());
+            });
+        }).addOnFailureListener(e -> {
+            Debug.e(FirebaseSignInRepositoryImplementation.class.getName() +
+                    "uploadProfilePicture()" + e.getLocalizedMessage());
+            e.printStackTrace();
+            callback.onProfileUploadFailed();
         });
     }
 
@@ -130,20 +121,12 @@ public class FirebaseSignUpRepositoryImplementation implements SignUpPresenter.R
         DatabaseReference userDataReference = FirebaseDatabase.getInstance()
                 .getReference(FirebaseConstants.USERS_TREE).child(fuser.getUid());
         userDataReference.setValue(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        callback.onUserInfoUploadedSuccessfully();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Debug.e(FirebaseSignInRepositoryImplementation.class.getName() +
-                                "uploadUserInfo():" + e.getLocalizedMessage());
-                        e.printStackTrace();
-                        callback.onUserInfoUploadFailed();
-                    }
+                .addOnSuccessListener(aVoid -> callback.onUserInfoUploadedSuccessfully())
+                .addOnFailureListener(e -> {
+                    Debug.e(FirebaseSignInRepositoryImplementation.class.getName() +
+                            "uploadUserInfo():" + e.getLocalizedMessage());
+                    e.printStackTrace();
+                    callback.onUserInfoUploadFailed();
                 });
     }
 }

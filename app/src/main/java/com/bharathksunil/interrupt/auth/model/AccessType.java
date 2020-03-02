@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.auth.model;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

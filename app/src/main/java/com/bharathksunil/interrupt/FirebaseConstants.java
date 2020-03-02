@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 /**
  * This stores all the firebase related constants

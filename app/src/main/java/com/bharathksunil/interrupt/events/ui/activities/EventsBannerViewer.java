@@ -1,7 +1,7 @@
 package com.bharathksunil.interrupt.events.ui.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bharathksunil.interrupt.R;
@@ -34,7 +34,7 @@ public class EventsBannerViewer extends AppCompatActivity {
                 .beginConfig().textColor(fontColor).bold()
                 .fontSize(100).endConfig()
                 .buildRect("Interrupt 7.0", backGroundColor);
-        Picasso.with(this).load(EventsManager.getInstance().getCurrentEventBannerURL())
+        Picasso.get().load(EventsManager.getInstance().getCurrentEventBannerURL())
                 .fit()
                 .error(drawable)
                 .placeholder(drawable)

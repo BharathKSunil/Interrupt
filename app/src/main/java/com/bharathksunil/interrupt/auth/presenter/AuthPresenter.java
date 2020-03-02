@@ -1,6 +1,6 @@
 package com.bharathksunil.interrupt.auth.presenter;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.bharathksunil.interrupt.BaseView;
 import com.google.firebase.database.DataSnapshot;

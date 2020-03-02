@@ -23,7 +23,7 @@
         android:text="@string/tv_empty_design_team"
         android:textAppearance="@style/Dashboard.TextAppearance.Small" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_design_team"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
