@@ -1,4 +1,5 @@
 # Built application files
+/build/
 /*/build/
 
 # Crashlytics configuations
@@ -39,3 +40,6 @@ Thumbs.db
 
 # Firebase
 app/google-services.json
+
+#APK's
+*.apk
